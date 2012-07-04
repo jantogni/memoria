@@ -1,0 +1,95 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{epsfig}
+\usepackage{enumerate}
+\usepackage{float}
+\usepackage{listings}
+\frenchspacing
+\linespread{1.2}                                          %espacio entre líneas
+\setlength{\parskip}{1.5ex plus 0.2ex minus 0.2ex}        %espacio entre párrafos
+\setlength{\columnsep}{0.9cm}  							  %espacio entre columnas
+\usepackage{indentfirst}
+\usepackage{graphicx}
+\usepackage{verbatim}
+\usepackage{url}
+\usepackage{multicol}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{moreverb}
+
+\geometry{tmargin=4.5cm, lmargin=3.0cm, rmargin=2.5cm, bmargin=2.0cm}
+
+\newcommand\R{R} %Sentencia para crear nuevos comandos.
+\newenvironment{keywords}{\begin{description}\item[Keywords:]}{\end{description}}
+
+\title{
+\center{
+	\textbf{Technical Report Name}
+	}
+\author{Author1 \\ \url{author1@csrg.inf.utfsm.cl} \\
+	Author2 \\ \url{author2@csrg.inf.utfsm.cl} \\
+	}
+\date{Valparaíso, \today}
+}
+
+\fancyhf{}
+\fancyhead[L]{Technical Report Name}
+\fancyhead[R]{\thepage}
+\fancyfoot[L]{{\small Universidad Técnica Federico Santa María}}
+\fancyfoot[R]{{\small Author1 Author2}}
+\pagestyle{fancy}
+
+\begin{document}
+\maketitle
+
+\vspace{0.5cm}
+
+\begin{center}
+	\begin{abstract}
+		\input{include/abstract}
+	\end{abstract}
+\end{center}
+
+\vspace{0.4cm}
+
+\begin{center}
+\begin{keywords}
+Keyword1, keyword2.
+\end{keywords}
+\end{center}
+
+\vspace{1cm}
+
+\thispagestyle{empty}
+
+\newpage
+\tableofcontents
+
+\newpage
+%\input{include/introduction}
+
+\newpage
+%\input{include/problem_definition}
+
+\newpage
+%\input{include/state-of-the-art}
+
+\newpage
+%\input{include/proposed_sol}
+
+\newpage
+%\input{include/results}
+
+\newpage
+%\input{include/conclusion}
+
+\newpage
+\thispagestyle{empty}
+\addcontentsline{toc}{section}{Bibliography}
+
+%\nocite{*}
+%\bibliographystyle{alpha}
+%\bibliography{report}
+
+\end{document}
