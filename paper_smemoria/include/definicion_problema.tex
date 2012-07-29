@@ -1,1 +1,47 @@
 \section{Definición del problema}
+Para entender el concepto de Electronic Market Making es necesario definir algunos términos: \cite{glosten1985bid}
+\begin{itemize}
+	\item Dealers: compran y venden "valores". Buscan comprar bajo y vender alto.
+	\item Se fijan dos precios: \textbf{Bid} (dealer compra, cliente vende). \textbf{Ask} (dealer vende, cliente compra). Lo esperado es que: 
+		\textbf{ask} > \textbf{bid}. El término \textbf{spread} corresponde a \textbf{ask} - \textbf{bid}, lo que corresponde a la diferencia entre lo que
+		el dealer vende y compra (concepto de ganancia). Esto se entiende como la fuente de ingresos de los dealers. \cite{ho1981optimal}
+\end{itemize}
+En la literatura se han visto algunos resultados experimentales de este tema usando sistemas computacionales que proveen interfaces para desarrollar en sus sistemas, 
+nuevamente para ello es necesario ir definiendo algunos conceptos entre medio:
+\begin{itemize}
+	\item Pen exchange simulator (PXS): usa Island Electronic communitacion network basado en limit orders.
+	\item New York Stock Exchange (NYSE): operador financiero de mercado que provee tecnologías de trading innovadoras, además de data real
+		de indicadores económicos y valores de activos. Organización creada desde el 2007.
+	\item NASDAQ: este sistema es igual que el anterior y cae dentro de la categoría de \textbf{security dealers}. \cite{barclay1999effects}
+	\item Market order: es una instrucción del cliente al dealer (comprar o vender al mejor precio posible). Asegura la realización de la transacción, 
+		pero no el precio.
+	\item Limit order: es una instrucción del cliente al dealer de pedir una transacción a un precio específico (o más ventajoso). 
+		No garantiza la realización de la transacción pero si se conoce una cota del precio.
+	\item Existe un order book, el cua es un registro de dos colas: una de venta y una de compra. Si una nueva orden entra y no es satisfecha por el limit order, 
+		esta ingresa al order book (cola de venta o compra).
+	\item PXS a cada iteración hace:
+	\begin{itemize}
+		\item Toma un snapshot del island order book.
+		\item Reúne toda las limit orders desde los agentes en simulación.
+		\item Combina todas las órdenes (reales y ficticias) usando las reglas del ECN. Algunas transacciones se realizan y otras entran al island order book.
+		\item Cuando se realiza una transacción, se actualizan los agentes (stock y \$) y el order book.
+	\end{itemize}
+\end{itemize}
+El electronic market maker se descompone en dos áreas grandes de investigación:
+\begin{itemize}
+	\item Etablecer el bid-ask spread
+	\item Actualizar el bid-ask spread, de manera predictiva o no predictiva.
+\end{itemize}
+La primera decisión para el market maker es donde establecer el spread inicial. Valoración de la seguridad al ser tradeado:
+\begin{itemize}
+	\item Para un stock, determinar el valor de este para la compañía
+	\item Para un bono buscar el valor presente del pago prometido
+	\item Si no hay mercado establecido, o el mercado tiene poca liquidez, entonces la valorización es la única aproximación. \cite{seppi1997liquidity}
+\end{itemize}
+La segunda, actualizar el bid-ask, es considerado como el corazón del market maker. Existen formas predictivas al corto plazo teniendo en cuenta el comportamiento 
+de la curva (bid-ask), esto es posible cuando se tienen valores históricos, y en base a ellos se pueden calcular aproximaciones a los nuevos valores posibles. 
+El segundo caso posible, es que no se posea información histórica, y que se tenga la información actual del mercado. Estas últimas son inherentemente más simples.
+
+En el estudio de la actualización del bid-ask mediante formas predictivas es donde se utilizan la mayor parte de procedimientos matemáticos. Además en el presente
+se trabaja con datos de alta frecuencia, es decir, data proveniente de los servidores con diferencia temporal muy pequeña, lo que deja abierta la posibilidad
+de realizar investigación tanto matemática como computacional en la optimización de estos cálculos.

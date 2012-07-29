@@ -1,1 +1,21 @@
 \section{Estado del arte}
+
+En las estrategias predictivas, se han realizado varios modelamiento mediante herramientas que proveen las matemáticas: \cite{azoff1994neural}
+\subsection{Series te tiempo}
+Algunos conceptos previos:
+\begin{itemize}
+	\item Proceso estocástico: Un proceso estocástico es una colección de variables aleatorias { X t } , referidas a un conjunto índice T, el cual puede ser 
+		discreto o continuo con una distribución común $F_x$.
+	\item Serie temporal: sucesión de variables aleatorias indexadas según parámetro creciente con el tiempo.
+	\item Estacionaridad: \cite{brockwell2009time}
+	\begin{itemize}
+		\item Estricta: $F_{X_1,...,X_k} = F_{X_1+h,...,X_k+h}$. La distribución conjunta no cambia.
+		\item Débil: $\mu_t = \mu$. La función promedio no depende de t. $\gamma(t_1,t_2) = \gamma(t_1,t_1+h)=\gamma(h)$. La función de auto-covarianza no depende del tiempo sino de la diferencia entre tiempos.
+		\item Ruido blanco: media 0, varianza $\sigma^2$
+	\end{itemize}
+	\item Función auto-covarianza: $ y(t_1,t_2) = Cov(X_{t1}, X_{t2})$. La covarianza: $S_{XY} = \frac 1n \sum_{i=1}^n { (x_i - \overline{x})(y_i - \overline{y})} = {1 \over n} \sum_{i}^n {x_{i}*y_{i}} - \overline{x} * \overline{y}$
+	\item Función auto-correlación: $\frac{Cov(X_{t1},X_{t2})}{Var(X_{t1}Var(X_{t2})}$. Cuando una serie de tiempo es estacionaria, la función de 
+		auto-correlación $p_x(h) = \frac{\gamma_x(h)}{\gamma_x(0)}$
+	\item Función promedio: $ \mu_{t} = E(X_t) t=0,1,2,3... $
+	\item Una combinación lineal de 2 o más series de tiempo estacionarias no correlacionadas, es estacionaria. \cite{hamilton1994time}
+\end{itemize}
