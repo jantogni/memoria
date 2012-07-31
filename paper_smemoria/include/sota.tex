@@ -1,1 +1,31 @@
 \section{Aplicaciones previas}
+\subsection{High-Frequency Trading}
+En las estrategias predictivas, se han realizado varios modelamiento mediante herramientas que proveen las matemáticas: \cite{azoff1994neural}, como Series de tiempo.
+Una serie temporal es una secuencia de datos medidos en determinados momentos de tiempo y ordenados cronológicamente, por lo general, los datos están espaciados
+entre si de manera uniforme, pero para efectos de aplicación en datos financieros, esto no es una realidad, debido a que la actualización del bid/ask no es estándar
+en tiempo. El análisis comprende métodos que ayudan a interpretar este tipo de datos, extrayendo información representativa, tanto referente a los orígenes o relaciones
+como la posibilidad de extrapolar y predecir comportamientos futuros. En \cite{glosten1988estimating} el autor desarrolla e implementa una técnica para estimar
+el modelo del bid/ask, y el valor del spread. El spread lo descompone en dos grandes componentes,  uno debido a la asimetría de la información y el otro debido a
+los costos de inventario. La data utilizada la obtuvieron de la Bolsa de Nueva York, y contaron con los precios de transaccion de acciones comunes en el período
+1981-1983.
+
+Si se busca en internet respecto a High-Frequency Trading, se pueden ver muchos articulos relacionados a una fecha en específica del mercado de EEUU, 6 de mayo del
+2010. Fecha en la cual se acuña el término de  \emph{Flash-Crash}, en \cite{arndt2011high} definen tanto el comercio algorítmico y el HFT, y su intención es informar
+al público los responsables plíticos y los reguladores, para proporcionar una base para las discusiones y las necesidades de regulación.
+
+Respecto a lo anterior se puede escribir bastante, debido a que existen detractores (como el paper citado anteriormente), mientras que otros autores no implicitan su
+postura debido a que no poseen tanta certeza respecto a lo ocurrio \cite{guo2012high}.
+
+Los principales aportes científicos que realizan los investigadores del área, están ligados a sus definiciones de estrategias de HFT y sus algoritmos utilizados. En
+\cite{aldridge2009high} definen pautas para la clasificación de estrategias:
+\begin{itemize}
+	\item Provisión de liquidez automatizada: algoritmos cuantitativos para optimizar el precio y ejecución de la posición del market making. Tiempos alrededor a
+		1 minuto.
+	\item Microestructura de trading de mercado: la identificación de participantes en la negociación, y el flujo de órdenes a través de ingeniería reversa de 
+		las cotizaciones observadas. Tiempos alrededor a 10 minutos.
+	\item Eventos de trading: macro eventos de trading. Tiempos alrededor de una hora.
+	\item Desviaciones arbitrarias: desviaciónes estadisticas del equilibrio, triangulos de trades, bases de trades, y cosas por el estilo. Tiempos alrededor
+		de un día.
+\end{itemize}
+
+Este libro se considera como uno de los más importantes en el área, y contiene bastante información relevante de estudio.
