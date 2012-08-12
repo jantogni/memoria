@@ -12,18 +12,6 @@
 \usetheme{Warsaw}
 \usepackage{pstricks}
 
-%\pgfdeclareimage[height=1.3cm]{logo-izq}{img/alma.png}
-%\pgfdeclareimage[height=1.3cm]{logo-der}{img/alma-off.png}
-%\logo{\pgfuseimage{logo-der}}
-%\setbeamertemplate{sidebar left}
-%{
-%\logo{\pgfuseimage{logo-izq}}
-%\vfill %pone la imágen en la esquina inferior izquierda
-%\rlap{\hskip0.1cm\insertlogo} %inserta la imágen
-%\vskip15pt
-%}
-
-
 \title{High-Frequency Trading \\ \& \\ Graphics processing unit}
 \subtitle{Defensa tema de memoria}
 \author{Jonathan Antognini C.\\
@@ -38,8 +26,16 @@
 		\input{src/introduccion}
 	\section{High-Frequency Trading}
 		\input{src/hft}
+		\subsection{Electronic Trading}
+			\input{src/electronic_trading}
+		\subsection{High-Frequency Trading}
+			\input{src/high_frequency}
 	\section{Graphics processing unit}
 		\input{src/gpu}
+		\subsection{GPU Computing}
+			\input{src/gpu_computing}
+		\subsection{NVIDIA CUDA}
+			\input{src/cuda}
 	\section{Objetivos de la Memoria}
 		\input{src/objetivos}
 	\section{Planificación de Trabajo}
