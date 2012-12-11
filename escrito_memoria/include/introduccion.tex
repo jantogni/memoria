@@ -1,0 +1,88 @@
+\parindent=1.5em
+Esta memoria está enfocada a abordar un problema financiero, relacionado con las series financieras de alta frecuencia y una forma particular
+de poder realizar pronósticos. Se pretende abordar esta problemática con metodologías computacionales, aplicando algunos conceptos matemáticos
+útiles para esta área.
+
+La naturaleza del problema es de carácter financiero, por lo que es necesario introducir algunos conceptos, criterios y términos generales
+asociados al área.
+
+Este capítulo tiene como objetivo introducir los conceptos de series de tiempo financierras, sus orígenes y la alta frecuencia.
+
+\section{Mercados Financieros}
+
+El mercado financiero es un espacio con marco institucional que permite poner en contacto a oferentes y demandantes para que efectúen
+transacciones financieras. La idea de mercado como foro organizado a la que acuden agentes económicos para efectuar transacciones
+queda reducida en el mundo financiero como las bolsas de valores.
+
+El concepto de mercado financiero se utiliza en general para referirse a cualquier mercado organizado en el que se negocien instrumentos financieros
+de todo tipo, como por ejemplo, acciones. Además el espacio para generar estas interacciones no necesariamente debe ser físico. Por otro lado el negociar
+instrumentos financieros implica a grandes rasgos: intercambiar instrumentos financieros, y definir su precio. Por ende, estos mercados están basados en
+las fuerzas de oferta y demanda, ubicando a todos los oferentes en el mismo lugar para facilitarle la búsqueda a los demandantes.
+
+Una de las razones que hace importante este tipo de mercado, es su funcionalidad, ya que permiten:
+\begin{itemize}
+        \item Aumentar el capital, siendo esto uno de los casos favorables, ya que también hay probabilidades considerables de disminuir el capital.
+        \item Comercio internacional, como en los mercados de divisas, por ejemplo Forex.
+        \item Reunir a quienes necesitan recursos financieros, con los que tienen recursos financieros.
+\end{itemize}
+
+En este tipo de mercado se definen los siguientes conceptos:
+\begin{itemize}
+	\item \emph{Dealer}: Un dealer es un ente, presente en los mercados que están dispuestos a comprar o vender.
+	\item \emph{Orders}: Operación de compra/venta de activos.
+	\item \emph{Bid price}: Precio al cual un \emph{dealer} está dispuesto a comprar.
+	\item \emph{Ask price}: Precio al cual un \emph{dealer} está dispuesto a vender.
+	\item \emph{Market orders}: instrucción del cliente al dealer, comprar o vender al mejor precio posible dentro de los valores actuales del mercado.
+		Esto asegura la realización de la transacción, pero no el precio.
+	\item \emph{Limit orders}: es una orden para comprar a un valor máximo (precio determinado), o para vender a un valor mínimo (precio determinado).
+		Esto le da al cliente el control sobre el precio al que se ejecuta el comercio, sin embargo, no garantiza la realización de la transacción.
+\end{itemize}
+
+El conjunto de \emph{Limit orders} forman los \emph{books} para cierto activo, los cuales proveen información detallada de dicho instrumento. Con estos datos
+se forman los llamados bid-ask spreads, que es la diferencia entre el precios cotizados para una venta inmediata (oferta) y una compra inmediata (bid). 
+Además se generan los bid-ask qoute, el cual define cotas para el precio de transacción.
+
+\subsection{Mercados bursátiles}
+Los mercados bursátiles están clasificados en los mercados de capitales, en donde se negocian activos financieros. Este tipo de mercado provee financiamiento
+por medio de la emisión de acciones y permiten luego el intercambio de estas. La aplicación más directa de este tipo de mercados, son las bolsas de valores, cuyo
+origen se remonta a finales del siglo XV en las ferias medievales de Europa.
+
+Las bolsas de valores se pueden definir como mercados organizados y especializados, en los que se pueden realizar transacciones de títulos de valores por
+medio de intermediarios autorizados. Estas bolsas ofrecen al público y a sus miembros facilidades, mecanismos e instrumentos técnicos que facilitan la negociación
+de títulos de valores susceptibles de ofertas públicas, a precios determinados mediante subasta.
+
+La principal función de las Bolsas de Valores implican proporcionar a los participantes información verar, objetiva, completa y permanente de los valores
+y las empresas inscritas en la Bolsa, sus emisiones y las operaciones que en ella se realicen, supervisión de actividades.
+
+Las componentes de este sistema son los activos, instituciones financieras cuya misión es contactar demandantes y oferentes en los mercados donde se negocian
+los diferentes instrumentos o activos financieros.
+
+Dentro de los estudios de la economía, se habla de que este tipo de mercado es de competencia perfecta, es decir posee características
+como: \cite{mankiw2011principles}:
+\begin{itemize}
+        \item Existe un elevado número de compradores y vendedores. La decisión individual de cada uno de ellos ejercerá escasa influencia sobre el mercado global.
+        \item Homogeneidad de los productos, es decir, no existen diferencias entre productos que venden los oferentes.
+        \item Transparencia del mercado. TOdos los participantes tienen pleno conocimiento de las condiciones generales en que opera el mercado.
+        \item Libertad de entrada y salida de empresas. Todos los participantes, cuando lo deseen, podrán entrar o salir del mercado a costos nulos o casi nulos.
+\end{itemize}
+
+\section{Series de tiempo financiera}
+
+Las series financieras tienen características singulares en relación a otras series macroeconómicas,
+como son: la mayor frecuencia en la observación de los datos, semanal, diaria o incluso minuto
+a minuto, y sobre todo la presencia de heterocedásticidad, que hace inadecuados los modelos
+desarrollados para series estacionarias. Estas características diferenciadoras han propiciado nu-
+merosos trabajos en las áreas de econometría y economía financiera desde los años 70. Así, en
+el área financiera las evidencias sobre estructuras de volatilidades implícitas! ha conducido a
+la formulación de modelos de valoración continuos con volatilidad no constante2 , y a su dis-
+cretización y estimación como series temporales 3 . Los modelos de volatilidad estocástica que
+estudiaremos en este artículo pueden obtenerse como resultado de estas discretizaciones. Por
+otra parte, en el área econométrica, el modelo ARCH propuesto por Engle(1982) para modeli-
+zación de series heterocedásticas, por sus atractivas propiedades estadísticas, que le permiten
+captar las características más habituales de estas series y por la sencillez de su estimación, marca
+el punto de partida de estos modelos y sus generalizaciones que tienen también su reflejo en el
+,área financieré.
+
+
+\section{Cómo se generan y sus características}
+\section{High frequency}
