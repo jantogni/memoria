@@ -19,16 +19,14 @@ de todo tipo, como por ejemplo, acciones. Además el espacio para generar estas 
 instrumentos financieros implica a grandes rasgos: intercambiar instrumentos financieros, y definir su precio. Por ende, estos mercados están basados en
 las fuerzas de oferta y demanda, ubicando a todos los oferentes en el mismo lugar para facilitarle la búsqueda a los demandantes.
 
-Una de las razones que hace importante este tipo de mercado, es su funcionalidad, ya que permiten:
-\begin{itemize}
-        \item Aumentar el capital, siendo esto uno de los casos favorables, ya que también hay probabilidades considerables de disminuir el capital.
-        \item Comercio internacional, como en los mercados de divisas, por ejemplo Forex.
-        \item Reunir a quienes necesitan recursos financieros, con los que tienen recursos financieros.
-\end{itemize}
+Una de las razones que hace importante este tipo de mercado, es su funcionalidad, ya que permiten por un lado aumentar el capital, siendo esto uno 
+de los casos favorables, ya que también hay probabilidades considerables de disminuir el capital; comercio internacional, como en los mercados de 
+divisas, por ejemplo Forex; y reunir a quienes necesitan recursos financieros, con los que tienen recursos financieros. Factores claves
+que permiten generar los efectos de oferta y demanda.
 
-En este tipo de mercado se definen los siguientes conceptos:
+En este tipo de mercado se definen los siguientes términos:
 \begin{itemize}
-	\item \emph{Dealer}: Un dealer es un ente, presente en los mercados que están dispuestos a comprar o vender.
+	\item \emph{Dealer}: Un dealer es un ente presente en los mercados que está dispuestos a comprar o vender.
 	\item \emph{Orders}: Operación de compra/venta de activos.
 	\item \emph{Bid price}: Precio al cual un \emph{dealer} está dispuesto a comprar.
 	\item \emph{Ask price}: Precio al cual un \emph{dealer} está dispuesto a vender.
@@ -57,32 +55,76 @@ y las empresas inscritas en la Bolsa, sus emisiones y las operaciones que en ell
 Las componentes de este sistema son los activos, instituciones financieras cuya misión es contactar demandantes y oferentes en los mercados donde se negocian
 los diferentes instrumentos o activos financieros.
 
-Dentro de los estudios de la economía, se habla de que este tipo de mercado es de competencia perfecta, es decir posee características
-como: \cite{mankiw2011principles}:
-\begin{itemize}
-        \item Existe un elevado número de compradores y vendedores. La decisión individual de cada uno de ellos ejercerá escasa influencia sobre el mercado global.
-        \item Homogeneidad de los productos, es decir, no existen diferencias entre productos que venden los oferentes.
-        \item Transparencia del mercado. TOdos los participantes tienen pleno conocimiento de las condiciones generales en que opera el mercado.
-        \item Libertad de entrada y salida de empresas. Todos los participantes, cuando lo deseen, podrán entrar o salir del mercado a costos nulos o casi nulos.
-\end{itemize}
+Dentro de los estudios de la economía, se habla de que este tipo de mercado es de competencia perfecta, ya que posee características
+como: elevado número de compradores y vendedores. La decisión individual de cada uno de ellos ejercerá escasa influencia sobre el mercado global; 
+Homogeneidad de los productos, es decir, no existen diferencias entre productos que venden los oferentes; Transparencia del mercado, todos los 
+participantes tienen pleno conocimiento de las condiciones generales en que opera el mercado; Libertad de entrada y salida de empresas, todos 
+los participantes, cuando lo deseen, podrán entrar o salir del mercado a costos nulos o casi nulos \cite{mankiw2011principles}.
 
 \section{Series de tiempo financiera}
 
-Las series financieras tienen características singulares en relación a otras series macroeconómicas,
-como son: la mayor frecuencia en la observación de los datos, semanal, diaria o incluso minuto
-a minuto, y sobre todo la presencia de heterocedásticidad, que hace inadecuados los modelos
-desarrollados para series estacionarias. Estas características diferenciadoras han propiciado nu-
-merosos trabajos en las áreas de econometría y economía financiera desde los años 70. Así, en
-el área financiera las evidencias sobre estructuras de volatilidades implícitas! ha conducido a
-la formulación de modelos de valoración continuos con volatilidad no constante2 , y a su dis-
-cretización y estimación como series temporales 3 . Los modelos de volatilidad estocástica que
-estudiaremos en este artículo pueden obtenerse como resultado de estas discretizaciones. Por
-otra parte, en el área econométrica, el modelo ARCH propuesto por Engle(1982) para modeli-
-zación de series heterocedásticas, por sus atractivas propiedades estadísticas, que le permiten
-captar las características más habituales de estas series y por la sencillez de su estimación, marca
-el punto de partida de estos modelos y sus generalizaciones que tienen también su reflejo en el
-,área financieré.
+En la vida real, la mayoría de los fenómenos que se estudian secuencialmente, deben
+tomar en cuenta la dinámica de los proceso con la finalidad de entenderlos de la mejor manera
+posible. Una herramienta muy útil en dicho objetivo es el Análisis de Series de Tiempo. Se
+pueden presentar casos de series de tiempo en una multitud de disciplinas como ingeniería,
+sociología, economía, finanzas por solo mencionar algunas de ellas.
 
+El propósito fundamental es mostrar las técnicas que permitan hacer inferencias del
+proceso en estudio incluyendo su predicción. Esto se logra estableciendo modelos
+probabilísticos hipotéticos que representen a los datos; y en consecuencia, se lleva a cabo el
+proceso de ajuste que incluye desde la estimación hasta la predicción una vez que se determina
+un modelo satisfactorio. Los modelos de series deben considerar la naturaleza del fenómeno y determinar 
+los factores que pueden ser incluidos en los modelos.
+
+En particular, el análisis de una series de tiempo financiera se refiere a la teoría y práctica de la valoración 
+de activos en el tiempo, es decir, un estudio del precio como función del tiempo.
+
+Es una disciplina muy empírica, pero al igual que la teoría de otros campos científicos es la base para hacer inferencias. 
+Hay, sin embargo, una característica clave que distingue el análisis financiero serie de tiempo de otros análisis de series de tiempo. 
+
+Tanto la teoría económica y sus series temporales empíricas contienen un elemento de incertidumbre. Por ejemplo, 
+hay varias definiciones de volatilidad de los activos, y para una serie de retornos de las acciones, la volatilidad no es observable directamente.
+
+Las características diferenciadoras han propiciado numerosos trabajos en las áreas de econometría y economía financiera desde los años 70.
+Así, en el área financiera las evidencias sobre estructuras ha conducido a la formulación de distintos modelos matemáticos que se estudiarán
+en esta memoria.
 
 \section{Cómo se generan y sus características}
-\section{High frequency}
+
+Las series de tiempo financieras como se dijo previamente, se basan en el estudio del precio de un activo financiero en el tiempo. Pero existen 
+varios tipos de precios que se pueden lograr estudiar. Por un lado están los indicadores que se estudiaron en los primeros estudios formales
+en esta área, llamados estudios técnicos, los cuales mostraban información al respecto de los precios: \emph{apertura}, \emph{cierre}, \emph{el más bajo}, 
+\emph{el más alto}, \emph{promedio}. Esos datos lógicamente estaban orientados a tomar métricas respecto a la frecuencia \emph{día}, con estos
+datos quedaban graficos como el siguiente:
+
+\begin{center}
+	\includegraphics[width=0.6\textwidth]{images/microsoft} \\
+	\textbf{Figura 1.} Información de los precios de microsoft en la bolsa.
+\end{center}
+
+Esos precios son a nivel diario, sin embargo la data estudiada actualmente corresponde a data \emph{intra diaria}, la cual reside en los valores
+específicos en que se compró/vendió algún activo, ya sea acción, divisa, etc. Ese término se conoce como el \emph{last price}, y corresponde
+al valor específico con el cual se transó el activo. La forma de como se realiza este evento es básicamente como el que se detalló anteriormente,
+es decir, mediante \emph{market} o \emph{limit orders}, por lo que existe una cola de compras/ventas obtenidas mediante los \emph{limit orders} y que cuando
+se cumpla la condición asociada (de vender o comprar a cierto precio), se realiza la transacción y se registra dicho \emph{last price}; 
+y por otro lado, si se entra a comprar/vender directamente mediante una \emph{market order} también se registra dicho valor. 
+Juntando toda esa información entonces, se puede generar una secuencia temporal de los \emph{last prices}.
+
+Ahora bien, estas interacciones antiguamente se realizaban personalmente en las bolsas de comercio, sin embargo con el avance de las tecnologías,
+se han implementado distintas plataformas de \emph{trading electrónico}: un método de negociación de valores (como acciones y bonos), divisas o derivados 
+financieros por medios electrónicos. Esta tecnología de la información se utiliza para reunir a compradores y vendedores a través de la plataforma de 
+comercio electrónico y las redes para crear lugares virtuales del mercado, como por ejemplo: National Association of Securities Dealers Automated 
+Quotation (NASDAQ), New York Stock Exchange (NYSE), etc. Estos medios también se conocen como \emph{electronic communications networks} (ECNs).
+
+
+Las series financieras tienen características singulares en relación a otras series macroeconómicas, como son: 
+\begin{itemize}
+	\item Frecuencia: la mayor frecuencia en la observación de los datos es mayor que en otro tipo de series de tiempo, llegando incluso
+		a unidades de fracciones de segundos.
+	\item Heterocedasticidad: ocurre cuando la varianza de las perturbaciones no es constante a lo largo de las observaciones.
+		Este factor hace inadecuados los modelos desarrolados para series estcionarias.
+	\item No estacionaria: en muchos casos presenta no estacionaridad tanto en la media como la varianza.
+		
+\end{itemize}
+
+\section{High frequency trading}
