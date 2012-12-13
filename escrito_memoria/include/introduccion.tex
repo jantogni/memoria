@@ -1,10 +1,19 @@
 \parindent=1.5em
-Esta memoria está enfocada a abordar un problema financiero, relacionado con las series financieras de alta frecuencia y una forma particular
-de poder realizar pronósticos. Se pretende abordar esta problemática con metodologías computacionales, aplicando algunos conceptos matemáticos
-útiles para esta área.
 
-La naturaleza del problema es de carácter financiero, por lo que es necesario introducir algunos conceptos, criterios y términos generales
-asociados al área.
+A través de los años el hombre ha presentado un cambio radical en su nivel de vida; los conocimientos que él ha logrado acumular y aplicar han sido para su beneficio,
+y han cambiado radicalmente su modo de vivir. Existe una notable diferencia entre el hombre de hace unas cuantas décadas y el hombre moderno, tal diferencia se ha
+dado por el desarrollo de la ciencia, que está estrechamente relacionada con la innovacion tecnológica. Por esta razón se amplía el contenido de cómo ha
+evolucionado la ciencia y la tecnología en el mundo, su origen remoto, los países que más han aportado en esta área y su respectiva utilización, bien sea para
+el desarrollo o la destrucción.
+
+Como se sabe, la tecnología se está haciendo presente en todas y cada una de las áreas de investigación, como física, química, biología, computación, y lo que es de
+interés para este documento es el área de los mercados financieros.
+
+Esta memoria está enfocada a abordar un problema financiero, relacionado con las series financieras de alta frecuencia y una forma particular
+de poder realizar pronósticos tomando en cuenta distintas características de naturaleza propia de este tipo de datos. 
+Se pretende abordar esta problemática con metodologías computacionales, aplicando algunos conceptos matemáticos
+útiles para esta área. El problema es de carácter financiero, por lo que es necesario contextualizar el tema mediante conceptos, criterios 
+y términos generales asociados al área.
 
 Este capítulo tiene como objetivo introducir los conceptos de series de tiempo financierras, sus orígenes y la alta frecuencia.
 
@@ -15,7 +24,7 @@ transacciones financieras. La idea de mercado como foro organizado a la que acud
 queda reducida en el mundo financiero como las bolsas de valores.
 
 El concepto de mercado financiero se utiliza en general para referirse a cualquier mercado organizado en el que se negocien instrumentos financieros
-de todo tipo, como por ejemplo, acciones. Además el espacio para generar estas interacciones no necesariamente debe ser físico. Por otro lado el negociar
+de todo tipo, como por ejemplo, acciones. Además, el espacio para generar estas interacciones no necesariamente debe ser físico. Por otro lado el negociar
 instrumentos financieros implica a grandes rasgos: intercambiar instrumentos financieros, y definir su precio. Por ende, estos mercados están basados en
 las fuerzas de oferta y demanda, ubicando a todos los oferentes en el mismo lugar para facilitarle la búsqueda a los demandantes.
 
@@ -38,7 +47,7 @@ En este tipo de mercado se definen los siguientes términos:
 
 El conjunto de \emph{Limit orders} forman los \emph{books} para cierto activo, los cuales proveen información detallada de dicho instrumento. Con estos datos
 se forman los llamados bid-ask spreads, que es la diferencia entre el precios cotizados para una venta inmediata (oferta) y una compra inmediata (bid). 
-Además se generan los bid-ask qoute, el cual define cotas para el precio de transacción.
+También se generan los bid-ask qoute, el cual define cotas para el precio de transacción.
 
 \subsection{Mercados bursátiles}
 Los mercados bursátiles están clasificados en los mercados de capitales, en donde se negocian activos financieros. Este tipo de mercado provee financiamiento
@@ -64,8 +73,8 @@ los participantes, cuando lo deseen, podrán entrar o salir del mercado a costos
 \section{Series de tiempo financiera}
 
 En la vida real, la mayoría de los fenómenos que se estudian secuencialmente, deben
-tomar en cuenta la dinámica de los proceso con la finalidad de entenderlos de la mejor manera
-posible. Una herramienta muy útil en dicho objetivo es el Análisis de Series de Tiempo. Se
+tomar en cuenta la dinámica de los proceso con la finalidad tener una comprensión holística del proceso.
+Una herramienta útil en dicho objetivo es el análisis de series de tiempo. Se
 pueden presentar casos de series de tiempo en una multitud de disciplinas como ingeniería,
 sociología, economía, finanzas por solo mencionar algunas de ellas.
 
@@ -79,17 +88,14 @@ los factores que pueden ser incluidos en los modelos.
 En particular, el análisis de una series de tiempo financiera se refiere a la teoría y práctica de la valoración 
 de activos en el tiempo, es decir, un estudio del precio como función del tiempo.
 
-Es una disciplina muy empírica, pero al igual que la teoría de otros campos científicos es la base para hacer inferencias. 
-Hay, sin embargo, una característica clave que distingue el análisis financiero serie de tiempo de otros análisis de series de tiempo. 
-
-Tanto la teoría económica y sus series temporales empíricas contienen un elemento de incertidumbre. Por ejemplo, 
-hay varias definiciones de volatilidad de los activos, y para una serie de retornos de las acciones, la volatilidad no es observable directamente.
+Tanto la teoría económica y sus series temporales contienen un elemento de incertidumbre. Por ejemplo, hay varias definiciones de volatilidad de los activos, 
+y para una serie de retornos de las acciones, la volatilidad no es observable directamente.
 
 Las características diferenciadoras han propiciado numerosos trabajos en las áreas de econometría y economía financiera desde los años 70.
 Así, en el área financiera las evidencias sobre estructuras ha conducido a la formulación de distintos modelos matemáticos que se estudiarán
 en esta memoria.
 
-\section{Cómo se generan y sus características}
+\subsection{Características}
 
 Las series de tiempo financieras como se dijo previamente, se basan en el estudio del precio de un activo financiero en el tiempo. Pero existen 
 varios tipos de precios que se pueden lograr estudiar. Por un lado están los indicadores que se estudiaron en los primeros estudios formales
@@ -124,7 +130,7 @@ Las series financieras tienen características singulares en relación a otras s
 	\item Heterocedasticidad: ocurre cuando la varianza de las perturbaciones no es constante a lo largo de las observaciones.
 		Este factor hace inadecuados los modelos desarrolados para series estcionarias.
 	\item No estacionaria: en muchos casos presenta no estacionaridad tanto en la media como la varianza.
-		
+	\item Información oculta: se pueden encontrar distintos tipos de patrones a diferentes niveles de escala.
 \end{itemize}
 
-\section{High frequency trading}
+\subsection{High frequency trading}
