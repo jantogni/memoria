@@ -21,19 +21,20 @@ Este capítulo tiene como objetivo introducir los conceptos de series de tiempo 
 
 El mercado financiero es un espacio con marco institucional que permite poner en contacto a oferentes y demandantes para que efectúen
 transacciones financieras. La idea de mercado como foro organizado a la que acuden agentes económicos para efectuar transacciones
-queda reducida en el mundo financiero como las bolsas de valores.
+queda reducida en el mundo financiero como las bolsas de valores \cite{mishkin2006financial}.
 
 El concepto de mercado financiero se utiliza en general para referirse a cualquier mercado organizado en el que se negocien instrumentos financieros
 de todo tipo, como por ejemplo, acciones. Además, el espacio para generar estas interacciones no necesariamente debe ser físico. Por otro lado el negociar
 instrumentos financieros implica a grandes rasgos: intercambiar instrumentos financieros, y definir su precio. Por ende, estos mercados están basados en
-las fuerzas de oferta y demanda, ubicando a todos los oferentes en el mismo lugar para facilitarle la búsqueda a los demandantes.
+las fuerzas de oferta y demanda, ubicando a todos los oferentes en el mismo lugar para facilitarle la búsqueda a los demandantes. Dentro
+de este tipo de mercado se distinguieron bloques de estudio en la economía moderna \cite{jensen1984theory}.
 
 Una de las razones que hace importante este tipo de mercado, es su funcionalidad, ya que permiten por un lado aumentar el capital, siendo esto uno 
 de los casos favorables, ya que también hay probabilidades considerables de disminuir el capital; comercio internacional, como en los mercados de 
 divisas, por ejemplo Forex; y reunir a quienes necesitan recursos financieros, con los que tienen recursos financieros. Factores claves
 que permiten generar los efectos de oferta y demanda.
 
-En este tipo de mercado se definen los siguientes términos:
+En este tipo de mercado se definen los siguientes términos \cite{nevmyvaka2003electronic}:
 \begin{itemize}
 	\item \emph{Dealer}: Un dealer es un ente presente en los mercados que está dispuestos a comprar o vender.
 	\item \emph{Orders}: Operación de compra/venta de activos.
@@ -90,7 +91,7 @@ los factores que pueden ser incluidos en los modelos.
 
 En particular, el análisis de una series de tiempo financiera se refiere a la teoría y práctica de la valoración 
 de activos en el tiempo, intentando modelar la incertidumbre generada por las características propias del fenómeno. Tanto la teoría económica 
-y sus series temporales contienen un elemento de incertidumbre. 
+y sus series temporales contienen un elemento de incertidumbre \cite{tsay2005analysis}. 
 
 Las características diferenciadoras han propiciado numerosos trabajos en las áreas de econometría y economía financiera desde los años 60.
 Así, en el área financiera las evidencias sobre estructuras ha conducido a la formulación de distintos modelos matemáticos que se estudiarán
@@ -145,8 +146,12 @@ el cual para este tipo de series es variable, llegando incluso a tener ventanas 
 que en la literatura acuñan distintos términos para referirse a este tipo de datos.
 
 Los sistemas informáticos que realizan la labor de facilitar el comercio de instrumentos financieros, son los llamados \emph{Electronic communication networks} (ECN).
-Se crearon en 1998, año que fueron autorizados por la \emph{Securities and Exchange Commission}. La SEC es una organización estadounidense que tiene la responsabilidad de
-velar por el cumplimiento de las leyes federales las bolsas de valores. Esta última define formalmente el concepto de High-Frequency Trading como: \emph{} %TODO.
+Se crearon en 1998, año que fueron autorizados por la \emph{Securities and Exchange Commission}. La SEC es una organización estadounidense creada en 1933 \cite{hasbrouck2004economic}, 
+y tiene la responsabilidad de velar por el cumplimiento de las leyes federales las bolsas de valores. Un caso emblemático, fue el 6 de mayo del 2010, fecha en la cual ocurrió el 
+\emph{Flash-Crash} \cite{arndt2011high}, dio a lugar a una quiebra financiera estadounidense en el que el índice Dow Jones Industrial Average se desplomó un 9\%.
+
+al público los responsables plíticos y los reguladores, para proporcionar una base para las discusiones y las necesidades de regulación.
+
 
 \section{High Performance Computing}
 
@@ -156,7 +161,7 @@ necesario optimizar y hacer más eficientes los algoritmos. Es por esto que nace
 (clusters) a tareas que necesitan el procesamiento eficiente de métodos complejos o de grandes volúmenes de información. La idea de base consiste en dividir los problemas 
 en sub-problemas que se asignan a diferentes cores de un nodo o diferentes nodos de cálculo, coordinados por un nodo maestro mediante una red de alta velocidad. 
 
-\section{GPU: Nvidia CUDA}
+\section{Grpahics Processing Unit}
 %CUDA
 Las siglas GPU provienen de Graphics Processing Unit, o en español Unidad de procesamiento gráfico. Para efectos de hardware, la GPU funciona como coprocesador,
 pudiéndose utilizar de forma simultánea a la CPU y así aprovechar el potencial que puedan ofrecer ambas al mismo tiempo. Una GPU es un procesador
@@ -165,7 +170,8 @@ gráficos en 2D, o 3D. Hoy en día las GPU son muy potentes y pueden incluso sup
 
 Una GPU está formada por cientos de pequeños núcleos que trabajan juntos para procesar los datos de alguna aplicación. Esta arquitectura de procesamiento paralelo
 masivo es la que proporciona al GPU su alta capacidad de cálculo. Existen numerosas aplicaciones aceleradas en la GPU que brindan una forma rápida de acceder
-a la computación de alto desempeño (High Performance Computing).
+a la computación de alto desempeño (High Performance Computing). Durante las últimas decadas se ha desarrollado nuevas tecnologías y arquitecturas
+que permiten sacar mayor provecho a sus capacidades \cite{owens2007gpu}.
 
 El concepto implícito en todo este tema es el paralelismo, que es una forma de computación en la cual varios cálculos pueden realizarse simultáneamente,
 siempre y cuando no existan dependencias secuenciales entre cálculos. Basándose en "divide y vencerás", principio que busca dividir los problemas grandes, para
@@ -177,7 +183,7 @@ producciones de chips gráficos por parte de grandes fabricantes, como NVIDIA, A
 En los últimos años también han aparecido conjuntos de herramientas y compiladores que facilitan la programación de las GPUs, como por ejemplo, NVIDIA CUDA, que
 cuenta con la comunidad más activa hasta la fecha en programación de GPUs.
 
-%NVIDIA CUDA
+\subsection{Nvidia CUDA}
 Las primeras GPU fueron diseñadas como aceleradoras de gráficos y admitían apenas procesos específicos de funcionamiento fijo. En las últimas dos decadas,
 el hardware cada vez se volvió más programable, lo que culminó con la primera GPU de NVIDIA en los años 1999. En poco tiempo que se desarrollara el concepto de GPU,
 investigadores empezaron a utilizar el rendimiento de estas tarjetas en cálculos con punto flotante.
@@ -194,7 +200,7 @@ CUDA es una plataforma de computación paralela y un modelo de programación cre
 lenguaje C, que permite a los programadores escribir software para resolver problemas computacionales complejos en menos tiempo aprovechando la gran capacidad 
 de procesamiento paralelo de las GPU multinúcleo. Miles de programadores están utilizando las herramientas gratuitas de desarrollo de CUDA (válidas para millones 
 de GPU que circulan en el mercado), a fin de acelerar todo tipo de aplicaciones, desde herramientas de codificación de audio y video, diseño de productos, 
-investigación científica, etc.
+investigación científica, etc. \cite{kirk2007nvidia}.
 
 Actualmente NVIDIA ofrece un kit de herramientas de CUDA, las cuales incluyen un compilador, bibliotecas de matemáticas, herramientas para corregir y optimizar
 redimiento de aplicaciones. Encontrándose también con muestras de código, guías de programación, manuales de usuario, referencias de la interfaz de programación
@@ -215,7 +221,6 @@ de alto desempeño. Como objetivo secundarios se busca: encontrar una combinaci�
 
 Esta memoria se organizará con el siguiente esquema:
 \begin{itemize}
-	\item Capítulo 1: Introducción. 
 	\item Capítulo 2: Estado del arte: se estudiarán y repasarán las técnicas y modelos más conocidos, distinguiendo entre modelos lineales y no lineales.
 	\item Capítulo 3: Descripción formal del problema: se formalizará el problema a resolver, indicando las características consideradas.
 	\item Capítulo 4: Solución propuesta: se definirá una propuesta de solución, con la respectiva metodología de implementación. 
