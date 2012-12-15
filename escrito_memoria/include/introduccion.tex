@@ -2,7 +2,7 @@
 
 A través de los años el hombre ha presentado un cambio radical en su nivel de vida; los conocimientos que él ha logrado acumular y aplicar han sido para su beneficio,
 y han cambiado radicalmente su modo de vivir. Existe una notable diferencia entre el hombre de hace unas cuantas décadas y el hombre moderno, tal diferencia se ha
-dado por el desarrollo de la ciencia, que está estrechamente relacionada con la innovacion tecnológica. Por esta razón se amplía el contenido de cómo ha
+dado por el desarrollo de la ciencia, que está estrechamente relacionada con la innovación tecnológica. Por esta razón se amplía el contenido de cómo ha
 evolucionado la ciencia y la tecnología en el mundo, su origen remoto, los países que más han aportado en esta área y su respectiva utilización, bien sea para
 el desarrollo o la destrucción.
 
@@ -15,7 +15,7 @@ Se pretende abordar esta problemática con metodologías computacionales, aplica
 útiles para esta área. El problema es de carácter financiero, por lo que es necesario contextualizar el tema mediante conceptos, criterios 
 y términos generales asociados al área.
 
-Este capítulo tiene como objetivo introducir los conceptos de series de tiempo financierras, sus orígenes y la alta frecuencia.
+Este capítulo tiene como objetivo introducir los conceptos de series de tiempo financieras, sus orígenes y la alta frecuencia.
 
 \section{Mercados Financieros}
 
@@ -103,7 +103,7 @@ Las series de tiempo financieras como se dijo previamente, se basan en el estudi
 varios tipos de precios que se pueden lograr estudiar. Por un lado están los indicadores que se estudiaron en los primeros estudios formales
 en esta área, llamados estudios técnicos, los cuales mostraban información al respecto de los precios: \emph{apertura}, \emph{cierre}, \emph{el más bajo}, 
 \emph{el más alto}, \emph{promedio}. Esos datos lógicamente estaban orientados a tomar métricas respecto a la frecuencia \emph{día}, con estos
-datos quedaban graficos como el siguiente:
+datos quedaban gráficos como el siguiente:
 
 \begin{center}
 	\includegraphics[width=0.6\textwidth]{images/microsoft} \\
@@ -131,8 +131,8 @@ Las series financieras tienen características singulares en relación a otras s
 	\item Frecuencia: la mayor frecuencia en la observación de los datos es mayor que en otro tipo de series de tiempo, llegando incluso
 		a unidades de fracciones de segundos.
 	\item Heterocedasticidad: ocurre cuando la varianza de las perturbaciones no es constante a lo largo de las observaciones.
-		Este factor hace inadecuados los modelos desarrolados para series estcionarias.
-	\item No estacionalidad: en muchos casos presenta no estacionaridad tanto en la media como la varianza.
+		Este factor hace inadecuados los modelos desarrollados para series estacionarias.
+	\item No estacionalidad: en muchos casos la media y varianza se presentan como no estacionarias.
 	\item Información oculta: se pueden encontrar distintos tipos de patrones a diferentes niveles de escala.
 \end{itemize}
 
@@ -141,7 +141,7 @@ Las series financieras tienen características singulares en relación a otras s
 Con el paso del tiempo y la implementación de distintos sistemas de trading electrónico, la frecuencia de la data creció de manera
 orbitante. En estos sistemas se define un \emph{Tick}, como unidad atómica de información de un mercado financiero, particularmente sobre un activo determinado.
 Esta unidad especifica una gran cantidad de parámetros como la marca temporal, precio, cantidad transada, etc. Los datos de alta frecuencia son un conjunto de datos 
-de reportes detallados sobre la actividad y movimiento efectuados sobre un activo. Se reune la información de los ticks con cierto intervalo de tiempo, 
+de reportes detallados sobre la actividad y movimiento efectuados sobre un activo. Se reúne la información de los ticks con cierto intervalo de tiempo, 
 el cual para este tipo de series es variable, llegando incluso a tener ventanas de tiempo de fracciones de segundos. \emph{Wei Sun}, señala en \cite{ei2007quantitative}
 que en la literatura acuñan distintos términos para referirse a este tipo de datos.
 
@@ -149,9 +149,6 @@ Los sistemas informáticos que realizan la labor de facilitar el comercio de ins
 Se crearon en 1998, año que fueron autorizados por la \emph{Securities and Exchange Commission}. La SEC es una organización estadounidense creada en 1933 \cite{hasbrouck2004economic}, 
 y tiene la responsabilidad de velar por el cumplimiento de las leyes federales las bolsas de valores. Un caso emblemático, fue el 6 de mayo del 2010, fecha en la cual ocurrió el 
 \emph{Flash-Crash} \cite{arndt2011high}, dio a lugar a una quiebra financiera estadounidense en el que el índice Dow Jones Industrial Average se desplomó un 9\%.
-
-al público los responsables plíticos y los reguladores, para proporcionar una base para las discusiones y las necesidades de regulación.
-
 
 \section{High Performance Computing}
 
@@ -170,7 +167,7 @@ gráficos en 2D, o 3D. Hoy en día las GPU son muy potentes y pueden incluso sup
 
 Una GPU está formada por cientos de pequeños núcleos que trabajan juntos para procesar los datos de alguna aplicación. Esta arquitectura de procesamiento paralelo
 masivo es la que proporciona al GPU su alta capacidad de cálculo. Existen numerosas aplicaciones aceleradas en la GPU que brindan una forma rápida de acceder
-a la computación de alto desempeño (High Performance Computing). Durante las últimas decadas se ha desarrollado nuevas tecnologías y arquitecturas
+a la computación de alto desempeño (High Performance Computing). Durante los últimos años se han desarrollado nuevas tecnologías y arquitecturas
 que permiten sacar mayor provecho a sus capacidades \cite{owens2007gpu}.
 
 El concepto implícito en todo este tema es el paralelismo, que es una forma de computación en la cual varios cálculos pueden realizarse simultáneamente,
@@ -183,16 +180,16 @@ producciones de chips gráficos por parte de grandes fabricantes, como NVIDIA, A
 En los últimos años también han aparecido conjuntos de herramientas y compiladores que facilitan la programación de las GPUs, como por ejemplo, NVIDIA CUDA, que
 cuenta con la comunidad más activa hasta la fecha en programación de GPUs.
 
-\subsection{Nvidia CUDA}
-Las primeras GPU fueron diseñadas como aceleradoras de gráficos y admitían apenas procesos específicos de funcionamiento fijo. En las últimas dos decadas,
+\subsection{NVIDIA CUDA}
+Las primeras GPU fueron diseñadas como aceleradoras de gráficos y admitían apenas procesos específicos de funcionamiento fijo. En las últimas dos décadas,
 el hardware cada vez se volvió más programable, lo que culminó con la primera GPU de NVIDIA en los años 1999. En poco tiempo que se desarrollara el concepto de GPU,
 investigadores empezaron a utilizar el rendimiento de estas tarjetas en cálculos con punto flotante.
 
 Los dilemas que vivieron en futuro los programadores, fue que la programación para GPU estaba lejos de ser fácil, hasta que investigadores de la universidad de
 Stanford se propusieron reimaginar la GPU como un coprocesador de flujos.
 
-Puesto que NVIDIA sabía que su hardware era bueno e iba creciendo muy rápido, debían combinarse con herramientas de harware y software intuitivas, invitaron
-a un equipo de investigación y desarrollo, para empezar a evolucionar una solución que ejecturara el lenguaje de programación C a la perfección en el GPU.
+Puesto que NVIDIA sabía que su hardware era bueno e iba creciendo muy rápido, debían combinarse con herramientas de hardware y software intuitivas, invitaron
+a un equipo de investigación y desarrollo, para empezar a evolucionar una solución que ejecutara el lenguaje de programación C a la perfección en el GPU.
 Al reunión software y hardware, NVDIA lanzó al mercado CUDA en el año 2006. La competencia AMD tuvieron intentos forzosos en generar algo similar, pero su comunidad
 de desarrollo no tuvo la misma motivación que si tuvo NVIDIA CUDA.
 
@@ -203,14 +200,14 @@ de GPU que circulan en el mercado), a fin de acelerar todo tipo de aplicaciones,
 investigación científica, etc. \cite{kirk2007nvidia}.
 
 Actualmente NVIDIA ofrece un kit de herramientas de CUDA, las cuales incluyen un compilador, bibliotecas de matemáticas, herramientas para corregir y optimizar
-redimiento de aplicaciones. Encontrándose también con muestras de código, guías de programación, manuales de usuario, referencias de la interfaz de programación
+rendimiento de aplicaciones. Encontrándose también con muestras de código, guías de programación, manuales de usuario, referencias de la interfaz de programación
 de aplicaciones (API) y otra documentación para ayudar al usuario dar los primeros pasos en el área. Cabe destacar que ofrece todo esto de forma gratuita,
 incluyendo NVIDIA Parallel Nsight for Visual Studio, el primer entorno de desarrollo del sector para aplicaciones masivas paralela que usan tanto GPU como CPU, esto
 en sistemas operativos Windows.
 
 \section{Motivación}
 
-Las características que presentan las series financieras de alta frecuencia son un problema reucrrente al querer estudiar este tipo de fenómeno. 
+Las características que presentan las series financieras de alta frecuencia son un problema recurrente al querer estudiar este tipo de fenómeno. 
 Estas series en la literatura se trabajan como series de tiempo, lo cual es una secuencia de observaciones ordenadas mediante índices, los cuales
 son la marca temporal, información contenida en los \emph{tick}. 
 
