@@ -217,10 +217,11 @@ Las características que presentan las series financieras de alta frecuencia son
 Uno de los enfoques de solución para este tipo de problema es realizar análisis mediante el uso de descomposición Wavelet Multi-escala \cite{benaouda2006wavelet}, y 
 los resultados son alentadores. Este enfoque se ha utilizado en distintas áreas de la ciencia, y en particular en series financieras. Más en particular Zhang ha propuesto 
 un modelo neural-wavelet \cite{zhang2001adaptive}, mezclando redes neuronales con wavelet multiescala, los cuales llegan a buenas aproximaciones pero no logran competir 
-en eficiencia temporal. Este último modelo, no ha sido aplicado para este tipo de serie.
+en eficiencia temporal. 
 
-%Estas series en la literatura se trabajan como series de tiempo, lo cual es una secuencia de observaciones ordenadas mediante índices, los cuales
-%son la marca temporal, información contenida en los \emph{tick}. 
+La motivación principal de esta memoria, es que el modelo no ha sido aplicado para serie financieras de alta frecuencia, y en los casos que se ha implementado (otras
+series temporales), si bien ha tenido buenos resultados, no ha logrado tener buen rendimiento a nivel de eficiencia, ya que el proceso involucra una alta cantidad de cálculos. 
+En base a esto se identificaron los objetivos para esta memoria.
 
 Los \emph{\textbf{objetivos principales}} son:
 \begin{itemize}
