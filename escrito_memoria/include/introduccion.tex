@@ -1,17 +1,16 @@
 \parindent=1.5em
 
-A través de los años el hombre ha presentado un cambio radical en su nivel de vida; los conocimientos que ha logrado acumular y aplicar han sido para su beneficio,
+A través de los años el hombre ha presentado un cambio sustancial en su nivel de vida; los conocimientos que ha logrado acumular y aplicar han sido para su beneficio,
 y han cambiado radicalmente su modo de vivir. Existe una notable diferencia entre el hombre de hace unas cuantas décadas y el hombre moderno. Tal diferencia se ha
 dado por el desarrollo de la ciencia, que está estrechamente relacionada con la innovación tecnológica. Por esta razón se amplía el contenido de cómo ha
-evolucionado la ciencia y la tecnología en el mundo, su origen remoto, los países que más han aportado en esta área y su respectiva utilización, bien sea para
+evolucionado la ciencia y la tecnología en el mundo, su origen remoto, los países que más han aportado en esta área y su respectiva utilización, ya sea para
 el desarrollo o la destrucción. Como se sabe, la tecnología se está haciendo presente en todas y cada una de las áreas de investigación, como física, química, 
 biología, computación, y lo que es de interés para este documento es el área de los mercados financieros \cite{watsham1997quantitative}.
 
-Esta memoria está enfocada a abordar un problema financiero, relacionado con las series financieras de alta frecuencia y una forma particular
-de poder realizar pronósticos tomando en cuenta distintas características de naturaleza propia de este tipo de datos. 
-Se pretende abordar esta problemática con metodologías computacionales, aplicando algunos conceptos matemáticos
-útiles para esta área. El problema es de carácter financiero, por lo que es necesario contextualizar el tema mediante conceptos, criterios 
-y términos generales asociados al área.
+Esta memoria está enfocada a abordar un problema relacionado con las series financieras de alta frecuencia y una forma particular de poder realizar pronósticos tomando 
+en cuenta las distintas características de naturaleza propia de este tipo de datos. Se pretende abordar esta problemática con metodologías computacionales, 
+aplicando algunos análisis matemáticos útiles para esta área. El problema es de carácter financiero, por lo que es necesario contextualizar el tema mediante 
+conceptos, criterios y términos generales asociados al área.
 
 Este capítulo tiene como objetivo introducir los conceptos de series de tiempo financieras, sus orígenes y la alta frecuencia.
 
@@ -22,12 +21,12 @@ transacciones financieras. La idea de mercado como foro organizado a la que acud
 queda reducida en el mundo financiero como las bolsas de valores \cite{mishkin2006financial}.
 
 El concepto de mercado financiero se utiliza en general para referirse a cualquier mercado organizado en el que se negocien instrumentos financieros
-de todo tipo, como acciones, divisas, etc. Dicho espacio para generar estas interacciones no necesariamente debe ser físico. Por otro lado el negociar
-instrumentos financieros implica a grandes rasgos: intercambiar instrumentos financieros, y definir su precio. Por ende, estos mercados están basados en
-las fuerzas de oferta y demanda, ubicando a todos los oferentes en el mismo lugar para facilitarle la búsqueda a los demandantes. Dentro
+de todo tipo, como acciones, divisas, etc. El espacio para generar estas interacciones no necesariamente debe ser físico. Por otro lado, el negociar
+instrumentos financieros implica a grandes rasgos: definir su precio e intercambiarlos, por ende, estos mercados están basados en
+las fuerzas de oferta y demanda, ubicando a todos los oferentes en el mismo lugar, y así facilitarle la búsqueda a los demandantes. Dentro
 de este tipo de mercado se distinguieron bloques de estudio en la economía moderna \cite{jensen1984theory}.
 
-Una de las razones que hace importante este tipo de mercado, es su funcionalidad, ya que permiten por un lado aumentar el capital, siendo esto uno 
+Una de las razones que hace importante este tipo de mercado, es su funcionalidad, ya que permiten: por un lado aumentar el capital, siendo esto uno 
 de los casos favorables, ya que también hay probabilidades considerables de disminuir el capital; comercio internacional, como en los mercados de 
 divisas, por ejemplo Forex; y reunir a quienes necesitan recursos financieros, con los que tienen recursos financieros. Factores que permiten generar los 
 efectos de oferta y demanda.
@@ -38,27 +37,27 @@ En este tipo de mercado se definen los siguientes términos \cite{nevmyvaka2003e
 	\item \emph{Orders}: Operación de compra/venta de activos.
 	\item \emph{Bid price}: Precio al cual un \emph{dealer} está dispuesto a comprar.
 	\item \emph{Ask price}: Precio al cual un \emph{dealer} está dispuesto a vender.
-	\item \emph{Market orders}: instrucción del cliente al dealer, comprar o vender al mejor precio posible dentro de los valores actuales del mercado.
+	\item \emph{Market orders}: instrucción del cliente al dealer, de comprar o vender al mejor precio posible dentro de los valores actuales del mercado.
 		Esto asegura la realización de la transacción, pero no el precio.
 	\item \emph{Limit orders}: es una orden para comprar a un valor máximo (precio determinado), o para vender a un valor mínimo (precio determinado).
 		Esto le da al cliente el control sobre el precio al que se ejecuta el comercio, sin embargo, no garantiza la realización de la transacción.
 \end{itemize}
 
-El conjunto de \emph{Limit orders} forman los \emph{books} para cierto activo, los cuales proveen información detallada de dicho instrumento. Con estos datos
+El conjunto de \emph{Limit orders} forman los \emph{books} para cierto instrumento, los cuales proveen información detallada del mismo. Con estos datos
 se forman los llamados bid-ask spreads, que es la diferencia entre el precios cotizados para una venta inmediata (oferta) y una compra inmediata (bid). 
 También se generan los bid-ask qoute, el cual define cotas para el precio de transacción.
 
 \subsection{Mercados bursátiles}
-Los mercados bursátiles están clasificados en los mercados de capitales, en donde se negocian activos financieros. Este tipo de mercado provee financiamiento
+Los mercados bursátiles están clasificados dentro de los mercados de capitales, en donde se negocian activos financieros. Este tipo de mercado provee financiamiento
 por medio de la emisión de acciones y permiten luego el intercambio de estas. La aplicación más directa de este tipo de mercados, son las bolsas de valores, cuyo
 origen se remonta a finales del siglo XV en las ferias medievales de Europa. Las bolsas de valores se pueden definir como mercados organizados y especializados, en 
 los que se pueden realizar transacciones de títulos de valores por medio de intermediarios autorizados. Estas bolsas ofrecen al público y a sus miembros facilidades, 
-mecanismos e instrumentos técnicos que facilitan la negociación de títulos de valores susceptibles de ofertas públicas, a precios determinados mediante subasta \cite{levine1998stock}.
+mecanismos e instrumentos técnicos que facilitan la negociación de títulos de valores susceptibles de ofertas públicas, y precios determinados mediante subasta \cite{levine1998stock}.
 
 La principal función de las Bolsas de Valores es proporcionar a los participantes información objetiva, completa y permanente de los valores
-y las empresas inscritas en la bolsa, sus emisiones y las operaciones que en ella se realicen, supervisión de actividades. Las componentes de este sistema 
-son los activos, instituciones financieras cuya misión es contactar demandantes y oferentes en los mercados donde se negocian
-los diferentes instrumentos o activos financieros.
+y las empresas inscritas en la bolsa, sus emisiones y las operaciones que en ella se realicen. Además debeb supervisar las actividades. Las componentes de este 
+sistema son los activos y las instituciones financieras, cuya misión es contactar demandantes y oferentes en los mercados donde se negocian los diferentes instrumentos 
+o activos financieros. En el documento se hablará de instrumento, ya que pueden ser acciones, divisas, etc. los cuales quedan generalizados bajo ese concepto.
 
 Dentro de los estudios de la economía, se habla de que este tipo de mercado es de competencia perfecta, ya que posee características
 como: elevado número de compradores y vendedores; La decisión individual de cada uno de ellos ejercerá escasa influencia sobre el mercado global; 
@@ -67,7 +66,7 @@ participantes tienen pleno conocimiento de las condiciones generales en que oper
 los participantes, cuando lo deseen, podrán entrar o salir del mercado a costos nulos o casi nulos \cite{mankiw2011principles}. 
 
 Sin embargo, Eugene Fama propuso la Hipótesis de eficiencia de los mercados \cite{malkiel2012efficient}, la cual dice que los mercados son eficientes cuando
-son capaces de trasladar a los precios de los instrumentos financieros, todos los datos relevantes, por lo tanto, el precio de esos activos refleja toda la 
+son capaces de trasladar a los precios de los instrumentos financieros, todos los datos relevantes, por lo tanto, el precio refleja \emph{toda} la 
 información disponible, y lo hace de manera insesgada. Cuando se cumplen estas condiciones, el precio del instrumento financiero se comporta como un 
 \emph{Random Walk} \cite{fama1965random}, por lo que los resultados no pueden ser predichos sistemáticamente.
 
@@ -80,24 +79,23 @@ información disponible, y lo hace de manera insesgada. Cuando se cumplen estas 
 
 La mayoría de los fenómenos que se estudian temporalmente, deben tomar en cuenta la dinámica de los proceso con la finalidad tener una 
 comprensión general del proceso. Una herramienta útil en dicho objetivo es el análisis de series de tiempo. Una serie de tiempo, es una secuencia de datos, 
-medidos en determinado momento de tiempo y ordenados cronológicamente. Se pueden presentar casos de series de tiempo en una multitud de disciplinas como 
-ingeniería, sociología, economía, finanzas por solo mencionar algunas de ellas.
+medidos en determinado momento de tiempo y ordenados cronológicamente, con esto se genera una secuencia de datos indexados por su marca temporal. Se pueden presentar 
+casos de series de tiempo en una multitud de disciplinas como ingeniería, sociología, economía, finanzas por solo mencionar algunas de ellas.
 
 El propósito fundamental es mostrar las técnicas que permitan hacer inferencias del proceso en estudio incluyendo su predicción. Esto se logra estableciendo modelos
-probabilísticos hipotéticos que representen a los datos; y en consecuencia, se lleva a cabo el proceso de ajuste que incluye desde la estimación hasta la 
-predicción una vez que se determina un modelo satisfactorio. Los modelos de series deben considerar la naturaleza del fenómeno y determinar 
-los factores que pueden ser incluidos en los modelos.
+probabilísticos hipotéticos que representen a los datos; y en consecuencia, se lleva a cabo el proceso de ajuste, que incluye desde la estimación hasta la 
+predicción, una vez que se ha determinado un modelo satisfactorio para la muestra de datos. Los modelos de series deben considerar la naturaleza del fenómeno y 
+determinar los factores que pueden ser incluidos en el.
 
 En particular, el análsis de una serie de tiempo financiera puede enfocarse en estudiar de forma teórica y práctica la valoración de cierto instrumento en el tiempo,
-como también los volumenes transados, etc. Lo que se intenta es modelar la incertidumbre generada por las características propias de este fenómeno. Tanto la teoría
-económica y sus series temporales contienen un elemento de incertidumbre \cite{tsay2005analysis}. 
+como también los volúmenes transados, etc. Lo que se intenta es modelar la incertidumbre generada por las características propias de este fenómeno \cite{tsay2005analysis}. 
 
 %En particular, el análisis de una series de tiempo financiera se refiere a la teoría y práctica de la valoración de instrumentos en el tiempo, 
 %intentando modelar la incertidumbre generada por las características propias del fenómeno. Tanto la teoría económica 
 %y sus series temporales contienen un elemento de incertidumbre \cite{tsay2005analysis}. 
 
 Las características diferenciadoras han propiciado numerosos trabajos en las áreas de econometría y economía financiera desde los años 60. Por ello, en el área 
-financiera las evidencias sobre estructuras ha conducido a la formulación de distintos modelos matemáticos.
+financiera las evidencias sobre patrones ha conducido a la formulación de distintos modelos matemáticos.
 %financiera las evidencias sobre estructuras ha conducido a la formulación de distintos modelos matemáticos que se estudiarán en esta memoria.
 
 \subsection{Descripción de serie financiera}
@@ -105,38 +103,38 @@ financiera las evidencias sobre estructuras ha conducido a la formulación de di
 Una tendencia en el estudio de las series financieras, es el estudio del precio de un instrumento en el tiempo.
 %Las series de tiempo financieras, se basan en el estudio del precio de un instrumento financiero en el tiempo. 
 Existen varios tipos de precios que se pueden analizar, por un lado están los indicadores que se utilizaron en los primeros estudios formales, los cuales 
-mostraban información al respecto de los precios de: \emph{apertura}, \emph{cierre}, \emph{el más bajo}, 
-\emph{el más alto}, \emph{promedio}. Esos datos lógicamente estaban orientados a tomar métricas respecto a la frecuencia \emph{día}. 
-
-Una muestra gráfica de esta información queda como la siguiente:
+mostraban información al respecto de los precios de: \emph{apertura}, \emph{cierre}, \emph{el más bajo}, \emph{el más alto}, \emph{promedio}. Esos datos 
+estaban orientados a tomar métricas respecto a la frecuencia \emph{día}. Una muestra gráfica de esta información sería la siguiente:
 %con estos datos quedaban gráficos como el siguiente:
 
 \begin{center}
-	\includegraphics[width=0.6\textwidth]{images/microsoft} \\
+	\includegraphics[width=0.8\textwidth]{images/microsoft} \\
 	\textbf{Figura 1.} Información de los precios de microsoft en la bolsa. Tomada desde \url{http://www.stockrageous.com/}.
 \end{center}
 
-Esos precios son a nivel diario, ya que los estudios en esos tiempos estaban orientados a esa frecuencia, como los flujos de caja, o análisis gráficos.
-Sin embargo la data estudiada actualmente corresponde a data \emph{intra diaria}, la cual reside en los valores
-específicos en que se compró/vendió algún instrumento, ya sea acción, divisa, etc. Ese término se conoce como el \emph{last price}, y corresponde
-al valor específico con el cual se transó el activo. La forma de como se realiza este evento es básicamente como el que se detalló anteriormente,
-es decir, mediante \emph{market} o \emph{limit orders}, donde existe una cola de compras/ventas obtenidas mediante los \emph{limit orders} y que cuando
-se cumpla la condición asociada (de vender o comprar a cierto precio), se realiza la transacción y se registra dicho \emph{last price}; 
-y por otro lado, si se entra a comprar/vender directamente mediante una \emph{market order} también se registra dicho valor. Juntando toda esa información , 
+%Esos precios son a nivel diario, ya que los estudios en esos tiempos estaban orientados a esa frecuencia, como los flujos de caja, o análisis gráficos.
+Por el tipo de frecuencia considerada en los datos, los estudios realizados estaban orientados a flujos de cajas o análisis gráficos. Sin embargo la data estudiada 
+actualmente corresponde a data \emph{intra diaria}, la cual reside en los valores específicos en que se compró o vendió algún instrumento. 
+Ese precio se conoce como el \emph{last price}, y corresponde al valor específico con el cual se realizó la transacción. La forma de como se efecúa este evento es 
+mediante los \emph{market} o \emph{limit orders}, donde existe una cola de compras o ventas obtenidas mediante los \emph{limit orders} y que cuando se cumpla la 
+condición asociada (de vender o comprar a cierto precio), se realiza la transacción y se registra dicho \emph{last price}; 
+por otro lado, si se entra a comprar/vender directamente mediante una \emph{market order} también se registra dicho valor. Recopilando esa información, 
 se puede generar una secuencia temporal de los \emph{last prices}. Estudios prácticos de estas series generalizan su gráfica con forma de \emph{U},
-\cite{biais2012empirical}. Por lo tanto, tomando en cuenta la alta frecuencia de estos datos, se torna muy complicado manejarlo de forma humana, es por esta 
-razón que es necesario realizar análisis cuantitativos usando computadores.
+\cite{biais2012empirical}. 
 
-A través de la historia, estas interacciones se realizaban personalmente en las bolsas de comercio, sin embargo con el avance de las tecnologías,
-se han implementado distintas plataformas de \emph{trading electrónico}: un método de negociación de instrumentos financieros por medios electrónicos 
-\cite{weston2002electronic}. Esta tecnología se utiliza para reunir a compradores y vendedores a través de la plataforma de comercio electrónico y las redes 
-para crear lugares virtuales del mercado, como por ejemplo: National Association of Securities Dealers Automated Quotation (NASDAQ), 
-New York Stock Exchange (NYSE), etc. 
+%Por lo tanto, tomando en cuenta la alta frecuencia de estos datos, se torna muy complicado manejarlo de forma humana, es por esta 
+%razón que es necesario realizar análisis cuantitativos usando computadores.
+
+A través de la historia, estas interacciones se realizaban personalmente en las bolsas de comercio, en los llamados \emph{floor market} \cite{jain2005financial},
+sin embargo con el avance de las tecnologías, se han implementado distintas plataformas de \emph{trading electrónico}: un método de negociación de instrumentos 
+financieros por medios electrónicos \cite{weston2002electronic}. Estas tecnologías se utilizan para reunir a compradores y vendedores a través de plataformas de comercio 
+electrónico, como por ejemplo: National Association of Securities Dealers Automated Quotation (NASDAQ), New York Stock Exchange (NYSE), etc. Tomando en cuenta las nuevas 
+frecuencias de aparición de datos, en el orden de fracción de segundos, se torna difícil manejar los datos de forma humana, es por esta razón que es necesario realizar análisis 
+cuantitativos mediante algoritmos computacionales.
 
 Las series financieras de alta frecuencia tienen características singulares en relación a otras series, como son: 
 \begin{itemize}
-	\item Frecuencia: la frecuencia en la observación de los datos es mayor que en otro tipo de series de tiempo, llegando incluso
-		a unidades de fracciones de segundos.
+	\item Frecuencia: la frecuencia en la observación de los datos es mayor que en otro tipo de series de tiempo.
 	\item Heterocedasticidad: ocurre cuando la varianza de las perturbaciones no es constante a lo largo de las observaciones.
 		Este factor hace inadecuados los modelos desarrollados para series estacionarias.
 	\item No estacionalidad: en muchos casos la media y varianza se presentan como no estacionarias.
@@ -145,12 +143,13 @@ Las series financieras de alta frecuencia tienen características singulares en 
 
 \subsection{High frequency trading}
 
-Con el paso del tiempo y la implementación de distintos sistemas de trading electrónico, la frecuencia de la data creció de manera
-orbitante. En estos sistemas se define un \emph{Tick}, como unidad atómica de información de un mercado financiero, particularmente sobre un activo determinado.
+Con el paso del tiempo y la implementación de distintos sistemas de trading electrónico, la frecuencia de la data aumentó, pasando de minutos a fracciones de segundos. 
+En estos sistemas se define un \emph{Tick}, como unidad atómica de información, particularmente sobre un instrumento determinado.
 Esta unidad especifica una gran cantidad de parámetros como la marca temporal, precio, cantidad transada, etc. Los datos de alta frecuencia son un conjunto de datos 
-de reportes detallados sobre la actividad y movimiento efectuados sobre un activo. Se reúne la información de los ticks con cierto intervalo de tiempo, 
-el cual para este tipo de series es variable, llegando incluso a tener ventanas de tiempo de fracciones de segundos. \emph{Wei Sun}, señala en \cite{ei2007quantitative}
-que en la literatura acuñan distintos términos para referirse a este tipo de datos.
+de reportes detallados sobre la actividad y movimiento efectuados sobre un instrumento. Se reúne la información de los ticks con cierto intervalo de tiempo, 
+el cual para este tipo de series es variable. El término utilizado para definir este fenómeno no es único \cite{ei2007quantitative}, existen distintos términos
+para referirse a este tipo de datos, como (ultra-)high-frequency data, microstructure data, entre otros. 
+%\emph{Wei Sun}, señala en \cite{ei2007quantitative} que en la literatura acuñan distintos términos para referirse a este tipo de datos.
 
 Los sistemas informáticos que realizan la labor de facilitar el comercio de instrumentos financieros, son los llamados \emph{Electronic communication networks} (ECN).
 Se crearon en 1998, año que fueron autorizados por la \emph{Securities and Exchange Commission}. La SEC es una organización estadounidense creada en 1933 \cite{hasbrouck2004economic}, 
@@ -159,11 +158,11 @@ y tiene la responsabilidad de velar por el cumplimiento de las leyes federales l
 
 \section{High Performance Computing}
 
-La capacidad de cómputo de los procesadores actuales ha incrementado de sobremanera, al igual que la cantidad de procesadores que tienen las tarjetas de video. Además, la
-naturaleza de los problemas que se están estudiando, como simulación de tsunami, series de tiempo financiera, etc. Generan una gran cantidad de cómputo, por lo que es
-necesario optimizar y hacer más eficientes los algoritmos. Es por esto que nace el concepto de HPC que es el área de desarrollo que aplica computadores de alto rendimiento 
-(clusters) a tareas que necesitan el procesamiento eficiente de métodos complejos o de grandes volúmenes de información. La idea de base consiste en dividir los problemas 
-en sub-problemas que se asignan a diferentes cores de un nodo o diferentes nodos de cálculo, coordinados por un nodo maestro mediante una red de alta velocidad. 
+La capacidad de cómputo de los procesadores actuales ha incrementado, al igual que la cantidad de procesadores de las CPU y también las que tienen las tarjetas de video. Además, la
+naturaleza de los problemas que se están estudiando, como simulación de tsunami, series de tiempo financiera, etc. generan una gran cantidad de cómputo, por lo que es
+necesario optimizar y hacer más eficientes los algoritmos. Es por esto que nace el concepto de HPC, que es el área de desarrollo que aplica computadores de alto rendimiento 
+(clusters) a tareas que implican alta cantidad de cómputo o requieren manejo de grandes volúmenes de información. 
+%La idea base consiste en dividir los problemas en sub-problemas que se asignan a diferentes cores de un nodo o diferentes nodos de cálculo, coordinados por un nodo maestro mediante una red de alta velocidad. 
 
 \subsection{Graphics Processing Unit}
 %CUDA
@@ -178,12 +177,12 @@ a la computación de alto desempeño (High Performance Computing). Durante los �
 que permiten sacar mayor provecho a sus capacidades \cite{owens2007gpu}.
 
 El concepto implícito en todo este tema es el paralelismo, que es una forma de computación en la cual varios cálculos pueden realizarse simultáneamente,
-siempre y cuando no existan dependencias secuenciales entre cálculos. Basándose en "divide y vencerás", principio que busca dividir los problemas grandes, para
+siempre y cuando no existan dependencias secuenciales entre ellos. Basándose en "divide y vencerás", principio que busca dividir los problemas grandes, para
 obtener varios problemas pequeños, que son posteriormente solucionados en paralelo.
 
 La evolución de las tarjetas gráficas ha venido acompañado de un gran crecimiento en el mundo de los videojuegos y las aplicaciones 3D, realizándose grandes
-producciones de chips gráficos por parte de grandes fabricantes, como NVIDIA, AMD (ex ATI). Los recientes desarrollos sobre GPU abarcan distintas áreas de la ciencia,
-como problemas astrofísicos (n-body simulation), modelamiento molecular, computación financiera, etc. \cite{kirk2010programming}. En los últimos años también han aparecido 
+producciones de chips gráficos por parte de grandes fabricantes, como NVIDIA, AMD (ex ATI). Los recientes desarrollos sobre GPU abarcan distintas áreas de la ciencia \cite{kirk2010programming},
+como problemas astrofísicos (n-body simulation), modelamiento molecular, computación financiera, etc. En los últimos años también han aparecido 
 conjuntos de herramientas y compiladores que facilitan la programación de las GPUs, como por ejemplo, NVIDIA CUDA, que cuenta con la comunidad más activa hasta 
 la fecha en programación de GPUs.
 
@@ -214,11 +213,11 @@ la fecha en programación de GPUs.
 
 \section{Motivación}
 
-Las características que presentan las series financieras de alta frecuencia son un problema recurrente y el estudio en esta área se torna a veces complejo.
-Uno de los enfoques de solución para este tipo de problema es realizar predicción mediante el uso de descomposición Wavelet Multi-escala \cite{benaouda2006wavelet}, y 
+Las características que presentan las series financieras de alta frecuencia son un problema recurrente y el estudio en esta área se torna a veces complicado.
+Uno de los enfoques de solución para este tipo de problema es realizar análisis mediante el uso de descomposición Wavelet Multi-escala \cite{benaouda2006wavelet}, y 
 los resultados son alentadores. Este enfoque se ha utilizado en distintas áreas de la ciencia, y en particular en series financieras. Más en particular Zhang ha propuesto 
 un modelo neural-wavelet \cite{zhang2001adaptive}, mezclando redes neuronales con wavelet multiescala, los cuales llegan a buenas aproximaciones pero no logran competir 
-en eficiencia temporal.
+en eficiencia temporal. Este último modelo, no ha sido aplicado para este tipo de serie.
 
 %Estas series en la literatura se trabajan como series de tiempo, lo cual es una secuencia de observaciones ordenadas mediante índices, los cuales
 %son la marca temporal, información contenida en los \emph{tick}. 
@@ -227,15 +226,15 @@ Los \emph{\textbf{objetivos principales}} son:
 \begin{itemize}
 	\item Implementar un modelo de predicción Neural-Wavelet basado en el modelo de Zhang y analizar su comportamiento con series
 		financieras de alta frecuencia.
-	\item Optimizar dichos algoritmos  usando CPU y GPU para aumentar su rendimiento.
+	\item Optimizar dichos algoritmos usando computación heterogénea (CPU + GPU) para aumentar su rendimiento.
 \end{itemize} 
-%es implementar un modelo de predicción Neural-Wavelet basado en el modelo de Zhang, analizar su comportamiento con series financieras
+%es implementar un modelo de predicción Neural-Wavelet basado en el modelo de Zhang,
 %de alta frecuencia y aumentar su eficiencia optimizando algoritmos.
 
 Los \emph{\textbf{objetivos secundarios}}:
 \begin{itemize}
-	\item Comparar los resultados de forma empírica con datos reales de la bolsa.
-	\item Encontra una combinación de carga para CPU y GPU que permita hacer más eficiente los cálculos.
+	\item Adaptar el modelo de Zhang para este tipo serie, encontrando los parámetros apropiados.
+	\item Encontrar una combinación de carga para CPU y GPU que permita hacer más eficiente los cálculos.
 \end{itemize}
 %Como objetivo secundarios se busca: encontrar una combinación que permita hacer más eficiente los cálculos, combinando la GPU con la CPU. 
 
