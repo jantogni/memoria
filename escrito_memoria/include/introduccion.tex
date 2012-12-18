@@ -66,11 +66,10 @@ Homogeneidad de los productos, es decir, no existen diferencias entre productos 
 participantes tienen pleno conocimiento de las condiciones generales en que opera el mercado; Libertad de entrada y salida de empresas, todos 
 los participantes, cuando lo deseen, podrán entrar o salir del mercado a costos nulos o casi nulos \cite{mankiw2011principles}. 
 
-
 Sin embargo, Eugene Fama propuso la Hipótesis de eficiencia de los mercados \cite{malkiel2012efficient}, la cual dice que los mercados son eficientes cuando
-son capaces de trasladar a los precios de los instrumentos financieros, todos los datos relevantes de esos activos, por lo tanto, el precio
-de esos activos refleja toda la información disponible, y lo hace de manera insesgada. Cuando se cumplen estas condiciones, el precio del instrumento
-financiero se comporta de forma aleatoria (\emph{Random Walk}), por lo que los resultados no pueden ser predichos sistemáticamente.
+son capaces de trasladar a los precios de los instrumentos financieros, todos los datos relevantes, por lo tanto, el precio de esos activos refleja toda la 
+información disponible, y lo hace de manera insesgada. Cuando se cumplen estas condiciones, el precio del instrumento financiero se comporta como un 
+\emph{Random Walk} \cite{fama1965random}, por lo que los resultados no pueden ser predichos sistemáticamente.
 
 %Sin embargo, han existido varios estudios asociados a la Hipótesis del Mercado Eficiente, la cual dice que cuando los mercados financieros son eficientes, 
 %son capaces de trasladar a los precios de los activos, en cualquier momento, todos los datos relevantes de esos activos, es decir, que el precio de esos activos 
@@ -79,60 +78,64 @@ financiero se comporta de forma aleatoria (\emph{Random Walk}), por lo que los r
 
 \section{Series de tiempo financiera}
 
-En la vida real, la mayoría de los fenómenos que se estudian secuencialmente, deben
-tomar en cuenta la dinámica de los proceso con la finalidad tener una comprensión holística del proceso.
-Una herramienta útil en dicho objetivo es el análisis de series de tiempo. Se
-pueden presentar casos de series de tiempo en una multitud de disciplinas como ingeniería,
-sociología, economía, finanzas por solo mencionar algunas de ellas.
+La mayoría de los fenómenos que se estudian temporalmente, deben tomar en cuenta la dinámica de los proceso con la finalidad tener una 
+comprensión general del proceso. Una herramienta útil en dicho objetivo es el análisis de series de tiempo. Una serie de tiempo, es una secuencia de datos, 
+medidos en determinado momento de tiempo y ordenados cronológicamente. Se pueden presentar casos de series de tiempo en una multitud de disciplinas como 
+ingeniería, sociología, economía, finanzas por solo mencionar algunas de ellas.
 
-El propósito fundamental es mostrar las técnicas que permitan hacer inferencias del
-proceso en estudio incluyendo su predicción. Esto se logra estableciendo modelos
-probabilísticos hipotéticos que representen a los datos; y en consecuencia, se lleva a cabo el
-proceso de ajuste que incluye desde la estimación hasta la predicción una vez que se determina
-un modelo satisfactorio. Los modelos de series deben considerar la naturaleza del fenómeno y determinar 
+El propósito fundamental es mostrar las técnicas que permitan hacer inferencias del proceso en estudio incluyendo su predicción. Esto se logra estableciendo modelos
+probabilísticos hipotéticos que representen a los datos; y en consecuencia, se lleva a cabo el proceso de ajuste que incluye desde la estimación hasta la 
+predicción una vez que se determina un modelo satisfactorio. Los modelos de series deben considerar la naturaleza del fenómeno y determinar 
 los factores que pueden ser incluidos en los modelos.
 
-En particular, el análisis de una series de tiempo financiera se refiere a la teoría y práctica de la valoración 
-de activos en el tiempo, intentando modelar la incertidumbre generada por las características propias del fenómeno. Tanto la teoría económica 
-y sus series temporales contienen un elemento de incertidumbre \cite{tsay2005analysis}. 
+En particular, el análsis de una serie de tiempo financiera puede enfocarse en estudiar de forma teórica y práctica la valoración de cierto instrumento en el tiempo,
+como también los volumenes transados, etc. Lo que se intenta es modelar la incertidumbre generada por las características propias de este fenómeno. Tanto la teoría
+económica y sus series temporales contienen un elemento de incertidumbre \cite{tsay2005analysis}. 
 
-Las características diferenciadoras han propiciado numerosos trabajos en las áreas de econometría y economía financiera desde los años 60.
-Así, en el área financiera las evidencias sobre estructuras ha conducido a la formulación de distintos modelos matemáticos que se estudiarán
-en esta memoria.
+%En particular, el análisis de una series de tiempo financiera se refiere a la teoría y práctica de la valoración de instrumentos en el tiempo, 
+%intentando modelar la incertidumbre generada por las características propias del fenómeno. Tanto la teoría económica 
+%y sus series temporales contienen un elemento de incertidumbre \cite{tsay2005analysis}. 
+
+Las características diferenciadoras han propiciado numerosos trabajos en las áreas de econometría y economía financiera desde los años 60. Por ello, en el área 
+financiera las evidencias sobre estructuras ha conducido a la formulación de distintos modelos matemáticos.
+%financiera las evidencias sobre estructuras ha conducido a la formulación de distintos modelos matemáticos que se estudiarán en esta memoria.
 
 \subsection{Descripción de serie financiera}
 
-Las series de tiempo financieras como se dijo previamente, se basan en el estudio del precio de un activo financiero en el tiempo. Pero existen 
-varios tipos de precios que se pueden lograr estudiar. Por un lado están los indicadores que se estudiaron en los primeros estudios formales
-en esta área, llamados estudios técnicos, los cuales mostraban información al respecto de los precios: \emph{apertura}, \emph{cierre}, \emph{el más bajo}, 
-\emph{el más alto}, \emph{promedio}. Esos datos lógicamente estaban orientados a tomar métricas respecto a la frecuencia \emph{día}, con estos
-datos quedaban gráficos como el siguiente:
+Una tendencia en el estudio de las series financieras, es el estudio del precio de un instrumento en el tiempo.
+%Las series de tiempo financieras, se basan en el estudio del precio de un instrumento financiero en el tiempo. 
+Existen varios tipos de precios que se pueden analizar, por un lado están los indicadores que se utilizaron en los primeros estudios formales, los cuales 
+mostraban información al respecto de los precios de: \emph{apertura}, \emph{cierre}, \emph{el más bajo}, 
+\emph{el más alto}, \emph{promedio}. Esos datos lógicamente estaban orientados a tomar métricas respecto a la frecuencia \emph{día}. 
+
+Una muestra gráfica de esta información queda como la siguiente:
+%con estos datos quedaban gráficos como el siguiente:
 
 \begin{center}
 	\includegraphics[width=0.6\textwidth]{images/microsoft} \\
 	\textbf{Figura 1.} Información de los precios de microsoft en la bolsa. Tomada desde \url{http://www.stockrageous.com/}.
 \end{center}
 
-Esos precios son a nivel diario, ya que los estudios en esos tiempos estaban orientados a eso, como los flujos de caja, o análisis gráficos.
+Esos precios son a nivel diario, ya que los estudios en esos tiempos estaban orientados a esa frecuencia, como los flujos de caja, o análisis gráficos.
 Sin embargo la data estudiada actualmente corresponde a data \emph{intra diaria}, la cual reside en los valores
-específicos en que se compró/vendió algún activo, ya sea acción, divisa, etc. Ese término se conoce como el \emph{last price}, y corresponde
+específicos en que se compró/vendió algún instrumento, ya sea acción, divisa, etc. Ese término se conoce como el \emph{last price}, y corresponde
 al valor específico con el cual se transó el activo. La forma de como se realiza este evento es básicamente como el que se detalló anteriormente,
-es decir, mediante \emph{market} o \emph{limit orders}, por lo que existe una cola de compras/ventas obtenidas mediante los \emph{limit orders} y que cuando
+es decir, mediante \emph{market} o \emph{limit orders}, donde existe una cola de compras/ventas obtenidas mediante los \emph{limit orders} y que cuando
 se cumpla la condición asociada (de vender o comprar a cierto precio), se realiza la transacción y se registra dicho \emph{last price}; 
-y por otro lado, si se entra a comprar/vender directamente mediante una \emph{market order} también se registra dicho valor. Juntando toda esa información 
-entonces, se puede generar una secuencia temporal de los \emph{last prices}. Estudios prácticos de estas series generalizan su gráfica con forma de \emph{U},
-\cite{biais2012empirical}. Por lo tanto tomando en cuenta la alta frecuencia de estos datos, se torna muy complicado manejarlo de forma humana, es por esta 
+y por otro lado, si se entra a comprar/vender directamente mediante una \emph{market order} también se registra dicho valor. Juntando toda esa información , 
+se puede generar una secuencia temporal de los \emph{last prices}. Estudios prácticos de estas series generalizan su gráfica con forma de \emph{U},
+\cite{biais2012empirical}. Por lo tanto, tomando en cuenta la alta frecuencia de estos datos, se torna muy complicado manejarlo de forma humana, es por esta 
 razón que es necesario realizar análisis cuantitativos usando computadores.
 
 A través de la historia, estas interacciones se realizaban personalmente en las bolsas de comercio, sin embargo con el avance de las tecnologías,
-se han implementado distintas plataformas de \emph{trading electrónico}: un método de negociación de valores (como acciones y bonos), divisas o derivados 
-financieros por medios electrónicos. Esta tecnología de la información se utiliza para reunir a compradores y vendedores a través de la plataforma de 
-comercio electrónico y las redes para crear lugares virtuales del mercado, como por ejemplo \cite{weston2002electronic}: National Association of Securities Dealers Automated 
-Quotation (NASDAQ), New York Stock Exchange (NYSE), etc. 
+se han implementado distintas plataformas de \emph{trading electrónico}: un método de negociación de instrumentos financieros por medios electrónicos 
+\cite{weston2002electronic}. Esta tecnología se utiliza para reunir a compradores y vendedores a través de la plataforma de comercio electrónico y las redes 
+para crear lugares virtuales del mercado, como por ejemplo: National Association of Securities Dealers Automated Quotation (NASDAQ), 
+New York Stock Exchange (NYSE), etc. 
 
-Las series financieras tienen características singulares en relación a otras series macroeconómicas, como son: 
+Las series financieras de alta frecuencia tienen características singulares en relación a otras series, como son: 
 \begin{itemize}
-	\item Frecuencia: la mayor frecuencia en la observación de los datos es mayor que en otro tipo de series de tiempo, llegando incluso
+	\item Frecuencia: la frecuencia en la observación de los datos es mayor que en otro tipo de series de tiempo, llegando incluso
 		a unidades de fracciones de segundos.
 	\item Heterocedasticidad: ocurre cuando la varianza de las perturbaciones no es constante a lo largo de las observaciones.
 		Este factor hace inadecuados los modelos desarrollados para series estacionarias.
