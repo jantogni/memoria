@@ -1,11 +1,11 @@
 \parindent=1.5em
 
-A través de los años el hombre ha presentado un cambio radical en su nivel de vida; los conocimientos que él ha logrado acumular y aplicar han sido para su beneficio,
+A través de los años el hombre ha presentado un cambio radical en su nivel de vida; los conocimientos que ha logrado acumular y aplicar han sido para su beneficio,
 y han cambiado radicalmente su modo de vivir. Existe una notable diferencia entre el hombre de hace unas cuantas décadas y el hombre moderno. Tal diferencia se ha
 dado por el desarrollo de la ciencia, que está estrechamente relacionada con la innovación tecnológica. Por esta razón se amplía el contenido de cómo ha
 evolucionado la ciencia y la tecnología en el mundo, su origen remoto, los países que más han aportado en esta área y su respectiva utilización, bien sea para
-el desarrollo o la destrucción. Como se sabe, la tecnología se está haciendo presente en todas y cada una de las áreas de investigación, como física, química, biología, 
-computación, y lo que es de interés para este documento es el área de los mercados financieros \cite{watsham1997quantitative}.
+el desarrollo o la destrucción. Como se sabe, la tecnología se está haciendo presente en todas y cada una de las áreas de investigación, como física, química, 
+biología, computación, y lo que es de interés para este documento es el área de los mercados financieros \cite{watsham1997quantitative}.
 
 Esta memoria está enfocada a abordar un problema financiero, relacionado con las series financieras de alta frecuencia y una forma particular
 de poder realizar pronósticos tomando en cuenta distintas características de naturaleza propia de este tipo de datos. 
@@ -22,15 +22,15 @@ transacciones financieras. La idea de mercado como foro organizado a la que acud
 queda reducida en el mundo financiero como las bolsas de valores \cite{mishkin2006financial}.
 
 El concepto de mercado financiero se utiliza en general para referirse a cualquier mercado organizado en el que se negocien instrumentos financieros
-de todo tipo, como por ejemplo, acciones. Además, el espacio para generar estas interacciones no necesariamente debe ser físico. Por otro lado el negociar
+de todo tipo, como acciones, divisas, etc. Dicho espacio para generar estas interacciones no necesariamente debe ser físico. Por otro lado el negociar
 instrumentos financieros implica a grandes rasgos: intercambiar instrumentos financieros, y definir su precio. Por ende, estos mercados están basados en
 las fuerzas de oferta y demanda, ubicando a todos los oferentes en el mismo lugar para facilitarle la búsqueda a los demandantes. Dentro
 de este tipo de mercado se distinguieron bloques de estudio en la economía moderna \cite{jensen1984theory}.
 
 Una de las razones que hace importante este tipo de mercado, es su funcionalidad, ya que permiten por un lado aumentar el capital, siendo esto uno 
 de los casos favorables, ya que también hay probabilidades considerables de disminuir el capital; comercio internacional, como en los mercados de 
-divisas, por ejemplo Forex; y reunir a quienes necesitan recursos financieros, con los que tienen recursos financieros. Factores claves
-que permiten generar los efectos de oferta y demanda.
+divisas, por ejemplo Forex; y reunir a quienes necesitan recursos financieros, con los que tienen recursos financieros. Factores que permiten generar los 
+efectos de oferta y demanda.
 
 En este tipo de mercado se definen los siguientes términos \cite{nevmyvaka2003electronic}:
 \begin{itemize}
@@ -55,20 +55,27 @@ origen se remonta a finales del siglo XV en las ferias medievales de Europa. Las
 los que se pueden realizar transacciones de títulos de valores por medio de intermediarios autorizados. Estas bolsas ofrecen al público y a sus miembros facilidades, 
 mecanismos e instrumentos técnicos que facilitan la negociación de títulos de valores susceptibles de ofertas públicas, a precios determinados mediante subasta \cite{levine1998stock}.
 
-La principal función de las Bolsas de Valores implican proporcionar a los participantes información objetiva, completa y permanente de los valores
+La principal función de las Bolsas de Valores es proporcionar a los participantes información objetiva, completa y permanente de los valores
 y las empresas inscritas en la bolsa, sus emisiones y las operaciones que en ella se realicen, supervisión de actividades. Las componentes de este sistema 
 son los activos, instituciones financieras cuya misión es contactar demandantes y oferentes en los mercados donde se negocian
 los diferentes instrumentos o activos financieros.
 
 Dentro de los estudios de la economía, se habla de que este tipo de mercado es de competencia perfecta, ya que posee características
-como: elevado número de compradores y vendedores. La decisión individual de cada uno de ellos ejercerá escasa influencia sobre el mercado global; 
+como: elevado número de compradores y vendedores; La decisión individual de cada uno de ellos ejercerá escasa influencia sobre el mercado global; 
 Homogeneidad de los productos, es decir, no existen diferencias entre productos que venden los oferentes; Transparencia del mercado, todos los 
 participantes tienen pleno conocimiento de las condiciones generales en que opera el mercado; Libertad de entrada y salida de empresas, todos 
-los participantes, cuando lo deseen, podrán entrar o salir del mercado a costos nulos o casi nulos \cite{mankiw2011principles}. Sin embargo, han existido
-varios estudios asociados a la Hipótesis del Mercado Eficiente, la cual dice que cuando los mercados financieros son eficientes, son capaces de trasladar 
-a los precios de los activos, en cualquier momento, todos los datos relevantes de esos activos, es decir, que el precio de esos activos 
-refleja en todo momento toda la información disponible sobre todos los valores y lo hace de manera insesgada. Este término lo propuso Eugene Fama en el año
-1970, para y se refirió a los procesos aleatorios que se comportan como juegos justos, cuyos resultados no pueden ser predichos sistemáticamente.
+los participantes, cuando lo deseen, podrán entrar o salir del mercado a costos nulos o casi nulos \cite{mankiw2011principles}. 
+
+
+Sin embargo, Eugene Fama propuso la Hipótesis de eficiencia de los mercados \cite{malkiel2012efficient}, la cual dice que los mercados son eficientes cuando
+son capaces de trasladar a los precios de los instrumentos financieros, todos los datos relevantes de esos activos, por lo tanto, el precio
+de esos activos refleja toda la información disponible, y lo hace de manera insesgada. Cuando se cumplen estas condiciones, el precio del instrumento
+financiero se comporta de forma aleatoria (\emph{Random Walk}), por lo que los resultados no pueden ser predichos sistemáticamente.
+
+%Sin embargo, han existido varios estudios asociados a la Hipótesis del Mercado Eficiente, la cual dice que cuando los mercados financieros son eficientes, 
+%son capaces de trasladar a los precios de los activos, en cualquier momento, todos los datos relevantes de esos activos, es decir, que el precio de esos activos 
+%refleja en todo momento toda la información disponible sobre todos los valores y lo hace de manera insesgada. Este término lo propuso Eugene Fama en el año
+%1970, para y se refirió a los procesos aleatorios que se comportan como juegos justos, cuyos resultados no pueden ser predichos sistemáticamente.
 
 \section{Series de tiempo financiera}
 
