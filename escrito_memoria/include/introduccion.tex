@@ -59,13 +59,13 @@ y las empresas inscritas en la bolsa, sus emisiones y las operaciones que en ell
 sistema son los activos y las instituciones financieras, cuya misión es contactar demandantes y oferentes en los mercados donde se negocian los diferentes instrumentos 
 o activos financieros. En el documento se hablará de instrumento, ya que pueden ser acciones, divisas, etc. los cuales quedan generalizados bajo ese concepto.
 
-Dentro de los estudios de la economía, se habla de que este tipo de mercado es de competencia perfecta, ya que posee características
-como: elevado número de compradores y vendedores; La decisión individual de cada uno de ellos ejercerá escasa influencia sobre el mercado global; 
+La economía presenta a este tipo de mercado, como de competencia perfecta, ya que sus características principales son:
+elevado número de compradores y vendedores; La decisión individual de cada uno de ellos ejercerá escasa influencia sobre el mercado global; 
 Homogeneidad de los productos, es decir, no existen diferencias entre productos que venden los oferentes; Transparencia del mercado, todos los 
 participantes tienen pleno conocimiento de las condiciones generales en que opera el mercado; Libertad de entrada y salida de empresas, todos 
 los participantes, cuando lo deseen, podrán entrar o salir del mercado a costos nulos o casi nulos \cite{mankiw2011principles}. 
 
-Sin embargo, Eugene Fama propuso la Hipótesis de eficiencia de los mercados \cite{malkiel2012efficient}, la cual dice que los mercados son eficientes cuando
+Por otra parte, Fama propuso la Hipótesis de eficiencia de los mercados \cite{malkiel2012efficient}, la cual establece que los mercados son eficientes cuando
 son capaces de trasladar a los precios de los instrumentos financieros, todos los datos relevantes, por lo tanto, el precio refleja \emph{toda} la 
 información disponible, y lo hace de manera insesgada. Cuando se cumplen estas condiciones, el precio del instrumento financiero se comporta como un 
 \emph{Random Walk} \cite{fama1965random}, por lo que los resultados no pueden ser predichos sistemáticamente.
@@ -77,34 +77,33 @@ información disponible, y lo hace de manera insesgada. Cuando se cumplen estas 
 
 \section{Series de tiempo financiera}
 
-La mayoría de los fenómenos que se estudian temporalmente, deben tomar en cuenta la dinámica de los proceso con la finalidad tener una 
-comprensión general del proceso. Una herramienta útil en dicho objetivo es el análisis de series de tiempo. Una serie de tiempo, es una secuencia de datos, 
-medidos en determinado momento de tiempo y ordenados cronológicamente, con esto se genera una secuencia de datos indexados por su marca temporal. Se pueden presentar 
-casos de series de tiempo en una multitud de disciplinas como ingeniería, sociología, economía, finanzas por solo mencionar algunas de ellas.
+La mayoría de los fenómenos que se estudian en su componente temporal, deben tomar en cuenta la dinámica de los proceso con la finalidad tener una 
+comprensión general del proceso. Una herramienta útil en dicho objetivo es el análisis de series de tiempo. Una serie de tiempo, es una secuencia de datos indexados por su marca 
+temporal. Se pueden presentar casos de series de tiempo en una multitud de disciplinas como ingeniería, sociología, economía, finanzas por solo mencionar algunas de ellas.
 
 El propósito fundamental es mostrar las técnicas que permitan hacer inferencias del proceso en estudio incluyendo su predicción. Esto se logra estableciendo modelos
 probabilísticos hipotéticos que representen a los datos; y en consecuencia, se lleva a cabo el proceso de ajuste, que incluye desde la estimación hasta la 
-predicción, una vez que se ha determinado un modelo satisfactorio para la muestra de datos. Los modelos de series deben considerar la naturaleza del fenómeno y 
-determinar los factores que pueden ser incluidos en el.
+predicción, una vez que se ha determinado un modelo satisfactorio para la muestra de datos \cite{box2011time} \cite{vandaele1983applied}. Los modelos de series deben considerar 
+la naturaleza del fenómeno y determinar los factores que pueden ser incluidos en el.
 
-En particular, el análsis de una serie de tiempo financiera puede enfocarse en estudiar de forma teórica y práctica la valoración de cierto instrumento en el tiempo,
+En particular, el análsis de una serie de tiempo financiera puede enfocarse en analizar de forma teórica y práctica la valoración de cierto instrumento en el tiempo,
 como también los volúmenes transados, etc. Lo que se intenta es modelar la incertidumbre generada por las características propias de este fenómeno \cite{tsay2005analysis}. 
 
 %En particular, el análisis de una series de tiempo financiera se refiere a la teoría y práctica de la valoración de instrumentos en el tiempo, 
 %intentando modelar la incertidumbre generada por las características propias del fenómeno. Tanto la teoría económica 
 %y sus series temporales contienen un elemento de incertidumbre \cite{tsay2005analysis}. 
 
-Las características diferenciadoras han propiciado numerosos trabajos en las áreas de econometría y economía financiera desde los años 60. Por ello, en el área 
+Las características diferenciadoras han propiciado numerosos trabajos en las áreas de econometría y economía financiera desde los años 60. Es por ello que, en el área 
 financiera las evidencias sobre patrones ha conducido a la formulación de distintos modelos matemáticos.
 %financiera las evidencias sobre estructuras ha conducido a la formulación de distintos modelos matemáticos que se estudiarán en esta memoria.
 
 \subsection{Descripción de serie financiera}
 
-Una tendencia en el estudio de las series financieras, es el estudio del precio de un instrumento en el tiempo.
+Una tendencia en el análisis de las series financieras, es el seguimiento del precio de un instrumento en el tiempo.
 %Las series de tiempo financieras, se basan en el estudio del precio de un instrumento financiero en el tiempo. 
 Existen varios tipos de precios que se pueden analizar, por un lado están los indicadores que se utilizaron en los primeros estudios formales, los cuales 
 mostraban información al respecto de los precios de: \emph{apertura}, \emph{cierre}, \emph{el más bajo}, \emph{el más alto}, \emph{promedio}. Esos datos 
-estaban orientados a tomar métricas respecto a la frecuencia \emph{día}. Una muestra gráfica de esta información sería la siguiente:
+estaban orientados a tomar métricas respecto a valores que resumían los cambios de precio de un instrumento en un día. Una muestra gráfica de esta información sería la siguiente:
 %con estos datos quedaban gráficos como el siguiente:
 
 \begin{center}
@@ -112,18 +111,15 @@ estaban orientados a tomar métricas respecto a la frecuencia \emph{día}. Una m
 	\textbf{Figura 1.} Información de los precios de microsoft en la bolsa. Tomada desde \url{http://www.stockrageous.com/}.
 \end{center}
 
-%Esos precios son a nivel diario, ya que los estudios en esos tiempos estaban orientados a esa frecuencia, como los flujos de caja, o análisis gráficos.
-Por el tipo de frecuencia considerada en los datos, los estudios realizados estaban orientados a flujos de cajas o análisis gráficos. Sin embargo la data estudiada 
-actualmente corresponde a data \emph{intra diaria}, la cual reside en los valores específicos en que se compró o vendió algún instrumento. 
+Con esa información se realizaban \emph{estudios técnicos} \cite{taylor1992use}, los cuales proporcionaban pronósticos de tendencias (como subir o bajar de precio), 
+basándose en la inspección visual y búsqueda de patrones en los precios anteriores del instrumento. 
+
+Sin embargo la data estudiada actualmente corresponde a data \emph{intra diaria}, la cual reside en los valores específicos en que se compró o vendió algún instrumento. 
 Ese precio se conoce como el \emph{last price}, y corresponde al valor específico con el cual se realizó la transacción. La forma de como se efecúa este evento es 
 mediante los \emph{market} o \emph{limit orders}, donde existe una cola de compras o ventas obtenidas mediante los \emph{limit orders} y que cuando se cumpla la 
 condición asociada (de vender o comprar a cierto precio), se realiza la transacción y se registra dicho \emph{last price}; 
 por otro lado, si se entra a comprar/vender directamente mediante una \emph{market order} también se registra dicho valor. Recopilando esa información, 
-se puede generar una secuencia temporal de los \emph{last prices}. Estudios prácticos de estas series generalizan su gráfica con forma de \emph{U},
-\cite{biais2012empirical}. 
-
-%Por lo tanto, tomando en cuenta la alta frecuencia de estos datos, se torna muy complicado manejarlo de forma humana, es por esta 
-%razón que es necesario realizar análisis cuantitativos usando computadores.
+se puede generar una secuencia temporal de los \emph{last prices}. Estudios prácticos de estas series \cite{biais2012empirical}, generalizan su gráfica con forma de \emph{U},
 
 A través de la historia, estas interacciones se realizaban personalmente en las bolsas de comercio, en los llamados \emph{floor market} \cite{jain2005financial},
 sin embargo con el avance de las tecnologías, se han implementado distintas plataformas de \emph{trading electrónico}: un método de negociación de instrumentos 
@@ -132,9 +128,9 @@ electrónico, como por ejemplo: National Association of Securities Dealers Autom
 frecuencias de aparición de datos, en el orden de fracción de segundos, se torna difícil manejar los datos de forma humana, es por esta razón que es necesario realizar análisis 
 cuantitativos mediante algoritmos computacionales.
 
-Las series financieras de alta frecuencia tienen características singulares en relación a otras series, como son: 
+Las series financieras de alta frecuencia tienen características particulares en relación a otras series, como son: 
 \begin{itemize}
-	\item Frecuencia: la frecuencia en la observación de los datos es mayor que en otro tipo de series de tiempo.
+	\item Frecuencia: la frecuencia en la observación de los datos es mayor que en otro tipo de series de tiempo, en el orden de fracción de segundos.
 	\item Heterocedasticidad: ocurre cuando la varianza de las perturbaciones no es constante a lo largo de las observaciones.
 		Este factor hace inadecuados los modelos desarrollados para series estacionarias.
 	\item No estacionalidad: en muchos casos la media y varianza se presentan como no estacionarias.
@@ -144,11 +140,14 @@ Las series financieras de alta frecuencia tienen características singulares en 
 \subsection{High frequency trading}
 
 Con el paso del tiempo y la implementación de distintos sistemas de trading electrónico, la frecuencia de la data aumentó, pasando de minutos a fracciones de segundos. 
-En estos sistemas se define un \emph{Tick}, como unidad atómica de información, particularmente sobre un instrumento determinado.
-Esta unidad especifica una gran cantidad de parámetros como la marca temporal, precio, cantidad transada, etc. Los datos de alta frecuencia son un conjunto de datos 
-de reportes detallados sobre la actividad y movimiento efectuados sobre un instrumento. Se reúne la información de los ticks con cierto intervalo de tiempo, 
-el cual para este tipo de series es variable. El término utilizado para definir este fenómeno no es único \cite{ei2007quantitative}, existen distintos términos
-para referirse a este tipo de datos, como (ultra-)high-frequency data, microstructure data, entre otros. 
+En estos sistemas se define como unidad atómica de información un \emph{Tick}. Un \emph{Tick} especifica una gran cantidad de parámetros como la marca temporal, precio, cantidad transada, etc. 
+Los datos de alta frecuencia son un conjunto de datos de reportes detallados sobre la actividad y movimiento efectuados sobre un instrumento. Se reúne la información 
+de los ticks con cierto intervalo de tiempo, el cual para este tipo de series es variable. En la literatura se puede encontrar más de un término para definir este fenómeno \cite{ei2007quantitative},
+como (ultra-)high-frequency data, microstructure data, entre otros.
+
+
+%El término utilizado para definir este fenómeno no es único \cite{ei2007quantitative}, 
+%existen distintos términos para referirse a este tipo de datos, como (ultra-)high-frequency data, microstructure data, entre otros. 
 %\emph{Wei Sun}, señala en \cite{ei2007quantitative} que en la literatura acuñan distintos términos para referirse a este tipo de datos.
 
 Los sistemas informáticos que realizan la labor de facilitar el comercio de instrumentos financieros, son los llamados \emph{Electronic communication networks} (ECN).
