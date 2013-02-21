@@ -2,8 +2,64 @@ En este capítulo se revisarán las aplicaciones y estudios hechos en el área. 
 dividirá respecto a los métodos cuantitativos a usar (neural-wavelet), sus aplicaciones en esta área, y finalmente
 los desarrollos realizados mediante técnicas de HPC.
 
-\section{Wavelet Multiscale}
+\section{Artificial Neuronal Network}
 
-\section{Artificial Neural Network}
+Las redes neuronales artificiales (ANN), han sido usadas en distintos campos de la ciencia. En particular en el área de computación, son de interés
+como herramienta para procesos de minería de datos \cite{bigus1996data}, ya que se ha convertido en una metodología multipropósito, robusta computacionalmente, 
+con apoyo teórico sólido. Como es conocido los problemas de minería de datos no son de naturaliza computacional generalmente, sino que son técnicas o metodologías, para
+satisfacer algún tipo de apoyo a procesos que involucren manejo con grandes volúmenes de datos. Los modelos de redes neuronales buscan encontrar relaciones entre los datos existentes, y
+la manera en que lo hacen es de forma inductiva, es decir, mediante algoritmos de aprendizaje.
+
+$$ y = \gamma \left( \sum_{i = 1}^{m}w_ix_i + w_0 \right) $$
+
+Donde:
+\begin{itemize}
+	\item $w_i$: pesos de la entrada i.
+	\item $x_i$: entrada i.
+	\item $w_o$: sesgo.
+	\item $\gamma$: función no lineal.
+\end{itemize}
+
+La propuesta de McCulloch fue una salida binaria $sign(z)$, es decir:
+
+$$ \gamma(z) = sign(z) = \left\{
+	       \begin{array}{ll}
+		 1      & \mathrm{si\ } z \ge 0 \\
+		 -1	& \mathrm{si\ } z < 0  \\
+	       \end{array}
+	     \right. $$
+
+Esta no es la única función no lineal que se puede especificar.
+
+\subsection{Tipos de aprendizaje}
+
+Una de las principales capacidades de una ANN es su capacidad de aprender a partir de un conjunto de patrones de entrenamiento, es decir, que es capaz
+de encontrar un modelo de ajustes de dato. Es por ello que se conocen dos tipos de aprendizaje:
+\begin{itemize}
+	\item Supervisado:
+	\item No supervisado:
+\end{itemize}
+
+\subsection{Feedforward Artificial Neuronal Network}
+
+El modelo de red neuronal a utilizar en esta memoria, serán las Feedforward Artificial Neuronal Network (FFANN).
+
+$$ g_{\lambda}(x,w) = \gamma_2 \left( \sum_{j = 1}^{\lambda} w_j^{[2]} \gamma_1 \left( \sum_{i = 1}^{m} w_{ij}^{[1]}x_i + w_{m+1,j}^{[1]} \right) + w_{\lambda+1}^{[2]} \right) $$
+
+En donde:
+\begin{itemize}
+	\item Las principales componentes se mantienen al igual que en el modelo más simple, es decir, $w$ y $x$ siguen siendo los vectores de los pesos y datos de entrada.
+	\item $\gamma_2$: Es una función que puede ser lineal o no.
+	\item $\gamma_1$: Es una función no lineal y diferenciable.
+\end{itemize}
+
+La estructura física de cómo se compone el modelo es una división por capas:
+\begin{itemize}
+	\item Capa de entrada:
+	\item Capa oculta:
+	\item Capa de salida:
+\end{itemize}
+
+\section{Wavelet Multiscale}
 
 \section{High Performance Computing}
