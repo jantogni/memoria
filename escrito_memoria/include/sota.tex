@@ -10,11 +10,24 @@ con apoyo teórico sólido. Como es conocido los problemas de minería de datos 
 satisfacer algún tipo de apoyo a procesos que involucren manejo con grandes volúmenes de datos. Los modelos de redes neuronales buscan encontrar relaciones entre los datos existentes, y
 la manera en que lo hacen es de forma inductiva, es decir, mediante algoritmos de aprendizaje.
 
+Una neurona aritificial es un procesador elemental (PE), que recibe una serie de entradas con pesos diferentes, las procesa y proporciona una salida única. A cada neurona llegan muchas señales
+de otras, proceso conocido en la biología como Sinapsis, y producen una única salida (Axon). Una sinapsis que comuna dos neuronas puede ser de naturaleza excitadora o inhibidora. En el primer caso, 
+la neurona emisora tenderá a activar a la neurona receptora, y en el segundo caso, la neurona emisora tenderá a inhibir la actividad de la neurona receptora.
+
+Cada sinapsis se caracteriza además por la eficacia con la que se establece la conexión. EN definitiva, aunque la neurona toma dediciones en función de la suma de información que recibe, la contribución
+de cada una de estas informaciones que recibe, la contribución de cada una de estas finromaciones es ponderada por la eficacia de la sinapsis correspondiente.
+
+La primera neurona artitificial fue concebida por W. McChulloch, y W. Pitts. Se trata de un modelo binario cuyo estado es 1 (activo) o 0 (inactivo). Periódicamente actualiza su estado
+calculando la suma de sus entradas con el valor de cada entrada modulado por la eficacia sináptica correspondiente, y toma una decisión comparando esta suma con un cierto nivel fijado. Si
+la suma es superior al umbral, la neurona se activa, y en caso contrario inactiva. Por tanto, todas las neuronas toman sus decisiones simultáneamente tendiendo en cuenta la evolución del estado
+global de la red. La función de activación corresponde a una función no lineal. El modelo queda como:
+
+
 $$ y = \gamma \left( \sum_{i = 1}^{m}w_ix_i + w_0 \right) $$
 
 Donde:
 \begin{itemize}
-	\item $w_i$: pesos de la entrada i.
+	\item $w_i$: pesos de la entrada i o eficacia de la sinapsis.
 	\item $x_i$: entrada i.
 	\item $w_o$: sesgo.
 	\item $\gamma$: función no lineal.
@@ -34,11 +47,116 @@ Esta no es la única función no lineal que se puede especificar.
 \subsection{Tipos de aprendizaje}
 
 Una de las principales capacidades de una ANN es su capacidad de aprender a partir de un conjunto de patrones de entrenamiento, es decir, que es capaz
-de encontrar un modelo de ajustes de dato. Es por ello que se conocen dos tipos de aprendizaje:
+de encontrar un modelo de ajustes de dato. Es por ello que se conocen varios tipos de aprendizajes:
+
+\subsubsection{Aprendizaje supervisado}
+
+El aprendizaje supervisado es un caso de entrenamiento con entrenador, y se utiliza información global. En su implementación se presentan dos vectores (uno de entrada y otro de salida deseada).
+La salida computada por la red se compara con la salida deseada, y los pesos de la red se modificacian en el sentido de reducir el error cometido. Se repite iterativamente, hasta que la diferencia
+entre la salida computada y la deseada sea aceptablemente pequeña, comparada con algún parámetro de error. Con \emph{n} parejas de este tipo se forma un conjunto de entrenamiento.
+
+El aprendizaje supervisado se suele dividir a su vez en dos sub categorías:
 \begin{itemize}
-	\item Supervisado:
-	\item No supervisado:
+	\item[-] Aprendizaje estructural: se refiere a la búsqueda de la mejor conexión o afinidad posible entrada/salida para cada paerja de patrones individuales. Este enfoque es uno de los más utilizados
+	\item[-] Aprendizaje temporal: hace referencia a la captura de una serie de patrones necesarios para conseguir algún resultado final. En el aprendizaje temporal la respuesta actual de la red depende de las entradas
+		y respuestas previas. En el aprendizaje estructural no existe esta dependencia.
 \end{itemize}
+
+\subsubsection{Aprendizaje no supervisado}
+
+El aprendizaje no supervisado es un caso de entrenamiento sin entrenador y sólo se usa información local durante todo el proceso de aprendizaje. Es un modelo más cercano al sistema biológico, no se utiliza vector de salida
+esperada, y sólo hay vectores de entrada en el conjunto de entrenamiento. El algoritmo modifica los pesos de forma que las salidas sean consistentes, es decir, que a entradas muy parecidas, la red compute la misma salida. 
+Las salidas se asocian a las entradas de acuerdo con el proceso de entrenamiento. El proceso extrae características, abstrayendo las propiedades colectivas subyacentes del conjunto de entrenamiento, y agrupa por clases 
+de similitudes.
+
+\subsubsection{Aprendizaje Hebbiano}
+
+El aprendizaje Hebbiano propone que los pesos de la red se incrementan si las neuronas origen y destino están activadas, es decir, refueza los caminos usados frecuentemente en la red, lo que explicaría los
+hábitos y el aprendizaje por repetición.
+
+El aprendizaje hebbiano está matemáticamente caracterizado por la ecuación:
+
+$$ w_{ij}^{nuevo} = w_{ij}^{anterior} + a_{ki}b_{kj} $$
+
+Donde $i = 1,2,...,n$; $j=1,2,...,p$; $w_{ij}$ es el peso de la conexión entre los dos procesadores elementales (neuronas artificiales).
+
+Las redes neuronales como la memoria asociativa lineal emplean este tipo de aprendizaje. El número de patrones que una red adiestra usando conexiones y pesos ilimitados puede producir, está limitado por la dimensión de 
+patrones de entrada.
+
+Si los valores de los PEs están limitados y los pesos ilimitados, se encuentra el caso denominado Hopfield, que restringen el valor de los PEs a un valor binario o bipolar.
+producir está
+
+\subsubsection{Aprendizaje competitivo}
+
+El aprendizaje competitivo usa inhibición lateral para activar una sola neurona (se puede ver como el ganador). Algunas redes neuronales que emplean aprendizaje competitivo son los
+mapas auto-organizativos (Kohonen,1984) y Adaptive Resonanse Theory (Caprenter y Grossber).
+
+\subsubsection{Aprendizaje Min-Max}
+
+Un clasificador min-max usa un par de vectores para cada clase. La clase \emph{j} está representada por el PE $y_i$ y está definida por los vectores $V_j$ (el vector min) y $W_j$ (el vector max).
+El aprendizaje min-max es un sistema neuronal que viene dado por la ecuación:
+
+$$ v_{ij}^{nuevo} = min(a_{ki},v_{ij}^{anterior}) $$
+
+para el vector min y:
+
+$$ w_{ij}^{nuevo} = min(a_{ki},w_{ij}^{anterior}) $$
+
+\subsubsection{Aprendizaje de correción de error}
+
+Este tipo de aprendizaje ajusta los pesos de conexión entre PEs en proporción a la diferencia entre los valores deseados y los computados
+para cada PE de la capa de salida. Dependiendo del número de apas de las redes se distinguen dos casos:
+\begin{itemize}
+	\item[-] Red de dos capas: puede capturar mapeos lineales entre las entradas y salidas. DOs redes neuronales que utilizan este tipo de aprendizaje son el Perceptrón (Rosenblatt) y ADALINE (Widrow y Hoff)
+	\item[-] Red multicapa: peden capturar mapeos no lineales entre las entradas y salidas. La versión multinivel de este algoritmo es denominado Regla de Aprendizaje de Retropropagación de errores (Backpropagation).
+		Utilizando la regla encadenada, se calculan los cambios de los pesos para un número arbitrario de capas. El número de iteraciones que deben ser realizadas para cada patrón del conjunto de datos es grande, 
+		haciendo este algoritmo de aprendizaje muy lento para entrenar. El algoritmo de retropograpagión ha sido estudiado por Werbos (1974) y Parker (1982), y fue introducido por Rumerlhart, Hilton y Williams (1986).
+\end{itemize}
+
+\subsubsection{Aprendizaje reforzado}
+
+Esta heurística para redesneuronales fue ideada por Widrow, Gupta y Maitra (1973) y desarrollado por Williams (1983). Este tipo de aprendizaje es similar al anterior, en que los pesos
+son fortalecidos en las acciones desarrolladas correctamente y penalizados en aquellas mal realidas. La diferencia entre ambas es que el aprendizaje por correción de error utiliza
+información de error más específica reuniendo valores del error por cada PE de la capa de salida, mientras que el aprendizaje reforzado utiliza información de error no específica
+para determinar el desarrollo de la red. MIentras que el primero tiene un vector completo de valores que utiliza para la correción de error, sólo un valor es usado para describir la ejecución de la capa
+de salida durante el aprendizaje reforzado. Esta forma de aprendizaje es ideal en situaciones donde no está disponible información específica sobre el error, pero sí información global de la ejecución,
+tal como predicción y control.
+
+Las redes que implementan este tipo de aprendizaje son: Adaptive Hueristic Critic, Barto, Sutton y Anderon 1983, y Associative Reward-Penalty, Barto 1985.
+
+\subsubsection{Tabla Resumen}
+
+Una tabla de resumen para recordar los factores e importancia de cada tipo de aprendizaje sería:
+
+\begin{tabularx}{\textwidth}{|X|X|X|X|X|X|}
+	\hline 
+	Aprendizaje	& Tiempo entrenamiento	& Supervisión			& Linealidad	& Estructural / Temporal	& Cap. de almacen. \\
+	\hline 
+	Hebbiano 	& Rápido		& No supervisado		& Lineal	& Estructural			& Baja	\\
+	Competitivo	& Lento			& No supervisado		& Lineal	& Estructural			& Buena	\\
+	Min-Max		& Rápido		& No supervisado		& No lineal	& Estructural			& Buena	\\
+	Corr. error dos niveles & Lento		& Supervisado			& Lineal	& Ambos				& Buena	\\
+	Corr. error multinivel & Muy lento	& Supervisado			& No lineal	& Ambos				& Alta	\\
+	Reforzado	& Muy lento		& Supervisado			& No lineal	& Ambos				& Buena \\
+	\hline 	
+\end{tabularx}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 \subsection{Feedforward Artificial Neuronal Network}
 
