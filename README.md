@@ -1,4 +1,7 @@
 memoria
 =======
 
-Memoria pregrado. En construcción
+Memoria pregrado. En construcción.
+
+titulo
+~~~~~~~
