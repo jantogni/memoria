@@ -1,23 +1,31 @@
+# Makefile
 TEXFILES = $(wildcard *.tex)
 PDFFILES = $(TEXFILES:.tex=.pdf)
-PNGFILES = $(PDFFILES:.pdf=.png)
 
-all: pdf clean
+all: pdflatex clean
 
 pdf: $(PDFFILES)
 
 %.pdf: %.tex
-	@echo $(TEXFILES)
 	@rubber --pdf $<
-	@if [ -d bin ];then mv *.pdf bin; else mkdir bin; mv *.pdf bin/;fi
+	@if [ -d publish ];then mv *.pdf publish; else mkdir publish; mv *.pdf publish/;fi
+
+pdflatex: $(TEXFILES)
+	@pdflatex $(TEXFILES:.tex=)
+	@TEXMFOUTPUT=`pwd` bibtex `pwd`/$(TEXFILES:.tex=)
+	@pdflatex $(TEXFILES:.tex=)
+	@pdflatex $(TEXFILES:.tex=)
+	@if [ -d publish ];then mv *.pdf publish; else mkdir publish; mv *.pdf publish/;fi
+	@rubber --clean $(TEXFILES:.tex=)
 
 clean:
 	@rubber --clean $(TEXFILES:.tex=)
-	@rm -f *.out *.pdf
+	@rm -rf *.out
 
 distclean: clean
 	@rubber --clean --pdf $(TEXFILES:.tex=)
-	@rm -rf bin
+	@rm -rf publish
+	@rm -f $(PDFFILES)
 
 x:
-	@evince bin/$(PDFFILES)
+	@open publish/$(PDFFILES) &> /dev/null &
