@@ -1,26 +1,44 @@
-En este capítulo se revisarán las aplicaciones y estudios hechos en el área. Para ordenar esta sección, se
-dividirá respecto a los métodos cuantitativos a usar (neural-wavelet), sus aplicaciones en esta área, y finalmente
-los desarrollos realizados mediante técnicas de HPC.
+En este capítulo se revisarán las aplicaciones y estudios hechos en el área.
+Para ordenar esta sección, se dividirá respecto a los métodos cuantitativos a
+usar (neural-wavelet), sus aplicaciones en esta área, y finalmente los
+desarrollos realizados mediante técnicas de HPC.
 
-\section{Artificial Neuronal Network}
+\section{Redes Neuronales Artificiales}
 
-Las redes neuronales artificiales (ANN), han sido usadas en distintos campos de la ciencia. En particular en el área de computación, son de interés
-como herramienta para procesos de minería de datos \cite{bigus1996data}, ya que se ha convertido en una metodología multipropósito, robusta computacionalmente, 
-con apoyo teórico sólido. Como es conocido los problemas de minería de datos no son de naturaliza computacional generalmente, sino que son técnicas o metodologías, para
-satisfacer algún tipo de apoyo a procesos que involucren manejo con grandes volúmenes de datos. Los modelos de redes neuronales buscan encontrar relaciones entre los datos existentes, y
-la manera en que lo hacen es de forma inductiva, es decir, mediante algoritmos de aprendizaje.
+Las redes neuronales artificiales (ANN), han sido usadas en distintos campos de
+la ciencia. En particular en el área de computación, son de interés como
+herramienta para procesos de minería de datos \cite{bigus1996data}, ya que se
+ha convertido en una metodología multipropósito, robusta computacionalmente,
+con apoyo teórico sólido. Como es conocido los problemas de minería de datos no
+son de naturaliza computacional generalmente, sino que son técnicas o
+metodologías, para satisfacer algún tipo de apoyo a procesos que involucren
+manejo con grandes volúmenes de datos. Los modelos de redes neuronales buscan
+encontrar relaciones entre los datos existentes, y la manera en que lo hacen es
+de forma inductiva, es decir, mediante algoritmos de aprendizaje.
 
-Una neurona aritificial es un procesador elemental (PE), que recibe una serie de entradas con pesos diferentes, las procesa y proporciona una salida única. A cada neurona llegan muchas señales
-de otras, proceso conocido en la biología como Sinapsis, y producen una única salida (Axon). Una sinapsis que comuna dos neuronas puede ser de naturaleza excitadora o inhibidora. En el primer caso, 
-la neurona emisora tenderá a activar a la neurona receptora, y en el segundo caso, la neurona emisora tenderá a inhibir la actividad de la neurona receptora.
+Una neurona aritificial es un procesador elemental (PE), que recibe una serie
+de entradas con pesos diferentes, las procesa y proporciona una salida única. A
+cada neurona llegan muchas señales de otras, proceso conocido en la biología
+como Sinapsis, y producen una única salida (Axon). Una sinapsis que comuna dos
+neuronas puede ser de naturaleza excitadora o inhibidora. En el primer caso, la
+neurona emisora tenderá a activar a la neurona receptora, y en el segundo caso,
+la neurona emisora tenderá a inhibir la actividad de la neurona receptora.
 
-Cada sinapsis se caracteriza además por la eficacia con la que se establece la conexión. EN definitiva, aunque la neurona toma dediciones en función de la suma de información que recibe, la contribución
-de cada una de estas informaciones que recibe, la contribución de cada una de estas finromaciones es ponderada por la eficacia de la sinapsis correspondiente.
+Cada sinapsis se caracteriza además por la eficacia con la que se establece la
+conexión. EN definitiva, aunque la neurona toma dediciones en función de la
+suma de información que recibe, la contribución de cada una de estas
+informaciones que recibe, la contribución de cada una de estas finromaciones es
+ponderada por la eficacia de la sinapsis correspondiente.
 
-La primera neurona artitificial fue concebida por W. McChulloch, y W. Pitts. Se trata de un modelo binario cuyo estado es 1 (activo) o 0 (inactivo). Periódicamente actualiza su estado
-calculando la suma de sus entradas con el valor de cada entrada modulado por la eficacia sináptica correspondiente, y toma una decisión comparando esta suma con un cierto nivel fijado. Si
-la suma es superior al umbral, la neurona se activa, y en caso contrario inactiva. Por tanto, todas las neuronas toman sus decisiones simultáneamente tendiendo en cuenta la evolución del estado
-global de la red. La función de activación corresponde a una función no lineal. El modelo queda como:
+La primera neurona artitificial fue concebida por W. McChulloch, y W. Pitts. Se
+trata de un modelo binario cuyo estado es 1 (activo) o 0 (inactivo).
+Periódicamente actualiza su estado calculando la suma de sus entradas con el
+valor de cada entrada modulado por la eficacia sináptica correspondiente, y
+toma una decisión comparando esta suma con un cierto nivel fijado. Si la suma
+es superior al umbral, la neurona se activa, y en caso contrario inactiva. Por
+tanto, todas las neuronas toman sus decisiones simultáneamente tendiendo en
+cuenta la evolución del estado global de la red. La función de activación
+corresponde a una función no lineal. El modelo queda como:
 
 
 $$ y = \gamma \left( \sum_{i = 1}^{m}w_ix_i + w_0 \right) $$
@@ -46,55 +64,81 @@ Esta no es la única función no lineal que se puede especificar.
 
 \subsection{Tipos de aprendizaje}
 
-Una de las principales capacidades de una ANN es su capacidad de aprender a partir de un conjunto de patrones de entrenamiento, es decir, que es capaz
-de encontrar un modelo de ajustes de dato. Es por ello que se conocen varios tipos de aprendizajes:
+Una de las principales capacidades de una ANN es su capacidad de aprender a
+partir de un conjunto de patrones de entrenamiento, es decir, que es capaz de
+encontrar un modelo de ajustes de dato. Es por ello que se conocen varios tipos
+de aprendizajes:
 
 \subsubsection{Aprendizaje supervisado}
 
-El aprendizaje supervisado es un caso de entrenamiento con entrenador, y se utiliza información global. En su implementación se presentan dos vectores (uno de entrada y otro de salida deseada).
-La salida computada por la red se compara con la salida deseada, y los pesos de la red se modificacian en el sentido de reducir el error cometido. Se repite iterativamente, hasta que la diferencia
-entre la salida computada y la deseada sea aceptablemente pequeña, comparada con algún parámetro de error. Con \emph{n} parejas de este tipo se forma un conjunto de entrenamiento.
+El aprendizaje supervisado es un caso de entrenamiento con entrenador, y se
+utiliza información global. En su implementación se presentan dos vectores (uno
+de entrada y otro de salida deseada).  La salida computada por la red se
+compara con la salida deseada, y los pesos de la red se modifican en el
+sentido de reducir el error cometido. Se repite iterativamente, hasta que la
+diferencia entre la salida computada y la deseada sea aceptablemente pequeña,
+comparada con algún parámetro de error. Con \emph{n} parejas de este tipo se
+forma un conjunto de entrenamiento.
 
 El aprendizaje supervisado se suele dividir a su vez en dos sub categorías:
 \begin{itemize}
-	\item[-] Aprendizaje estructural: se refiere a la búsqueda de la mejor conexión o afinidad posible entrada/salida para cada paerja de patrones individuales. Este enfoque es uno de los más utilizados
-	\item[-] Aprendizaje temporal: hace referencia a la captura de una serie de patrones necesarios para conseguir algún resultado final. En el aprendizaje temporal la respuesta actual de la red depende de las entradas
-		y respuestas previas. En el aprendizaje estructural no existe esta dependencia.
+	\item[-] Aprendizaje estructural: se refiere a la búsqueda de la mejor 
+conexión o afinidad posible entrada/salida para cada paerja de patrones 
+individuales. Este enfoque es uno de los más utilizados
+	\item[-] Aprendizaje temporal: hace referencia a la captura de una serie 
+	de patrones necesarios para conseguir algún resultado final. En el aprendizaje 
+	temporal la respuesta actual de la red depende de las entradas y respuestas 
+	previas. En el aprendizaje estructural no existe esta dependencia.
 \end{itemize}
 
 \subsubsection{Aprendizaje no supervisado}
 
-El aprendizaje no supervisado es un caso de entrenamiento sin entrenador y sólo se usa información local durante todo el proceso de aprendizaje. Es un modelo más cercano al sistema biológico, no se utiliza vector de salida
-esperada, y sólo hay vectores de entrada en el conjunto de entrenamiento. El algoritmo modifica los pesos de forma que las salidas sean consistentes, es decir, que a entradas muy parecidas, la red compute la misma salida. 
-Las salidas se asocian a las entradas de acuerdo con el proceso de entrenamiento. El proceso extrae características, abstrayendo las propiedades colectivas subyacentes del conjunto de entrenamiento, y agrupa por clases 
-de similitudes.
+El aprendizaje no supervisado es un caso de entrenamiento sin entrenador y sólo
+se usa información local durante todo el proceso de aprendizaje. Es un modelo
+más cercano al sistema biológico, no se utiliza vector de salida esperada, y
+sólo hay vectores de entrada en el conjunto de entrenamiento. El algoritmo
+modifica los pesos de forma que las salidas sean consistentes, es decir, que a
+entradas muy parecidas, la red compute la misma salida.  Las salidas se asocian
+a las entradas de acuerdo con el proceso de entrenamiento. El proceso extrae
+características, abstrayendo las propiedades colectivas subyacentes del
+conjunto de entrenamiento, y agrupa por clases de similitudes.
 
 \subsubsection{Aprendizaje Hebbiano}
 
-El aprendizaje Hebbiano propone que los pesos de la red se incrementan si las neuronas origen y destino están activadas, es decir, refueza los caminos usados frecuentemente en la red, lo que explicaría los
-hábitos y el aprendizaje por repetición.
+El aprendizaje Hebbiano propone que los pesos de la red se incrementan si las
+neuronas origen y destino están activadas, es decir, refueza los caminos usados
+frecuentemente en la red, lo que explicaría los hábitos y el aprendizaje por
+repetición.
 
 El aprendizaje hebbiano está matemáticamente caracterizado por la ecuación:
 
 $$ w_{ij}^{nuevo} = w_{ij}^{anterior} + a_{ki}b_{kj} $$
 
-Donde $i = 1,2,...,n$; $j=1,2,...,p$; $w_{ij}$ es el peso de la conexión entre los dos procesadores elementales (neuronas artificiales).
+Donde $i = 1,2,...,n$; $j=1,2,...,p$; $w_{ij}$ es el peso de la conexión entre
+los dos procesadores elementales (neuronas artificiales).
 
-Las redes neuronales como la memoria asociativa lineal emplean este tipo de aprendizaje. El número de patrones que una red adiestra usando conexiones y pesos ilimitados puede producir, está limitado por la dimensión de 
-patrones de entrada.
+Las redes neuronales como la memoria asociativa lineal emplean este tipo de
+aprendizaje. El número de patrones que una red adiestra usando conexiones y
+pesos ilimitados puede producir, está limitado por la dimensión de patrones de
+entrada.
 
-Si los valores de los PEs están limitados y los pesos ilimitados, se encuentra el caso denominado Hopfield, que restringen el valor de los PEs a un valor binario o bipolar.
-producir está
+Si los valores de los PEs están limitados y los pesos ilimitados, se encuentra
+el caso denominado Hopfield, que restringen el valor de los PEs a un valor
+binario o bipolar.  
 
 \subsubsection{Aprendizaje competitivo}
 
-El aprendizaje competitivo usa inhibición lateral para activar una sola neurona (se puede ver como el ganador). Algunas redes neuronales que emplean aprendizaje competitivo son los
-mapas auto-organizativos (Kohonen,1984) y Adaptive Resonanse Theory (Caprenter y Grossber).
+El aprendizaje competitivo usa inhibición lateral para activar una sola neurona
+(se puede ver como el ganador). Algunas redes neuronales que emplean
+aprendizaje competitivo son los mapas auto-organizativos (Kohonen,1984) y
+Adaptive Resonanse Theory (Caprenter y Grossber).
 
 \subsubsection{Aprendizaje Min-Max}
 
-Un clasificador min-max usa un par de vectores para cada clase. La clase \emph{j} está representada por el PE $y_i$ y está definida por los vectores $V_j$ (el vector min) y $W_j$ (el vector max).
-El aprendizaje min-max es un sistema neuronal que viene dado por la ecuación:
+Un clasificador min-max usa un par de vectores para cada clase. La clase
+\emph{j} está representada por el PE $y_i$ y está definida por los vectores
+$V_j$ (el vector min) y $W_j$ (el vector max).  El aprendizaje min-max es un
+sistema neuronal que viene dado por la ecuación:
 
 $$ v_{ij}^{nuevo} = min(a_{ki},v_{ij}^{anterior}) $$
 
@@ -104,25 +148,43 @@ $$ w_{ij}^{nuevo} = min(a_{ki},w_{ij}^{anterior}) $$
 
 \subsubsection{Aprendizaje de correción de error}
 
-Este tipo de aprendizaje ajusta los pesos de conexión entre PEs en proporción a la diferencia entre los valores deseados y los computados
-para cada PE de la capa de salida. Dependiendo del número de apas de las redes se distinguen dos casos:
+Este tipo de aprendizaje ajusta los pesos de conexión entre PEs en proporción a
+la diferencia entre los valores deseados y los computados para cada PE de la
+capa de salida. Dependiendo del número de apas de las redes se distinguen dos
+casos:
 \begin{itemize}
-	\item[-] Red de dos capas: puede capturar mapeos lineales entre las entradas y salidas. DOs redes neuronales que utilizan este tipo de aprendizaje son el Perceptrón (Rosenblatt) y ADALINE (Widrow y Hoff)
-	\item[-] Red multicapa: peden capturar mapeos no lineales entre las entradas y salidas. La versión multinivel de este algoritmo es denominado Regla de Aprendizaje de Retropropagación de errores (Backpropagation).
-		Utilizando la regla encadenada, se calculan los cambios de los pesos para un número arbitrario de capas. El número de iteraciones que deben ser realizadas para cada patrón del conjunto de datos es grande, 
-		haciendo este algoritmo de aprendizaje muy lento para entrenar. El algoritmo de retropograpagión ha sido estudiado por Werbos (1974) y Parker (1982), y fue introducido por Rumerlhart, Hilton y Williams (1986).
+	\item[-] Red de dos capas: puede capturar mapeos lineales entre las entradas 
+	y salidas. DOs redes neuronales que utilizan este tipo de aprendizaje son el 
+	Perceptrón (Rosenblatt) y ADALINE (Widrow y Hoff)
+	\item[-] Red multicapa: peden capturar mapeos no lineales entre las entradas 
+	y salidas. La versión multinivel de este algoritmo es denominado Regla de 
+	Aprendizaje de Retropropagación de errores (Backpropagation). Utilizando la 
+	regla encadenada, se calculan los cambios de los pesos para un número arbitrario 
+	de capas. El número de iteraciones que deben ser realizadas para cada patrón 
+	del conjunto de datos es grande, haciendo este algoritmo de aprendizaje muy 
+	lento para entrenar. El algoritmo de retropograpagión ha sido estudiado por 
+	Werbos (1974) y Parker (1982), y fue introducido por Rumerlhart, Hilton y 
+	Williams (1986).
 \end{itemize}
 
 \subsubsection{Aprendizaje reforzado}
 
-Esta heurística para redesneuronales fue ideada por Widrow, Gupta y Maitra (1973) y desarrollado por Williams (1983). Este tipo de aprendizaje es similar al anterior, en que los pesos
-son fortalecidos en las acciones desarrolladas correctamente y penalizados en aquellas mal realidas. La diferencia entre ambas es que el aprendizaje por correción de error utiliza
-información de error más específica reuniendo valores del error por cada PE de la capa de salida, mientras que el aprendizaje reforzado utiliza información de error no específica
-para determinar el desarrollo de la red. MIentras que el primero tiene un vector completo de valores que utiliza para la correción de error, sólo un valor es usado para describir la ejecución de la capa
-de salida durante el aprendizaje reforzado. Esta forma de aprendizaje es ideal en situaciones donde no está disponible información específica sobre el error, pero sí información global de la ejecución,
-tal como predicción y control.
+Esta heurística para redesneuronales fue ideada por Widrow, Gupta y Maitra
+(1973) y desarrollado por Williams (1983). Este tipo de aprendizaje es similar
+al anterior, en que los pesos son fortalecidos en las acciones desarrolladas
+correctamente y penalizados en aquellas mal realidas. La diferencia entre ambas
+es que el aprendizaje por correción de error utiliza información de error más
+específica reuniendo valores del error por cada PE de la capa de salida,
+mientras que el aprendizaje reforzado utiliza información de error no
+específica para determinar el desarrollo de la red. MIentras que el primero
+tiene un vector completo de valores que utiliza para la correción de error,
+sólo un valor es usado para describir la ejecución de la capa de salida durante
+el aprendizaje reforzado. Esta forma de aprendizaje es ideal en situaciones
+donde no está disponible información específica sobre el error, pero sí
+información global de la ejecución, tal como predicción y control.
 
-Las redes que implementan este tipo de aprendizaje son: Adaptive Hueristic Critic, Barto, Sutton y Anderon 1983, y Associative Reward-Penalty, Barto 1985.
+Las redes que implementan este tipo de aprendizaje son: Adaptive Hueristic
+Critic, Barto, Sutton y Anderon 1983, y Associative Reward-Penalty, Barto 1985.
 
 \subsubsection{Tabla Resumen}
 
@@ -142,31 +204,19 @@ Una tabla de resumen para recordar los factores e importancia de cada tipo de ap
 \end{tabularx}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 \subsection{Feedforward Artificial Neuronal Network}
 
-El modelo de red neuronal a utilizar en esta memoria, serán las Feedforward Artificial Neuronal Network (FFANN).
+El modelo de red neuronal a utilizar en esta memoria, serán las Feedforward
+Artificial Neuronal Network (FFANN).
 
-$$ g_{\lambda}(x,w) = \gamma_2 \left( \sum_{j = 1}^{\lambda} w_j^{[2]} \gamma_1 \left( \sum_{i = 1}^{m} w_{ij}^{[1]}x_i + w_{m+1,j}^{[1]} \right) + w_{\lambda+1}^{[2]} \right) $$
+$$ g_{\lambda}(x,w) = \gamma_2 \left( \sum_{j = 1}^{\lambda} w_j^{[2]} \gamma_1 
+\left( \sum_{i = 1}^{m} w_{ij}^{[1]}x_i + w_{m+1,j}^{[1]} \right) + 
+w_{\lambda+1}^{[2]} \right) $$
 
 En donde:
 \begin{itemize}
-	\item Las principales componentes se mantienen al igual que en el modelo más simple, es decir, $w$ y $x$ siguen siendo los vectores de los pesos y datos de entrada.
+	\item Las principales componentes se mantienen al igual que en el modelo más 
+simple, es decir, $w$ y $x$ siguen siendo los vectores de los pesos y datos de entrada.
 	\item $\gamma_2$: Es una función que puede ser lineal o no.
 	\item $\gamma_1$: Es una función no lineal y diferenciable.
 \end{itemize}
@@ -178,6 +228,50 @@ La estructura física de cómo se compone el modelo es una división por capas:
 	\item Capa de salida:
 \end{itemize}
 
-\section{Wavelet Multiscale}
+\section{Análisis Wavelets}
+La teoria de las funciones wavelet fue desarrollada en distintos campos del
+conocimiento como las matemáticas, física e ingeniería eléctrica, enfocándose
+en el análisis de señal contínua o discreta.
 
-\section{High Performance Computing}
+El análisis wavelet consiste en la descomposición de una señal en un conjunto
+jerárquico de aproximaciones y detalles. En cada nivel de la jerarquía se
+obtiene una señal de aproximación y una señal de detalle, la señal de
+aproximación obtenida es una aproximación de la señal original que toma en
+cuenta las frecuencias bajas mientras que la señal de detalles corresponde a
+los componentes de alta frecuencia. Las wavelets son funciones que permiten
+descomponer una señal en distintos componentes de frecuencia y después analizar
+cada uno en una resolución acorde a su escala.
+
+\subsection{Análisis de Fourier}
+De acuerdo a la teoría de Fourier, una señal puede ser expresada como una suma
+de series de senos y cosenos. Esta suma también es llamada la expansión de
+Fourier. Sin embargo, uno de los inconvenientes de la transformada de Fourier
+es que solamente tiene resolución de frecuencia y no resolución de tiempo. Por
+lo tanto, se puede identificar todas las frecuencias presentes en una señal,
+pero no se sabe cuando estas están presentes. Para avordar este problema, se propone la teoría de Wavelet:
+
+$$
+F(\omega) = \int^{+\infty}_{-\infty} f(t)e^{-jwt} dt
+$$
+
+\begin{eqnarray*}
+	F(\omega)	&=&	\int^{+\infty}_{-\infty} f(t)e^{-jwt}dt \\
+				&=&	\int^{+\infty}_{-\infty} f(t)(\cos\omega t - i\sin\omega t)dt
+\end{eqnarray*}
+
+Del punto vista matemático, una wvalet puede ser definida como una función con promedio cero:
+\begin{eqnarray*}
+	\int^{+\infty}_{-\infty} \psi(t)dt &=& 0 \\
+\end{eqnarray*}
+
+Y la idea básica de la transformada wavelet es representar una función como una
+superposición de un set de wavelets o funciones bases. Como estas funciones son
+pequeñas ondas ubicadas en diferentes tiempos, esta transformada puede proveer
+información acerca de la señan en el dominio del tiempo y frecuencia.
+
+\subsection{Transformada Wavelet Contínua}
+\subsection{Transformada Wavelet Discreta}
+
+\section{Computación de Alto Desempeño}
+\subsection{Graphic Processing Unit}
+\subsection{Computación Heterogenea}
