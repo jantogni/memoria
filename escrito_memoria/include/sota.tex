@@ -264,14 +264,57 @@ Del punto vista matemático, una wvalet puede ser definida como una función con
 	\int^{+\infty}_{-\infty} \psi(t)dt &=& 0 \\
 \end{eqnarray*}
 
-Y la idea básica de la transformada wavelet es representar una función como una
+La idea básica de la transformada wavelet es representar una función como una
 superposición de un set de wavelets o funciones bases. Como estas funciones son
 pequeñas ondas ubicadas en diferentes tiempos, esta transformada puede proveer
 información acerca de la señan en el dominio del tiempo y frecuencia.
 
-\subsection{Transformada Wavelet Contínua}
-\subsection{Transformada Wavelet Discreta}
+\subsection{Transformada Wavelet Contínua (CWT)}
+Similar a la ecuación de la transformada de Fourier, la transformada contínua
+wavelet se define como:
+\begin{eqnarray*}
+	\gamma(s,\tau) = \int^{+\infty}_{-\infty}f(t)\Psi^{*}_{s,\tau}(t)dt
+\end{eqnarray*}
 
+Donde * denota una conjugación compleja. Las variables s y $\tau$ son las
+nuevas dimensiones: escala y traslación, después de la transformada wavelet.
+Esta ecuación muestra como la función $f(t)$ en base a un set de funciones
+$\psi_{s,\tau}(t)$ que son llamadas wavelets. Y las wavelets son generadas dese
+una wavelet madre escala y trasladada:
+\begin{eqnarray*}
+	\Psi_{s,\tau}(t) = \frac{1}{\sqrt{s}}\psi\left(\frac{t-\tau}{s}\right)
+\end{eqnarray*}
+
+Donse $s$ es un factor de escala, es decir, escala el ancho de una funcion base
+en particular, $\tau$ es un factor de traslación que especifica la traslación
+de la posición en base al eje t, y finalmente el factor $\frac{1}{\sqrt{s}}$ es
+por la normalización de energía a través de diferentes escalas. Como la
+transformada de Fourier descompone una señal en una serie de senos y cosenos
+con diferentes frecuencias, la trasnformada contínua wavelet descompone una
+señal en una serie de wavelets con diferentes escalas y traslaciones.
+
+\subsection{Transformada Wavelet Discreta (DWT)}
+La desventaja de la transformada contínua wavelet reside en su complejidad
+computacional y redundancia. Para resolver este problema, se introduce la
+transformada discreta wavelet. A diferencia de CWT, la DWT descompone la señal en un set de wavelets ortogonales entre si. DWT se define como:
+\begin{eqnarray*}
+	\psi_{j,k}(t) = \frac{1}{\sqrt{s^{j}_{0}}}\psi\left(\frac{t-k\tau_0s^{j}_{0}}{s^{j}_{0}}\right)
+\end{eqnarray*}
+
+Donde $j$ y $k$ son enteros, $s_0 > 1$ es un paso fijo de dilatación y el
+factor de $\tau_0$ depende del paso de dilatación. La función de escala y la
+función wavelet de DWT se definen como:
+\begin{eqnarray*}
+	\varphi(2^jt)	&=&	\sum^{k}_{i=1}h_{j+1}(k)\varphi(2^{j+1}t-k)\\
+	\psi(2^jt)		&=&	\sum^{k}_{i=1}g_{j+1}(k)\varphi(2^{j+1}t-k)
+\end{eqnarray*}
+
+En base a esto, la señal $f(t)$ puede ser expresada como:
+\begin{eqnarray*}
+	f(t) = \sum^{k}_{i=1}\lambda_{j-1}(k)\varphi(2^{j-1}t-k) + \sum^{k}_{i=1}\gamma_{j-1}(k)\psi(2^{j-1}t-k)
+\end{eqnarray*}
+
+La DWT se puede hacer usando el esquema de banco de filtros, desarrollado por $cita$.
 \section{Computación de Alto Desempeño}
 \subsection{Graphic Processing Unit}
 \subsection{Computación Heterogenea}
