@@ -6,29 +6,28 @@ desarrollos realizados mediante técnicas de HPC.
 \section{Redes Neuronales Artificiales}
 
 Las redes neuronales artificiales (ANN), han sido usadas en distintos campos de
-la ciencia. En particular en el área de computación, son de interés como
-herramienta para procesos de minería de datos \cite{bigus1996data}, ya que se
-ha convertido en una metodología multipropósito, robusta computacionalmente,
-con apoyo teórico sólido. Como es conocido los problemas de minería de datos no
-son de naturaliza computacional generalmente, sino que son técnicas o
-metodologías, para satisfacer algún tipo de apoyo a procesos que involucren
-manejo con grandes volúmenes de datos. Los modelos de redes neuronales buscan
-encontrar relaciones entre los datos existentes, y la manera en que lo hacen es
-de forma inductiva, es decir, mediante algoritmos de aprendizaje.
+la ciencia, en particular en el área de computación, ya que son de interés como
+herramienta para procesos de minería de datos \cite{bigus1996data}. Se ha
+convertido en una metodología multipropósito, robusta computacionalmente, con
+apoyo teórico sólido. Los problemas de minería de datos no son de naturaleza
+computacional generalmente, sino que son técnicas o metodologías, para
+satisfacer algún tipo de apoyo a procesos que involucren manejo con grandes
+volúmenes de datos. Los modelos de redes neuronales buscan encontrar relaciones
+entre los datos existentes, la manera en que lo hacen es de forma inductiva, es
+decir, mediante algoritmos de aprendizaje.
 
 Una neurona aritificial es un procesador elemental (PE), que recibe una serie
 de entradas con pesos diferentes, las procesa y proporciona una salida única. A
 cada neurona llegan muchas señales de otras, proceso conocido en la biología
-como Sinapsis, y producen una única salida (Axon). Una sinapsis que comuna dos
+como Sinapsis, y producen una única salida (Axon). Una sinapsis que comunica dos
 neuronas puede ser de naturaleza excitadora o inhibidora. En el primer caso, la
 neurona emisora tenderá a activar a la neurona receptora, y en el segundo caso,
 la neurona emisora tenderá a inhibir la actividad de la neurona receptora.
 
 Cada sinapsis se caracteriza además por la eficacia con la que se establece la
-conexión. EN definitiva, aunque la neurona toma dediciones en función de la
-suma de información que recibe, la contribución de cada una de estas
-informaciones que recibe, la contribución de cada una de estas finromaciones es
-ponderada por la eficacia de la sinapsis correspondiente.
+conexión. Aunque la neurona toma dediciones en función de la suma de
+información que recibe, la contribución de cada una de estas informaciones que
+recibe es ponderada por la eficacia de la sinapsis correspondiente.
 
 La primera neurona artitificial fue concebida por W. McChulloch, y W. Pitts. Se
 trata de un modelo binario cuyo estado es 1 (activo) o 0 (inactivo).
@@ -61,6 +60,21 @@ $$ \gamma(z) = sign(z) = \left\{
 	     \right. $$
 
 Esta no es la única función no lineal que se puede especificar.
+
+Una red neuronal es un set de PE interconectados entre si, imitando la
+actividad del cerebro. La siguiente figura muestra una neruna dentro de una red
+neuronal:
+
+\begin{figure}[h!t]
+    \begin{center}
+        \includegraphics[width=0.4\textwidth]{images/ann_model}
+        \caption{Modelo de neurona artificial.}
+    \end{center}
+\end{figure}
+
+En la figura, cada uno de las entradas $x_i$ tiene un peso $w_i$ que representa
+la fuerza de esa conexión en particular. La suma de esas entradas pesadas son
+la entrada para la función de activación que genera la salida.
 
 \subsection{Tipos de aprendizaje}
 
@@ -126,12 +140,12 @@ Si los valores de los PEs están limitados y los pesos ilimitados, se encuentra
 el caso denominado Hopfield, que restringen el valor de los PEs a un valor
 binario o bipolar.  
 
-\subsubsection{Aprendizaje competitivo}
-
-El aprendizaje competitivo usa inhibición lateral para activar una sola neurona
-(se puede ver como el ganador). Algunas redes neuronales que emplean
-aprendizaje competitivo son los mapas auto-organizativos (Kohonen,1984) y
-Adaptive Resonanse Theory (Caprenter y Grossber).
+%\subsubsection{Aprendizaje competitivo}
+%
+%El aprendizaje competitivo usa inhibición lateral para activar una sola neurona
+%(se puede ver como el ganador). Algunas redes neuronales que emplean
+%aprendizaje competitivo son los mapas auto-organizativos (Kohonen,1984) y
+%Adaptive Resonanse Theory (Caprenter y Grossber).
 
 \subsubsection{Aprendizaje Min-Max}
 
@@ -169,14 +183,14 @@ casos:
 
 \subsubsection{Aprendizaje reforzado}
 
-Esta heurística para redesneuronales fue ideada por Widrow, Gupta y Maitra
+Esta heurística para redes neuronales fue ideada por Widrow, Gupta y Maitra
 (1973) y desarrollado por Williams (1983). Este tipo de aprendizaje es similar
 al anterior, en que los pesos son fortalecidos en las acciones desarrolladas
-correctamente y penalizados en aquellas mal realidas. La diferencia entre ambas
+correctamente y penalizados en aquellas mal realizadas. La diferencia entre ambas
 es que el aprendizaje por correción de error utiliza información de error más
 específica reuniendo valores del error por cada PE de la capa de salida,
 mientras que el aprendizaje reforzado utiliza información de error no
-específica para determinar el desarrollo de la red. MIentras que el primero
+específica para determinar el desarrollo de la red. Mientras que el primero
 tiene un vector completo de valores que utiliza para la correción de error,
 sólo un valor es usado para describir la ejecución de la capa de salida durante
 el aprendizaje reforzado. Esta forma de aprendizaje es ideal en situaciones
@@ -195,7 +209,6 @@ Una tabla de resumen para recordar los factores e importancia de cada tipo de ap
 	Aprendizaje	& Tiempo entrenamiento	& Supervisión			& Linealidad	& Estructural / Temporal	& Cap. de almacen. \\
 	\hline 
 	Hebbiano 	& Rápido		& No supervisado		& Lineal	& Estructural			& Baja	\\
-	Competitivo	& Lento			& No supervisado		& Lineal	& Estructural			& Buena	\\
 	Min-Max		& Rápido		& No supervisado		& No lineal	& Estructural			& Buena	\\
 	Corr. error dos niveles & Lento		& Supervisado			& Lineal	& Ambos				& Buena	\\
 	Corr. error multinivel & Muy lento	& Supervisado			& No lineal	& Ambos				& Alta	\\
@@ -204,29 +217,31 @@ Una tabla de resumen para recordar los factores e importancia de cada tipo de ap
 \end{tabularx}
 
 
-\subsection{Feedforward Artificial Neuronal Network}
-
-El modelo de red neuronal a utilizar en esta memoria, serán las Feedforward
-Artificial Neuronal Network (FFANN).
-
-$$ g_{\lambda}(x,w) = \gamma_2 \left( \sum_{j = 1}^{\lambda} w_j^{[2]} \gamma_1 
-\left( \sum_{i = 1}^{m} w_{ij}^{[1]}x_i + w_{m+1,j}^{[1]} \right) + 
-w_{\lambda+1}^{[2]} \right) $$
-
-En donde:
-\begin{itemize}
-	\item Las principales componentes se mantienen al igual que en el modelo más 
-simple, es decir, $w$ y $x$ siguen siendo los vectores de los pesos y datos de entrada.
-	\item $\gamma_2$: Es una función que puede ser lineal o no.
-	\item $\gamma_1$: Es una función no lineal y diferenciable.
-\end{itemize}
-
-La estructura física de cómo se compone el modelo es una división por capas:
-\begin{itemize}
-	\item Capa de entrada:
-	\item Capa oculta:
-	\item Capa de salida:
-\end{itemize}
+%\subsection{Feedforward Artificial Neuronal Network}
+%
+%El modelo de red neuronal a utilizar en esta memoria, serán las Feedforward
+%Artificial Neuronal Network (FFANN).
+%
+%$$ g_{\lambda}(x,w) = \gamma_2 \left( \sum_{j = 1}^{\lambda} w_j^{[2]} \gamma_1 
+%\left( \sum_{i = 1}^{m} w_{ij}^{[1]}x_i + w_{m+1,j}^{[1]} \right) + 
+%w_{\lambda+1}^{[2]} \right) $$
+%
+%En donde:
+%\begin{itemize}
+%	\item Las principales componentes se mantienen al igual que en el modelo más 
+%simple, es decir, $w$ y $x$ siguen siendo los vectores de los pesos y datos de entrada.
+%	\item $\gamma_2$: Es una función que puede ser lineal o no.
+%	\item $\gamma_1$: Es una función no lineal y diferenciable.
+%\end{itemize}
+%
+%La estructura física de cómo se compone el modelo es una división por capas:
+%\begin{itemize}
+%	\item Capa de entrada.
+%	\item Capa oculta.
+%	\item Capa de salida.
+%\end{itemize}
+%
+%Dado un conjunto de observaciones, la tarea del aprendizaje neuronal es construir un estimado $g_{\lambda}(x,w)$ de la función desconocida
 
 \section{Análisis Wavelets}
 La teoria de las funciones wavelet fue desarrollada en distintos campos del
@@ -314,7 +329,43 @@ En base a esto, la señal $f(t)$ puede ser expresada como:
 	f(t) = \sum^{k}_{i=1}\lambda_{j-1}(k)\varphi(2^{j-1}t-k) + \sum^{k}_{i=1}\gamma_{j-1}(k)\psi(2^{j-1}t-k)
 \end{eqnarray*}
 
-La DWT se puede hacer usando el esquema de banco de filtros, desarrollado por $cita$.
+La DWT se puede hacer usando el esquema de banco de filtros $cita$. La
+siguiente figura muestra el banco de filtros de dos canales para la DWT.
+
+\begin{figure}[h!t]
+    \begin{center}
+        \includegraphics[width=0.7\textwidth]{images/filter_bank}
+        \caption{Esquema de banco de filtros para la DWT.}
+    \end{center}
+\end{figure}
+
+En la figura, H,L y H',L' son los filtros de pasa alto y pasa bajo para la
+descomposición wavelet y reconstrucción respectivamente. En la fase de
+descomposición, los filtros de pasa bajo remueven los componentes de alta
+frecuencia de la señal, y los filtros de pasa alto toman las partes restantes.
+Entonces, la señal filtrada es decimada en dos, proceso conocido como
+down-sampling, y los resultados son llamados como, coeficientes de aproximación
+y los coeficientes de detalle. La reconstrucción es el proceso inverso a la
+descomposición y para una reconstrucción de banco de filtros perfecto, se tiene
+x = x'. Una señal puede ser descompuesta por el algoritmo piramidal o de cascada:
+
+\begin{eqnarray*}
+    x(t)	&=& A_1(t) + D_1(t)\\
+			&=& A_2(t) + D_2(t) + D_1(t) \\
+			&=& A_3(t) + D_3(t) + D_2(t) + D_1(t)\\
+			&=& A_n(t) + D_n(t) + D_{n-1}(t) + ... + D_1)
+\end{eqnarray*}
+
+donde $D_n(t)$ y $A_n(t)$ son los coeficientes de detalle y aproximación al
+nivel n respectivamente. La siguiente figura representa la descomposición:
+
+\begin{figure}[h!t]
+    \begin{center}
+        \includegraphics[width=0.4\textwidth]{images/piramidal}
+        \caption{Árbol de descomposición piramidal.}
+    \end{center}
+\end{figure}
+
 \section{Computación de Alto Desempeño}
 \subsection{Graphic Processing Unit}
 \subsection{Computación Heterogenea}
