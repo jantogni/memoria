@@ -366,6 +366,48 @@ nivel n respectivamente. La siguiente figura representa la descomposición:
     \end{center}
 \end{figure}
 
+\section{Redes neuronales wavelet}
+La arquitectura más sencilla de una red neurnal wavelet consiste en tener una
+sola entrada y una sola salida. En esta arquitectura la capa oculta está
+formada por wavelons cuyos parámetros de entrada están definido por peso,
+parámetro de traslación y escalamiento. La salida de la red es una combinación
+lineal de funciones wavelet de cada wavelon. La salida de un wavelon con una
+entrada sencilla está dada por:
+
+\begin{eqnarray*}
+    \Psi_{\lambda,t}(u) = \Psi\left(\frac{u-t}{\lambda}\right)
+\end{eqnarray*}
+
+La arquitectura de una red neuronal wavelet se muestra en la siguiente figura,
+laca oculta consiste en M wavelons y la capa de salida consiste en un sumador:
+
+\begin{figure}[h!t]
+    \begin{center}
+        \includegraphics[width=0.4\textwidth]{images/1_in_1_out}
+        \caption{Arquitectura de una entrada y una salida.}
+    \end{center}
+\end{figure}
+
+La salida está dada por:
+
+\begin{eqnarray*}
+    y(u) = \sum_{i=1}^{n} w_i\Psi_{\lambda_i,t_i} + \bar{y}
+\end{eqnarray*}
+
+\subsection{Wavenet}
+La arquitectura de una wavenet es similar a la de la red neuronal wavelet, a
+execpción de que los parámetros de traslación y escalamiento se mantienen fijos
+desde la inicialización y no son alterados durante el proceso de aprendizaje.
+Su salida está dada por:
+
+\begin{eqnarray*}
+    y(u) = \sum_{i=1}^{n} w_i\phi_{\lambda_i,t_i} + \bar{y}
+\end{eqnarray*}
+
+donde $\phi_{\lambda_i,t_i}$ representa la función de escalamiento y parámetros
+de traslación y escalamiento mantienen las restricciones mencionadas
+anteriormente.
+
 \section{Computación de Alto Desempeño}
 \subsection{Graphic Processing Unit}
 \subsection{Computación Heterogenea}
