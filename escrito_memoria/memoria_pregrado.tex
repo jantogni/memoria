@@ -171,7 +171,7 @@ urlcolor=cyan,
 
 \title{High frequency trading \& Graphics processing unit}
 \author{Jonathan Andrés Antognini Cavieres}
-\submitdate{Marzo - 2013}
+\submitdate{ASD}
 \copyrightyear{2012}
 %%%%%%%%%%%%%% Elegir uno de los siguientes grados:
 %\ingej
@@ -181,37 +181,30 @@ urlcolor=cyan,
 % \phd
 %%%%%%%%%%%%%%
 \profguia{Dr. Luis Salinas Carrasco}      % Cambiado a partir de supervisor
-\profcorr{Dr. H\'ector Allende Olivares}         % Cambiado a partir de firstreader
+\profcorr{Dr. ASD}         % Cambiado a partir de firstreader
 
 %%%% dedicatorias al termino de la tesis %%%%
 \dedicate{
  ASD ASD ASD
 }
 
-\nolistoffigures
-\nolistoftables
-
-\beforepreface
-
-
-%  \listoftables	
-%  \listoffigures
-%  \listofalgorithms
-
-%\input{agradecimientos.tex}
-
-%\input{abstract.tex}
-
-\afterpreface
-
-\onehalfspacing
-
-%\input{capitulo_1.tex}
-%\input{capitulo_2.tex}
-%\input{capitulo_3.tex}
+%\addcontentsline{toc}{section}{\contentsname}
+\tableofcontents
+%\addcontentsline{toc}{subsection}{\listalgorithmname}
+%\listofalgorithms
+%\addcontentsline{toc}{subsection}{\listfigurename}
+\listoffigures
+%\addcontentsline{toc}{subsection}{\listtablename}
+\listoftables
 
 \chapter{Introducción}
 	\input{include/introduccion}
+
+\chapter{High Frequency Trading}
+	\input{include/hft}
+
+\chapter{Graphics Processing Units}
+	\input{include/gpu}
 
 \chapter{Estado del arte}
 	\input{include/sota}
