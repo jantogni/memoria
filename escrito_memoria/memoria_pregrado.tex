@@ -1,231 +1,182 @@
-%\documentclass[a4paper,10pt]{book}
-%\usepackage[utf8x]{inputenc}
-
-\documentclass[12pt,letterpaper]{report}
-\usepackage[utf8]{inputenc}
-%\usepackage{geometry,fancyhdr}
-
-% \usepackage[spanish]{babel}
-
-\usepackage{subfigure}
-\usepackage{algorithm}
-\usepackage{algorithmic}
-\usepackage{listings}  
-\usepackage{amsthm}
-\usepackage{textcomp}
-\usepackage{multicol}
-\usepackage{float}
-\usepackage{url}
-\usepackage{enumerate}
-\usepackage{newlfont}
-\usepackage{psfrag}
-\usepackage{charter}
-\usepackage{setspace}
-\usepackage{longtable}
-\usepackage{subfigure}
-\usepackage{tabularx}
-\usepackage[dvips]{epsfig}
-\usepackage[centertags]{amsmath}
-\usepackage[size=normalsize]{caption}
-\usepackage{newlfont}
-\usepackage{psfrag}
+\documentclass[spanish,12pt,letterpaper,oneside]{book}
 \usepackage[spanish]{babel}
-
-%fonts matematicos
-\usepackage{amsfonts}
+\usepackage[utf8]{inputenc}
+\usepackage[left=3cm,top=2.0cm,right=2.4cm,bottom=2.9cm]{geometry}
+%\usepackage[pdftex,hyperindex,breaklinks]{hyperref}
+\usepackage{hyperref}
+\usepackage{tabularx}
+\usepackage[pdftex]{graphicx}
 \usepackage{amssymb}
-
-\usepackage{framed}
-% colocar un texto dentro de un cuadrado que lo contiene
-%\begin{framed}
-%\end{framed}
-
-%\usepackage{tikz}
-
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{fancybox}
+\usepackage{fancyvrb}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{index}
+\usepackage{enumerate}
+\usepackage{setspace}
+\usepackage{boxedminipage}
 \usepackage{listings}
-\usepackage{icomma}
+\usepackage{natbib}
+\usepackage{url}
+\usepackage{lastpage}
+\usepackage{color}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{multicol}
 
-%paquete necesario para incluir imaganes .eps en pdf
-\usepackage{epstopdf}
+\renewcommand{\baselinestretch}{2}
 
-\usepackage{UTFSM_Tesis}
+\newenvironment{itemize_estret}{
+\begin{itemize}
+  \setlength{\itemsep}{1pt}
+  \setlength{\parskip}{0pt}
+  \setlength{\parsep}{0pt}
+}{\end{itemize}}
 
-\usepackage[active]{srcltx}
-%\usepackage[dvips, pdftitle={Jonathan Antognini memoria}, pdfauthor={Jonathan Antognini}, pdfsubject={Memoria}]{hyperref} 
-\usepackage[unicode]{hyperref} 
+\newenvironment{enumerate_estret}{
+\begin{enumerate}
+  \setlength{\itemsep}{1pt}
+  \setlength{\parskip}{0pt}
+  \setlength{\parsep}{0pt}
+}{\end{enumerate}}
 
-%Modificar el formato de los capitulos, secciones y subsecciones, ademas modifica la visualizacion en la lista de contenidos.
-  %\usepackage{titlesec}
-  %\usepackage{titletoc}
- 
-
-\hfuzz2pt
-
-\hypersetup{%
-pdftitle={Memoria jantogni},
-pdfauthor={Jonathan Antognini},
-pdfkeywords={memoria, jantogni},
-bookmarksnumbered,
-pdfstartview={FitH},
-urlcolor=cyan,
-}%
-
-\hyphenpenalty=5000
-  \tolerance=1000
-\hyphenation{no-me-cor-tes}
-
-
- \oddsidemargin  0cm    % Ancho Legal 21,59cm
- \evensidemargin 0.5cm  % Alto  Legal 35,56cm
- \textwidth      16.5cm
- \topmargin       -1.5cm
- %\voffset        2cm  % Margen superior
- \textheight     22cm
- %  \parindent      4cm
- %\parskip        2ex
-
-\newlength{\defbaselineskip}
-\setlength{\defbaselineskip}{\baselineskip}
-
-\newcommand{\setlinespacing}[1]%
-           {\setlength{\baselineskip}{#1 \defbaselineskip}}
-% \newcommand{\doublespacing}{\setlength{\baselineskip}%
-%                            {1.3 \defbaselineskip}}
-% \newcommand{\singlespacing}{\setlength{\baselineskip}{\defbaselineskip}}
-
-%Formulas matem?ticas utilizadas en el paper
-\newcommand{\bbbr}{\mathbb R}
-
-\newcounter{defcount}
-\setcounter{defcount}{0}
-\newenvironment{definition}[1]
-%%\bf\normalsize
-{% This is the begin code \bf
-\stepcounter{defcount}{\noindent \bf \normalsize Definition \bf \arabic{defcount}: #1}\nopagebreak[3] \\
-\begin{it}
-}
-{% This is the end code
-\end{it}
-
-}
-
-\newcounter{defcount1}
-\setcounter{defcount1}{0}
-\newenvironment{property}[1]
-%%\bf\normalsize
-{% This is the begin code \bf
-\stepcounter{defcount1}{\noindent \bf \normalsize Property \bf \arabic{defcount1}: #1}\nopagebreak[3] \\
-\begin{it}
-}
-{% This is the end code
-\end{it}
-}
+\newenvironment{description_estret}{
+\begin{description}
+  \setlength{\itemsep}{1pt}
+  \setlength{\parskip}{0pt}
+  \setlength{\parsep}{0pt}
+}{\end{description}}
 
 
+% Colors
+\newcommand{\blue}{\textcolor{blue}}
+\newcommand{\red}{\textcolor{red}}
+\newcommand{\green}{\textcolor{green}}
+\newcommand{\oran}{\textcolor{orange}}
+\newcommand{\gray}{\textcolor{gray}}
+\newcommand{\GR}{{\sc Gravidy}}
+\definecolor{gray97}{gray}{.97}
+\definecolor{gray75}{gray}{.75}
+\definecolor{gray45}{gray}{.45}
 
+\lstset{
+     frame=single,
+     framerule=0pt,
+     aboveskip=0.5cm,
+     framextopmargin=3pt,
+     framexbottommargin=3pt,
+     framexleftmargin=0.4cm,
+     framesep=0pt,
+     rulesep=.4pt,
+     backgroundcolor=\color{gray97},
+     rulesepcolor=\color{black},
+     language=C,
+     showstringspaces = false,
+     basicstyle=\scriptsize\ttfamily,
+     keywordstyle=\bfseries\color{green!70!black},
+     commentstyle=\itshape\color{purple},
+     %identifierstyle=\color{red},
+     stringstyle=\color{orange},
+     %commentstyle=\color{gray45},
+     %keywordstyle=\bfseries,
+     numbers=left,
+     numbersep=13pt,
+     numberstyle=\scriptsize,
+     numberfirstline = false,
+     breaklines=true,
+     emph = {[1]\_\_device\_\_, \_\_global\_\_, \_\_syncthreads,
+             pragma, omp, parallel, private, threadIdx, blockDim, blockIdx,
+             cudaThreadSynchronize, while, total, main,dim3},
+     emphstyle={[1]\color{blue!70!black}},
+   }
 
+% minimizar fragmentado de listados
+\lstnewenvironment{listing}[1][]{\lstset{#1}\pagebreak[0]}{\pagebreak[0]}
 
-%Redefine plain page style
-% \fancypagestyle{plain}{
-% \fancyhf{}
-% \renewcommand{\headrulewidth}{0pt}
-% \fancyfoot[LE,RO]{\thepage}
-% }
-% 
-% % Code for creating empty pages
-% % No headers on empty pages before new chapter
-% \makeatletter
-% \def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
-%     \hbox{}
-%     \thispagestyle{plain}
-%     \newpage|||
-%     \if@twocolumn\hbox{}\newpage\fi\fi\fi}
-% \makeatother \clearpage{\pagestyle{plain}\cleardoublepage}
-% 
-% % Define pagestyle
-% \pagestyle{	fancy}
-% \fancyhf{}
-% \renewcommand{\chaptermark}[1]{\markboth{ \emph{#1}}{}}
-% \fancyhead[LO]{}
-% \fancyhead[RE]{\leftmark}
-% \fancyfoot[LE,RO]{\thepage}
+\lstdefinestyle{consola}{basicstyle=\scriptsize\bf\ttfamily,
+                         backgroundcolor=\color{gray75},
+                        }
 
+%%% Qualques definicions
 
-%U1 hasta olympiaCentrodecompras
-% tomar micro 60 en el paradero del mall, 3 paraderos mas al norte, himmel.
+\let\sun=\odot
+\newcommand{\SgrA}{Sgr~A$^\ast$}
+\newcommand {\MBH}{\ensuremath{M_{\mathrm{BH}}}}
+\newcommand {\mbh}{\ensuremath{M_{\mathrm{BH}}}}
+\newcommand {\Msun}{\ensuremath{M_{\odot}}}
+\newcommand {\msun}{\ensuremath{M_{\odot}}}
+\newcommand {\msol}{\ensuremath{M_{\odot}}}
+\newcommand {\Mstar}{\ensuremath{M_{\ast}}}
+\newcommand {\Rsun}{\ensuremath{R_{\odot}}}
+\newcommand {\Mpthree}{\ensuremath{M_{\odot}\,\mathrm{pc}^{-3}}}
+\newcommand {\RS}{\ensuremath{R_{\mathrm{S}}}}
+\newcommand {\kms}{\ensuremath{\mathrm{km\,s}^{-1}}}
+\newcommand {\peryr}{\ensuremath{\mathrm{yr}^{-1}}}
+\newcommand{\gr}{gravitational radiation}
+\newcommand{\gw}{gravitational waves}
+\newcommand{\rem}[1]{} % pour mettre des commentaires en ligne...
+\newcommand{\nbody}{$N$-body}
+\newcommand{\bs}{\boldsymbol}
+\newcommand{\todo}{\textcolor{red}{TO DO:}}
 
-
-\setlength\parindent{0pt}
-
-\setcounter{secnumdepth}{5}
-\setcounter{tocdepth}{5}
-
-%The first line enables numbering of subsubsections. 
-%The second line includes subsubsections in the table of contents.
-
-
+\input{include/cover1}
 
 \begin{document}
+    \input{include/cover2}
 
-%\lstset{language=[ISO]C++}
+    \begin{spacing}{.97}
+        \newpage
+        \input{include/dedication}
 
-\title{High frequency trading \& Graphics processing unit}
-\author{Jonathan Andrés Antognini Cavieres}
-\submitdate{ASD}
-\copyrightyear{2012}
-%%%%%%%%%%%%%% Elegir uno de los siguientes grados:
-%\ingej
-\ingciv
-%\phd
+        %\newpage
+        %\chapter*{Acknowledgements}
+        %\label{ch:acknowledgements}
+        %\input{src/acknowledgements}
 
-% \phd
-%%%%%%%%%%%%%%
-\profguia{Dr. Luis Salinas Carrasco}      % Cambiado a partir de supervisor
-\profcorr{Dr. ASD}         % Cambiado a partir de firstreader
+        %%% Begin document
+        \newpage
+        \input{include/abstract}
+        \input{include/index}
 
-%%%% dedicatorias al termino de la tesis %%%%
-\dedicate{
- ASD ASD ASD
-}
+        \chapter{Introducción}
+        \label{ch:introduction}
+        \input{include/introduccion}
 
-%\addcontentsline{toc}{section}{\contentsname}
-\tableofcontents
-%\addcontentsline{toc}{subsection}{\listalgorithmname}
-%\listofalgorithms
-%\addcontentsline{toc}{subsection}{\listfigurename}
-\listoffigures
-%\addcontentsline{toc}{subsection}{\listtablename}
-\listoftables
+        \chapter{High Frequency Trading}
+        \label{ch:hft}
+        \input{include/hft}
 
-\chapter{Introducción}
-	\input{include/introduccion}
+        \chapter{Graphics Processing Units}
+        \label{ch:gpu}
+        \input{include/gpu}
 
-\chapter{High Frequency Trading}
-	\input{include/hft}
+        \chapter{Estado del arte}
+        \label{ch:sota}
+        \input{include/sota}
 
-\chapter{Graphics Processing Units}
-	\input{include/gpu}
+        \chapter{Descripción del problema}
+        \label{ch:problema}
+        \input{include/descripcion_problema}
 
-\chapter{Estado del arte}
-	\input{include/sota}
+        \chapter{Solución propuesta}
+        \label{ch:solucion}
+        \input{include/solucion}
 
-\chapter{Descripción del problema}
-	\input{include/descripcion_problema}
+        \chapter{Estudio experimental}
+        \label{ch:experimentos}
+        \input{include/estudio_experimental}
 
-\chapter{Solución propuesta}
-	\input{include/solucion}
+        \chapter{Conclusiones}
+        \label{ch:conclusiones}
+        \input{include/conclusiones}
 
-\chapter{Estudio experimental}
-	\input{include/estudio_experimental}
-
-\chapter{Conclusiones}
-	\input{include/conclusiones}
-
-\singlespacing
-\bibliographystyle{alpha}
-%\bibliographystyle{plain}
-\nocite{*} %quitar para mostrar s?lo lar referencias citadas.
-\bibliography{references}
-
+        \addcontentsline{toc}{chapter}{\bibname}
+        %\bibliographystyle{apalike}
+        \bibliographystyle{plain}
+        \bibliography{references}
+        \nocite{*}
+    \end{spacing}
 \end{document}
 

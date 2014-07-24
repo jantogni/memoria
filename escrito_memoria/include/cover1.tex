@@ -1,0 +1,27 @@
+\pagestyle{fancy}
+
+\rhead[]{\leftmark}
+\lhead[\rightmark]{}
+\lfoot[\thepage]{Left Foot}
+\rfoot[Right Foot]{\thepage}
+\cfoot{}
+
+%\renewcommand{\listalgorithmname}{Algorithms index}
+\renewcommand{\chaptermark}[1]{\markleft{\thechapter #1}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection #1}}
+\renewcommand{\chaptermark}[1]{\markboth{\chaptername \ \thechapter. #1}{}}
+
+\newcommand{\contrib}[3]{#1\quad$<$\texttt{#2}$>$%
+{\small\\\quad\textit{#3}}\\[1ex]}
+
+\newcommand{\titulo}{%
+    High Frequency Trading and Graphical Processing Unit.
+}%
+\newcommand{\autor}{Jonathan Andrés Antognini Cavieres}
+
+\title{\titulo}
+\author{\autor}
+
+\date{TBD, 2014}
+\frenchspacing
+\makeindex
