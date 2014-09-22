@@ -132,7 +132,7 @@ financieros del mercado de divisas.
 
 La mayoría de los fenómenos que se estudian en su componente temporal, deben
 tomar en cuenta la dinámica de los proceso con la finalidad tener una
-comprensión general del proceso. Una herramienta útil en dicho objetivo es el
+comprensión general del mismo. Una herramienta útil en dicho objetivo es el
 análisis de series de tiempo. Una serie de tiempo, es una secuencia de datos
 indexados por su marca temporal. Se pueden presentar casos de series de tiempo
 en una multitud de disciplinas como ingeniería, sociología, economía, finanzas
@@ -173,8 +173,8 @@ mostraban información al respecto de los precios de: \emph{apertura},
 \emph{cierre}, \emph{el más bajo}, \emph{el más alto}, \emph{promedio}. Esos
 datos estaban orientados a tomar métricas respecto a valores que resumían los
 cambios de precio de un instrumento en un día. Una muestra gráfica de esta
-información se puede ver en la figura \ref{fig:microsoft} la cual fue 
-tomada desde \url{http://www.stockrageous.com/}
+información se puede ver en la figura \ref{fig:microsoft} \footnote{Imagen
+tomada de \url{http://www.stockrageous.com/}}
 %con estos datos quedaban gráficos como el siguiente:
 
 \begin{figure}[h!t]
@@ -198,10 +198,9 @@ de como se efecúa este evento es mediante los \emph{market} o \emph{limit
 orders}, donde existe una cola de compras o ventas obtenidas mediante los
 \emph{limit orders} y que cuando se cumpla la condición asociada (de vender o
 comprar a cierto precio), se realiza la transacción y se registra dicho
-\emph{last price}; por otro lado, si se entra a comprar/vender directamente
-mediante una \emph{market order} también se registra dicho valor. Recopilando
-esa información, se puede generar una secuencia temporal de los \emph{last
-prices}. %Estudios prácticos de estas series \cite{biais2012empirical},
+\emph{last price}. Recopilando esa información, se puede generar una secuencia
+temporal de los \emph{last prices}. 
+%Estudios prácticos de estas series \cite{biais2012empirical},
 %generalizan su gráfica con forma de \emph{U},
 
 A través de la historia, estas interacciones se realizaban personalmente en las
@@ -217,30 +216,29 @@ frecuencias de aparición de datos, en el orden de fracción de segundos, se
 torna difícil manejar los datos de forma humana, es por esta razón que es
 necesario realizar análisis cuantitativos mediante algoritmos computacionales.
 
-Las series financieras de alta frecuencia tienen características particulares
-en relación a otras series, como son: 
-\begin{itemize}
-	\item Frecuencia: la frecuencia en la observación de los datos es mayor que
-en otro tipo de series de tiempo, en el orden de fracción de segundos.
-	\item Heterocedasticidad: ocurre cuando la varianza de las perturbaciones
-no es constante a lo largo de las observaciones.  Este factor hace inadecuados
-los modelos desarrollados para series estacionarias.
-	\item No estacionalidad: en muchos casos la media y varianza se presentan
-como no estacionarias.
-	\item Información oculta: se pueden encontrar distintos tipos de patrones a
-diferentes niveles de escala.
-\end{itemize}
+%Las series financieras de alta frecuencia tienen características particulares
+%en relación a otras series, como son: 
+%\begin{itemize}
+%	\item Frecuencia: la frecuencia en la observación de los datos es mayor que
+%en otro tipo de series de tiempo, en el orden de fracción de segundos.
+%	\item Heterocedasticidad: ocurre cuando la varianza de las perturbaciones
+%no es constante a lo largo de las observaciones.  Este factor hace inadecuados
+%los modelos desarrollados para series estacionarias.
+%	\item No estacionalidad: en muchos casos la media y varianza se presentan
+%como no estacionarias.
+%	\item Información oculta: se pueden encontrar distintos tipos de patrones a
+%diferentes niveles de escala.
+%\end{itemize}
 
+%TODO:
 \subsection{Serie de tiempo Forex}
 
 \section{High Frequency Trading}
 
-Conceptos Generales
-
 Esta sección busca detallar componentes de un sistema de trading electrónico, 
 conceptos de funcionamientos, actores, etc.
 
-\subsubsection{Sistema de trading y compoenentes}
+\subsection{Sistema de trading y compoenentes}
 Un sistema electrónico de trading es una infraestructura que permite el ingreso
 de órdenes, generación y envío de datos financieros con precios, y el match de
 dichas órdenes en base a un criterio predefinido.
@@ -284,47 +282,45 @@ Otra clasificación usada también es la de \emph{pre-trade}, \emph{trade} y
 relativa a la concretación de la transacción.
 
 
-\subsubsection{Órdenes, Order books y lógica de matching}
+\subsection{Órdenes, Order books y lógica de matching}
 
-Se entiende por orden una instrucción de compra o venta ingresada en un mercado
-por un Agente, ya sea sobre cartera propia o en representación de un cliente,
-sobre un activo especificando cantidad y según el caso, precio.
-
-Según el mercado y la autorización del regulador, existen distintos tipos de órdenes, 
+En \emph{HFT}, según el mercado y la autorización del regulador, existen distintos tipos de órdenes, 
 siendo las más comunes detalladas a continuación:
 \begin{itemize}
- \item Orden Market: orden para comprar o vender cierta cantidad de un activo
-al precio disponible de Mercado, recorriendo el \emph{order book} hasta
-completar la cantidad total. De esta operación surge un precio promedio
-ponderado compuesto por las cantidades parciales multiplicadas por el precio de
-cada una de ellas, para determinar el precio de ejecución.
- \item Orden Limit: orden ingresada con precio y cantidad, si hubiera
-disponible contraparte se ejecuta la porción de la cantidad disponible y el
-resto queda guardado en el libro a ese precio. 
+ \item \emph{Market order}: orden para comprar o vender cierta cantidad de un
+ activo al precio disponible de Mercado, recorriendo el \emph{order book} hasta
+ completar la cantidad total. De esta operación surge un precio promedio
+ ponderado compuesto por las cantidades parciales multiplicadas por el precio
+ de cada una de ellas, para determinar el precio de ejecución.
+ \item \emph{Limit order}: orden ingresada con precio y cantidad, si hubiera
+ disponible contraparte se ejecuta la porción de la cantidad disponible y el
+ resto queda guardado en el libro a ese precio. 
  \item Orden tipo Market to limit: oreden para comprar o vender a cierta
-cantidad de un activo al precio de mercado, si la cantidad total no se ejecuta,
-el restante queda en el libro como orden tipo \emph{limit} al precio ejecutado.
- \item Orden Stop limit: orden que se ingresa con 2 precios, precio de stop y
-precio de limit, cuando se alcanza el precio de stop (otro participante opera a
-ese precio en el mercado), se ejecuta una orden de compra o venta por el precio
-\emph{limit}.
+ cantidad de un activo al precio de mercado, si la cantidad total no se
+ ejecuta, el restante queda en el libro como orden tipo \emph{limit} al precio
+ ejecutado.
+ \item \emph{Stop limit order}: orden que se ingresa con 2 precios, precio de
+ stop y precio de limit, cuando se alcanza el precio de stop (otro participante
+ opera a ese precio en el mercado), se ejecuta una orden de compra o venta por
+ el precio \emph{limit}.
  \item Orden Iceberg: orden para comprar o vender cierta cantidad de un activo
-a un precio específico. Este tipo de orden es generalmente utilizado por
-inversores institucionales u operadores que desean hacer una operación por una
-cantidad importante y que no quieren que esta provoque un movimiento de precio
-desfavorable.
+ a un precio específico. Este tipo de orden es generalmente utilizado por
+ inversores institucionales u operadores que desean hacer una operación por una
+ cantidad importante y que no quieren que esta provoque un movimiento de precio
+ desfavorable.
 \end{itemize}
 
-A su vez es posible combinar los tipos de órdenes disponibles con un parámetro de duración:
+A su vez es posible combinar los tipos de órdenes disponibles con un parámetro
+de duración:
 \begin{itemize}
- \item Fill or Kill: la orden se ingresa en el Mercado y si no puede llenarse
-automáticamente se cancela, no quedando en el libro.
- \item DAY: la orden queda en el mercado por el día, pero al cerrar la rueda, según el 
- horario definido esta expira.
- \item Good till canceled: con o sin fecha definida: ciertos mercados permiten
-el modificador DATE que da la posibilidad de indicar hasta qué fecha la orden
-podrá estar en el libro hasta ser ejecutada hasta la fecha específicada o
-indefinidamente. 
+ \item \emph{Fill or Kill}: la orden se ingresa en el Mercado y si no puede llenarse
+ automáticamente se cancela, no quedando en el libro.
+ \item \emph{Day}: la orden queda en el mercado por el día, pero al cerrar la rueda,
+ según el horario definido esta expira.
+ \item \emph{Good till canceled}: con o sin fecha definida: ciertos mercados permiten
+ el modificador \emph{DATE} que da la posibilidad de indicar hasta qué fecha la orden
+ podrá estar en el libro hasta ser ejecutada hasta la fecha específicada o
+ indefinidamente. 
 \end{itemize}
 
 Todos los mercados cuentan con un \emph{order book} o libro de órdenes, que ha
@@ -333,19 +329,20 @@ cantidades ofertadas por los agentes a sistemas electrónicos de bases de datos
 que almacenan las ofertas de los clientes.
 
 
-\subsubsection{Tipo de mercados: brokers/dealers y acceso directo}
+\subsection{Tipo de mercados: brokers/dealers y acceso directo}
 
 Actualmente la operación en mercados puede simplificarse en dos modalidades:
-que la orden de un cliente ingresada a través de un broker se ejecute contra
-inventador del broker/dealer, o que esta sea enviada a un libro centra, donde
-las órdenes son \emph{matcheadas} entre sí según los criterios y tipos.
+que la orden de un cliente ingresada a través de un \emph{broker} se ejecute
+contra inventador del \emph{broker/dealer}, o que esta sea enviada a un libro
+central, donde las órdenes son \emph{matcheadas} entre sí según los criterios y
+tipos.
 
 Esta modalidad es conocida como acceso directo al mercado y en principio es más 
 transparente para los inversores finales ya que siempre se está operando contra 
 el precio de mercado.
 
 
-\subsubsection{Interfaces únicas y protocolos}
+\subsection{Interfaces únicas y protocolos}
 A medida que los nuevos sistemas electrónicos fueron naciendo en la década de
 los 80, primero como una herramienta para diseminar precios, mientras las
 operaciones todavía seguían concretándose por teléfono, y luego a fines de los
@@ -356,14 +353,14 @@ estos sistemas era específico y distinto para cada uno de ellos.
 Los sistemas informáticos que realizan la labor de facilitar el comercio de
 instrumentos financieros, son los llamados \emph{Electronic communication
 networks} (ECN).  Se crearon en 1998, año que fueron autorizados por la
-\emph{Securities and Exchange Commission} y se basaron en los protocolos definidos 
-en la Financial Information Exchange \textbf{CITAR}. La SEC \cite{hasbrouck2004economic}
-es una organización estadounidense creada en 1933, y tiene la responsabilidad
-de velar por el cumplimiento de las leyes federales las bolsas de valores. Un
-caso emblemático, fue el 6 de mayo del 2010, fecha en la cual ocurrió el
-\emph{Flash-Crash} \cite{arndt2011high}, dio a lugar a una quiebra financiera
-estadounidense en el que el índice Dow Jones Industrial Average se desplomó un
-9\%. 
+\emph{Securities and Exchange Commission} y se basaron en los protocolos
+definidos en la Financial Information Exchange. %TODO:CITAR. 
+La SEC \cite{hasbrouck2004economic} es una organización estadounidense creada
+en 1933, y tiene la responsabilidad de velar por el cumplimiento de las leyes
+federales las bolsas de valores. Un caso emblemático, fue el 6 de mayo del
+2010, fecha en la cual ocurrió el \emph{Flash-Crash} \cite{arndt2011high}, dio
+a lugar a una quiebra financiera estadounidense en el que el índice \emph{Dow
+Jones Industrial Average} se desplomó un 9\%. 
 
 \subsection{Eficiencia: descubrimiento de precios, liquidez y volatilidad}
 
@@ -387,35 +384,38 @@ Se puede definir un mercado de alta frecuencia en base al estudio hecho por el
 Boston Consulting Group para la SEC como: \emph{una estrategia que se apoya
 en la rotación de pequeñas posiciones muy rápidamente mediante el ingreso de
 órdenes de compra o venta de activos, basadas en la detección de ineficiencias
-o patrones de mercado}%TODO:CITAR%
+o patrones de mercado}.%TODO:CITAR%
 
-Como indica el estudio, la tecnología y la velidad son características claves
-que esta esta requeriere sistemas automatizados capaces de identificar
-oportunidades e ingresar grandes cantidad de órdenes y operarlas a velocidades
-medidas en milisengudos.
+Como indica el estudio, la tecnología y la velocidad son características claves
+que requeriere de sistemas automatizados capaces de identificar oportunidades
+e ingresar grandes cantidad de órdenes y operarlas a velocidades medidas en
+milisengudos.
 
 Con el paso del tiempo y la implementación de distintos sistemas de trading
 electrónico, la frecuencia de la data aumentó, pasando de minutos a fracciones
 de segundos.  En estos sistemas se define como unidad atómica de información un
 \emph{Tick}. Un \emph{Tick} especifica una gran cantidad de parámetros como la
-marca temporal, precio, cantidad transada, etc.  Los datos de alta frecuencia
+marca temporal, precio, cantidad transada, etc. Los datos de alta frecuencia
 son un conjunto de datos de reportes detallados sobre la actividad y movimiento
 efectuados sobre un instrumento. Se reúne la información de los ticks con
 cierto intervalo de tiempo, el cual para este tipo de series es variable. En la
 literatura se puede encontrar más de un término para definir este fenómeno
 \cite{ei2007quantitative}, como (ultra-)high-frequency data, microstructure
-data, entre otros.
+data, entre otros. La serie de tiempo de \emph{Ticks} queda representada en
+la figura \ref{}.
 
-Dada la sofisticación de esta actividad, los principales actores de estos
-sistemas son brokers/deales con un avanzado desarrollo de su tecnología
-interna. Este tipo de actores suelen ser al mismo tiempo \emph{market makers}
-de los mercados donde ejecutan este tipo de estrategias, por lo que el
-beneficio obtenido es apalancado por los rebates o concesiones económicas que
-el mercado les hace.
+%TODO: FIGURE
 
-El objetivo de este ingreso tan rápido de órdenes es capturar el spread de
-compra venta antes que otros actores, spreads que en muchos casos son décimas
-de centavos, pero que la alta velocidad y cantidad de operaciones hacen
+%Dada la sofisticación de esta actividad, los principales actores de estos
+%sistemas son \emph{brokers/deales} con un avanzado desarrollo de su tecnología
+%interna. Este tipo de actores suelen ser al mismo tiempo \emph{market makers}
+%de los mercados donde ejecutan este tipo de estrategias, por lo que el
+%beneficio obtenido es apalancado por los rebates o concesiones económicas que
+%el mercado les hace.
+
+El objetivo de este ingreso tan rápido de órdenes es capturar el \emph{spread}
+de compra venta antes que otros actores, \emph{spreads} que en muchos casos son
+décimas de centavos, pero que la alta velocidad y cantidad de operaciones hacen
 rentable el negocio.
 
 Generalmente este tipo de actividad hace que las posiciones solo sean
@@ -423,30 +423,29 @@ mantenidas durante el mismo día en que son abiertas, por lo que implica la
 necesidad de un capital importante o una gestión de riesgo más profunda que si
 se tomaran posiciones con un horizonte de tiempo más amplio.
 
-Se puede decir que dos factores claves han dado pie al surgimiento y 
-crecimiento de esta tendencia: la modernización de la estructura de los 
-mercados de capitales y el desarrollo de la tecnología informática. 
-
-Desde el punto de vista de mercados los factores puntuales han sido:
+Se puede decir que dos factores claves han dado pie al surgimiento y
+crecimiento de esta tendencia: la modernización de la estructura de los
+mercados de capitales y el desarrollo de la tecnología informática. Desde el
+punto de vista de mercados los factores puntuales han sido:
 \begin{itemize}
  \item La \emph{electronización} de los mercados: el hecho que los mercados
-sean electrónicos y el matching autómatico, permiten ganar en velocidad,
-eficiencia y escala. Esto permite procesamiento de Market Data y el ingreso de
-órdenes en base a patrones o algoritmos. 
+ sean electrónicos y el \emph{matching} autómatico, permiten ganar en
+ velocidad, eficiencia y escala. Esto permite procesamiento de \emph{Market
+ Data} y el ingreso de órdenes en base a patrones o algoritmos. 
  \item La decimalización: en un principio los precios de las equities se
-expresaban con fraciones, esto es, una acción de podía valer USD 3 y 4/7. La
-decimalización hizo posible pasar el formato de los precios a decimales, lo que
-los hizo más fácilmente operables por programas automatizados. Esta iniciativa
-permitió abrir los precios y generar spreads más finos.
+ expresaban con fraciones, esto es, una acción de USD podía valer 3 y 4/7. La
+ decimalización hizo posible pasar el formato de los precios a decimales, lo
+ que los hizo más fácilmente operables por programas automatizados. Esta
+ iniciativa permitió abrir los precios y generar spreads más finos.
  \item La competencia entre los distintos tipos de mercados permitió que
-estrategias más sofisticadas pudieran ser implementadas, y que los
-participantes pudieran hacer que los mercados permitieran el uso de tecnología
-de automatización de forma cada vez más avanzada.
- \item El acceso directo al mercado y el uso del order book central permite que
-una orden ingresada pegue directamente sobre el conjunto de todas las órdenes
-disponibles, permitiendo impactar sobre todo el conjunto del mercado para ese
-activo y no de forma fragmentada como podría ser contra el inventario de un
-dealer.
+ estrategias más sofisticadas pudieran ser implementadas, y que los
+ participantes pudieran hacer que los mercados permitieran el uso de tecnología
+ de automatización de forma cada vez más avanzada.
+ \item El acceso directo al mercado y el uso del \emph{order book} central
+ permite que una orden ingresada pegue directamente sobre el conjunto de todas
+ las órdenes disponibles, permitiendo impactar sobre todo el conjunto del
+ mercado para ese activo y no de forma fragmentada como podría ser contra el
+ inventario de un dealer.
 \end{itemize}
 
 Y los avances en tecnología como:
@@ -458,10 +457,10 @@ Infiniband internamente.
 \end{itemize}
 
 Estos cambios tecnológicos permitieron que fuera más fácil que algoritmos
-avanzados pudieran procesar gran cantidad de datos (por ej.: cálculo de
+avanzados pudieran procesar gran cantidad de datos, por ejemplo: cálculo de
 escenarios, correlaciones entre miles de activos en tiempo real y gestión del
-riesgo lo suficientemente rápido como para que el tiempo entre esta actividad
-y el envió de una orden al mercado no significara un riesgo de quedar desfasado
+riesgo lo suficientemente rápido como para que el tiempo entre esta actividad y
+el envió de una orden al mercado no significara un riesgo de quedar desfasado
 del cambio que se acababa de producir en el precio o cantidad.
 
 %La velocidad es un factor tan importante que los actores de este segmento
@@ -469,11 +468,11 @@ del cambio que se acababa de producir en el precio o cantidad.
 %para estar más cerca del sistema central de procesamiento, ganando así unos
 %microsegundos en el tiempo de latencia hasta llegar al Matching Engine. 
 
-En esto la velocidad es clave, ya que poder procesar el book e ingresar miles
-de órdenes antes que un competidor, es lo que da la ventaja competitiva. La
-combinación de tecnología con algoritmos de procesamiento del book e ingreso de
-ordenes permite adelantarse a los cambios y poder posicionarse al resto de los
-participantes. 
+En esto la velocidad es clave, ya que poder procesar el \emph{book} e ingresar
+miles de órdenes antes que un competidor, es lo que da la ventaja competitiva.
+La combinación de tecnología con algoritmos de procesamiento del \emph{book} e
+ingreso de ordenes permite adelantarse a los cambios y poder posicionarse al
+resto de los participantes. 
  
 Existen una serie de análsis del punto de vista económico y financiero que
 concluyen que los HFT son beneficiosos o nocivos para los mercados, sin embargo
