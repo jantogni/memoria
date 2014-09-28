@@ -120,13 +120,58 @@ Algunas de las características principales son:
  y personas se compra y vende un par de divisas.
  \item Disponibilidad las 24 horas del día gracias a la diferencia de horarios
  entre países. Este inicia todos los días en Sídney, después en Tokio, Londres
- y Nueva York.
+ y Nueva York \ref{fig:forex_markets_hours}.
  \item Uso de plataformas por internet.
 \end{itemize}
 
+La diferencia horaria entre paíeses es:
+\begin{figure}[h!t]
+    \begin{center}
+        \includegraphics[width=0.8\textwidth]{images/ventana}
+        \caption{Ventana de tiempo de los mercados financieros}
+        \label{fig:forex_markets_hours}
+    \end{center}
+\end{figure}
+
+\noindent Además se puede ver en tiempo real el estado de cada centro de forma
+online\footnote{\url{http://forex.timezoneconverter.com/?timezone=GMT&refresh=5}}.
+
+\vspace{1cm}
+\noindent\textbf{Obteniendo Data}\\
+
 Existen varias plataformas web (software) para para acceder a Forex, y cada uno
-están regulados por distintas entidades. Para esta memoria se utilizarán datos
-financieros del mercado de divisas.
+están regulados por distintas entidades:
+\begin{itemize}
+ \item Oanda \footnote{\url{http://www.oanda.com/lang/es/}}: es uno de los
+\emph{brokers} estado unidense más antiguos (1996).  Su servicio de Trading
+Forex está habilitado el año 2001. Cuentan con un software llamado fxTrade que
+posee dos modalidades: dinero virtual y dinero real. Para la cuenta de
+demostración se puede solamente probar con dinero virtual. La data tick es
+completamente gratis, pero para acceder a ella es necesario tener una cuenta en
+Oanda que tenga al menos \$1000 USD.
+ \item MB Trading \footnote{\url{http://www.mbtrading.com/}}: otro broker
+estadounidense, ofrece data tick desde el año 2011, la cual detalla solamente
+el top del order book, es decir, el mínimo ask y máximo bid sin incluir el
+volumen. Posee una herramienta online y de escritorio (ctrade en windows) para
+acceder a la data histórica. Uno de los contra es que la data está dividida en
+días y si uno quiere descargar cierto período de días, hay que concatenar la
+data a mano.
+ \item Gain Capital: fue fundada en 1999, y fue uno de los primeros
+desarrolladores de trading forex online. Posee una cuenta \emph{mini} de \$250
+USD con la cual se pueden operar transacciones
+\footnote{\url{http://www.forex.com/uk/index.html}}, sim embargo la data histórica
+está disponible en directorios online y se puede descargar desde el 2000 por
+semanas \footnote{\url{http://ratedata.gaincapital.com/}}. Cabe destacar que los primeros
+años esta empresa solamente soportaba trading en los stock más importantes.
+ \item Dukascopy \footnote{\url{http://www.dukascopy.com/}}: es uno de los brokers
+más reconocidos actualmente. Es una institución financiera constituida en
+Suiza, que desde el 2010 se convierte oficialmente en un banco. Para crear una
+cuenta de trading, exige mínimo \$1000 USD, posee una plataforma online y una
+aplicación de escritorio (JForex), con las cuales se puede interactuar de forma
+simple para acceder a la data histórica de forma gratuita.
+\end{itemize}
+
+Para esta memoria se usó la plataforma JForex de Dukascopy.
 
 \section{Series de tiempo financiera}
 
@@ -145,9 +190,6 @@ consecuencia, se lleva a cabo el proceso de ajuste, que incluye desde la
 estimación hasta la predicción, una vez que se ha determinado un modelo
 satisfactorio para la muestra de datos \cite{box2011time}
 \cite{vandaele1983applied}. 
-%Los modelos de series deben considerar la
-%naturaleza del fenómeno y determinar los factores que pueden ser incluidos en
-%el.
 
 En particular, el análsis de una serie de tiempo financiera puede enfocarse en
 analizar de forma teórica y práctica la valoración de cierto instrumento en el
@@ -179,7 +221,7 @@ tomada de \url{http://www.stockrageous.com/}}
 
 \begin{figure}[h!t]
     \begin{center}
-        \includegraphics[width=0.5\textwidth]{images/microsoft}
+        \includegraphics[width=0.7\textwidth]{images/microsoft}
         \caption{Información de los precios de microsoft en la bolsa.}
         \label{fig:microsoft}
     \end{center}

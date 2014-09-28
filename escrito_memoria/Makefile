@@ -29,3 +29,5 @@ distclean: clean
 
 x:
 	@open publish/$(PDFFILES) &> /dev/null &
+evince:
+	@evince publish/$(PDFFILES) &> /dev/null &
