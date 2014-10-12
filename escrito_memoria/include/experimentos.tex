@@ -39,6 +39,7 @@ movimiento en dicho periodo, se rellena con el valor anteior.
     \end{center}
 \end{figure}
 
+\newpage
 \section{Parámetros del algoritmo}
 Cómo se puede desprender de la formulación matemática de los modelos, hay dos
 parámetros que deben ser definidos: largo de la ventana (L), cantidad de lags
@@ -50,7 +51,7 @@ El Criterio de información de Akaike (AIC por sus siglas en inglés) fue
 inicialmente desarrollado en series temporales \emph{citar}. Su idea clave es
 la de penalizar un exceso de parámetros ajustados para cierto modelo. El AIC es
 un estimador muestral de $E[ln(f(X|\theta)]$, esperanza de la log-verisimilitud
-(o negantropìa) que viene dado por la expresión~\ref{alg:aicformula}:
+(o negantropìa) que viene dado por la expresión~\ref{eq:aicformula}:
 
 \begin{equation}
 \label{eq:aicformula}
@@ -64,10 +65,11 @@ AIC = \underset{\text{bias}}{-\frac{2l}{N}} +
 \item[l] es la función verosimilitud
 \item[k] número de parámetros ajustados (incluyendo la varinza)
 \item[N] número de observaciones
-\item Se calcula el valor de AIC para cada modelo con el mismo set de datos, y
-el \emph{mejor} modelo es el que tiene menor valor de AIC.
 \end{description}
 
+
+Se calcula el valor de AIC para cada modelo con el mismo set de datos, y
+el \emph{mejor} modelo es el que tiene menor valor de AIC.
 El primer término de AIC puede ser interpretado como una medida de la bondad
 del ajuste, mientras el segundo término es una penalización, creciente conforme
 aumenta el número de parámetros, de acuerdo al Principio de
@@ -82,7 +84,7 @@ interpoladores.
 
 \begin{figure}[h!t]
     \begin{center}
-        \includegraphics[width=0.6\textwidth]{images/parsimony}
+        \includegraphics[width=0.8\textwidth]{images/parsimony}
         \caption{Principio de Parsimonia}
         \label{fig:parsimony}
     \end{center}
@@ -97,7 +99,7 @@ el problema de especificar subjetivamente un nivel de significación arbitrario
 para contrastar dos modelos.
 
 
-\section{MAPE}
+\section{Resultados}
 
 \section{Performance}
 

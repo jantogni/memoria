@@ -1,12 +1,21 @@
 %Efficient computation
-Dado que los problemas financieros son de corriente de datos, es decir, a medida que avanza el tiempo
-aparecen nuevos ticks con información para el modelo, no es posible incluir todos estos en un solo modelo.
-Por lo tanto se propone una versión online del VECM con la posibilidad de actualizar el modelo con la nueva data y entregar respuestas en un corto perdiodo de tiempo (mínimo menor a la frecuencia).
+Dado que los problemas financieros son de corriente de datos, es decir, a
+medida que avanza el tiempo aparecen nuevos ticks con información para el
+modelo, no es posible incluir todos estos en un solo modelo.  Por lo tanto se
+propone una versión online del VECM con la posibilidad de actualizar el modelo
+con la nueva data y entregar respuestas en un corto perdiodo de tiempo (mínimo
+menor a la frecuencia).
 
-Obtener los vectores de cointegración usando el método de Johansen es también un procedimiento costoso en cuanto a tiempo computacional. Sin embargo, como los vectores de cointegración representan la relación a largo plazo entre series de tiempo, no varian mucho en el tiempo. El algoritmo propuesto obtiene nuevos vectores de cointegración solamente cuando la relación a largo plazo cambia. Este cambio se detecta siguiendo
-en cada paso el cambio del \emph{Mean Absolute Percentage Error} (MAPE) de los últimos n-ajustes del modelo.
+Obtener los vectores de cointegración usando el método de Johansen es también
+un procedimiento costoso en cuanto a tiempo computacional. Sin embargo, como
+los vectores de cointegración representan la relación a largo plazo entre
+series de tiempo, no varian mucho en el tiempo. El algoritmo propuesto obtiene
+nuevos vectores de cointegración solamente cuando la relación a largo plazo
+cambia. Este cambio se detecta siguiendo en cada paso el cambio del \emph{Mean
+Absolute Percentage Error} (MAPE) de los últimos n-ajustes del modelo.
 
-Dado que VECM es un modelo basado en las series tiempo diferenciadas, el MAPE es obtenido de $\Delta \mathbf{y}$ de la siguiente forma:
+Dado que VECM es un modelo basado en las series tiempo diferenciadas, el MAPE
+es obtenido de $\Delta \mathbf{y}$ de la siguiente forma:
 
 \begin{equation}\label{eq:MAPE}
 \text{MAPE}[t] = \frac{1}{n} \sum_{i=1}^{n} \left| 
@@ -15,59 +24,171 @@ Dado que VECM es un modelo basado en las series tiempo diferenciadas, el MAPE es
 \right| \, , 
 \end{equation}
 
-\noindent donde $\Delta \mathbf{y}_{\text{true}}$ es el valor actual de la serie de tiempo
-diferenciada $\mathbf{y}$ y $\Delta \mathbf{y}_{\text{pred}}$ es su predicción actual.
+\noindent donde $\Delta \mathbf{y}_{\text{true}}$ es el valor actual de la
+serie de tiempo diferenciada $\mathbf{y}$ y $\Delta \mathbf{y}_{\text{pred}}$
+es su predicción actual.
 
-Cómo este número presenta un promedio el cual puede ser poco representativa de la muestra se realiza además un estudio de las propiedades estadísticas clásicas.
+Cómo este número presenta un promedio el cual puede ser poco representativa de
+la muestra se realiza además un estudio de las propiedades estadísticas
+clásicas.
 
 \section{Algoritmo Propuesto}
 
-Para formular este algoritmo necesitamos definir primeramente las siguientes matrices:
+Se propone un algoritmo online con ventanas deslizantes para la predicción del
+valor futuro de la cartera de stock FOREX usando el modelo VECM~\ref{alg:proposal}. 
 
-\begin{equation}
-\label{eq:notation}
-    \mathbf{A}(t) = 
-\left[
-  \begin{tabular}{c>{$}c<{$}c}
-    --- & \mathbf{a}^{\top}_{t-L} & ---\\
-    --- & \mathbf{a}^{\top}_{t-L+1} & ---\\
-    & \vdots & \\
-    --- & \mathbf{a}^{\top}_{t} & ---
-  \end{tabular}
-\right]
-\quad \text{y} \quad
-\mathbf{B} =
-\left[
-  \begin{tabular}{c>{$}c<{$}c}
-    --- & \mathbf{b}_{t-L} & ---\\
-    --- & \mathbf{b}_{t-L+1} & ---\\
-    & \vdots & \\
-    --- & \mathbf{b}_{t} & ---
-  \end{tabular}
-\right] \, ,
-\
-\end{equation}
+\begin{algorithm}[ht]
+\begin{algorithmic}[1]
+\REQUIRE $\,$ \\
+$\mathbf{y}$: Matriz con $N$ vectores de entrada y $l$ series de tiempo\\
+$p$: número de valores anteriores \\
+$L$: tamaño de la ventana deslizante ($L<N$) \\
+$\text{mean\_error}$: MAPE umbral \\
+$n$: puntos de interpolación para calcular el MAPE\\
+\ENSURE  $\,$ \\
+$\{\Delta \mathbf{y}_{\text{pred}}[L+1],\dots,\Delta \mathbf{y}_{\text{pred}}[N]\}$: predicciones del modelo
+\FOR { $i =0$ to $N-L$ }
+    \STATE $\mathbf{y}_i \gets \mathbf{y}[i:i+L]$
+    \IF {i = 0 }
+        \STATE{$v \gets \texttt{getJohansen}(\mathbf{y}_i,p)$}
+        \STATE{$[\mathbf{A} \quad \mathbf{B}] \gets
+        \texttt{vecMatrix}(\mathbf{y}_i,p,v)$}
+    \ELSE
+        \STATE{$[\mathbf{A} \quad \mathbf{B}] \gets
+        \texttt{vecMatrixOnline}(\mathbf{y}_i,p,v,\mathbf{A},\mathbf{B})$}
+        \STATE $\Delta \mathbf{Y}_{\text{true}}[i] \gets \mathbf{B}[-1,:]$
+        \STATE $\Delta \mathbf{Y}_{\text{pred}}[i] \gets \mathbf{A}[-1,:] \times \mathbf{X}$
+    \ENDIF
+    \STATE $\mathbf{X} \gets \text{OLS} (\mathbf{A},\mathbf{B})$
+    \STATE $\Delta \mathbf{y}_{\text{true}}[i] \gets \mathbf{B}[-n,:]$
+    \STATE $\Delta \mathbf{y}_{\text{pred}}[i] \gets \mathbf{A}[-n,:] \times \mathbf{X}$
+    \STATE $e \gets \texttt{mape}(\Delta \mathbf{y}_{\text{true}}, \Delta
+    \mathbf{y}_{\text{pred}})$
+    \IF {$\texttt{mean}(e) > \text{mean\_error}$}
+        \STATE{$v \gets \texttt{getJohansen}(\mathbf{y}_i,p)$}
+        \STATE{$\mathbf{A} \gets
+        \texttt{vecMatrixUpdate}(\mathbf{y}_i,p,v,\mathbf{A})$}
+        \STATE $\mathbf{X} \gets \texttt{OLS} (\mathbf{A},\mathbf{B})$
+    \ENDIF
+\ENDFOR
+\STATE $\text{MAPE} \gets \texttt{mape}(\Delta \mathbf{Y}_{\text{true}}, \Delta
+\mathbf{Y}_{\text{pred}})$
+\end{algorithmic}
+\caption{OVECM: Online VECM}
+\label{alg:proposal}
+\end{algorithm}
 
-La solución optima usando ventanas deslizantes es:
+\noindent donde:
 
-\begin{eqnarray}
-\label{eq:optsolSLAAR}
-\mathbf{X}(t)&=&({\bf A}(t)^\top{\bf A}(t)+
-\gamma \mathbb{I})^{-1}{\bf A}(t)^\top{\bf B}(t) \\
-\mathbf{X}(t)&=&\mathbf{S}(t)^{-1} \mathbf{W}(t) \, ,
+\begin{eqnarray}\label{eq:vecmatrix}
+ \mathbf{A}&=&
+   \begin{bmatrix} 
+   \beta^\top \mathbf{y}_{p} & 
+   \cdots & \beta^\top \mathbf{y}_{N-1} \\
+   \Delta \mathbf{y}_p  & \cdots 
+   &\Delta\mathbf{y}_{N-1} \\ 
+   \vdots  & \ddots & \vdots \\
+   \Delta\mathbf{y}_2  & \cdots 
+   & \Delta \mathbf{y}_{N-p+1} \\
+   1 & \cdots & 1 
+   \end{bmatrix}^\top \label{eq:vecA} \, ,\\
+\mathbf{B} & = &
+ \begin{bmatrix}
+ \quad\\
+  \Delta \mathbf{y}_{p+1} & 
+  \dots &
+  \Delta \mathbf{y}_N \label{eq:vecB}\\
+  \quad
+ \end{bmatrix}^\top \, ,\\
+\mathbf{X}&=&
+  \begin{bmatrix}
+   \quad \\
+   \alpha & \phi_1^* & \cdots & \phi_{p-1}^* & \mathbf{c} \\  
+   \quad
+   \end{bmatrix}^\top \, ,\\
+\mathbf{E} &=&
+\begin{bmatrix}
+   \quad \\
+   \mathbf{\epsilon}_{p+1} &
+   \dots &
+   \quad &\mathbf{\epsilon}_N \, \\ \quad
+\end{bmatrix}^\top 
 \end{eqnarray}
 
+La propuesta considera lo siguiente:
+\begin{itemize}
+ \item La función \texttt{getJohansen} retorna los vectores de cointegración
+dados por el método de johansen considerando el test estadístico \emph{trace}
+al 95\% de nivel de significancia.
+ \item La función \texttt{vecMatrix} retorna las matrices~(\ref{eq:vecA})
+y~(\ref{eq:vecB}) que permiten resolver el VECM.
+ \item La función \texttt{vecMatrixOnline} retorna las matrices~(\ref{eq:vecA})
+y~(\ref{eq:vecB}) agregando la nueva data y removiendo la antigua, evitando
+calcular la matriz $\mathbf{A}$ desde cero.
+ \item El modelo se resuelve usando OLS.
+ \item La función \texttt{mape} obtiene el MAPE dentro de la muestra
+(interpolación) para la serie de tiempo $l$.
+ \item Los vectores de cointegración se obtienen al comienzo y se actualizan
+cuando el promedio de todos los MAPEs en la variable $e$ es superior a cierto
+error dado por el umbral definido.
+ \item Si se requieren nuevos vectores de cointegración, la función
+\texttt{vecMatrixUpdate} solo actualiza las columnas correspondientes de la
+matriz $\mathbf{A}$ afectados por esos vectores(mirar la
+ecuación~\ref{eq:vecA})
+\end{itemize}
 
+
+La propuesta fue comparada contra la versión modificada VECM que solo considera
+datos en una ventana deslizante (SLVECM). Esto se realizo para comparar los
+tiempos de ejecución. En SLVEM la función \texttt{getJohansen} y
+\texttt{vecMatrix} es llamada en cada iteración. El algoritmo ~\ref{alg:SLVECM}
+muestra la modificación:
+
+\begin{algorithm}[ht]
+\begin{algorithmic}[1]
+\REQUIRE $\,$ \\
+$\mathbf{y}$: matrix con $N$ vectores de entrada y $l$ series de tiempo\\
+$p$: número de valores anteriores\\
+$L$: tamaño de la ventana deslizante ($L<N$) \\
+\ENSURE  $\,$ \\
+$\{\Delta \mathbf{y}_{\text{pred}}[L+1],\dots,\Delta \mathbf{y}_{\text{pred}}[N]\}$: predicciones del modelo
+\STATE{$v \gets \texttt{getJohansen}(\mathbf{y}[:L],p)$}
+\FOR { $i =0$ to $N-L$ }
+    \STATE $\mathbf{y}_i \gets \mathbf{y}[i:i+L]$
+    \STATE{$[\mathbf{A} \quad \mathbf{B}] \gets
+    \texttt{vecMatrix}(\mathbf{y}_i,p,v)$}
+    \IF {$i > 0$}
+        \STATE $\Delta \mathbf{Y}_{\text{true}}[i] \gets \mathbf{B}[-1,:]$
+        \STATE $\Delta \mathbf{Y}_{\text{pred}}[i] \gets \mathbf{A}[-1,:] \times \mathbf{X}$
+    \ENDIF
+    \STATE{$v \gets \texttt{getJohansen}(\mathbf{y}_i,p)$}
+    \STATE{$[\mathbf{A} \quad \mathbf{B}] \gets
+    \texttt{vecMatrix}(\mathbf{y}_i,p,v)$}
+    \STATE $\mathbf{X} \gets \text{OLS} (\mathbf{A},\mathbf{B})$
+\ENDFOR
+    \STATE $\text{MAPE} \gets \texttt{mape}(\Delta \mathbf{Y}_{\text{true}}, \Delta
+    \mathbf{Y}_{\text{pred}})$
+\end{algorithmic}
+\caption{SLVECM: Sliding window VECM}
+\label{alg:SLVECM}
+\end{algorithm}
+
+Ambos algoritmos entregan el MAPE de la predicción fuera de la muestra. Es
+importante destacar que OVECM con mean\_error=0 entregará los mismos MAPE que
+SLVEM.
 
 \subsection{Diagrama de Clases}
 La implementación fue realizada en Python, usando principalmente las bibliotecas:
 \begin{itemize}
- \item Pandas: biblioteca para manipulación y análisis de datos. \footnote{\url{http://pandas.pydata.org}}
+ \item Pandas: biblioteca para manipulación y análisis de datos.
+\footnote{\url{http://pandas.pydata.org}}
  \item Statsmodels: módulo que permite explorar data, estimar modelos y test
-estadísticos. \footnote{\url{}}
+estadísticos \footnote{\url{http://statsmodels.sourceforge.net/}}.
  \item Numpy: paquete de computación científica en Python, provee estructuras
 de datos y funciones de álgebra lineal entre otras cosas.
 \footnote{\url{http://www.numpy.org}}
+ \item CULA: es un set de librerías de algebra lineal usando
+GPU\footnote{\url{http://www.culatools.com/}}.
  \item Scikit.CUDA: provee interfaces a un set de funciones de CUDA, cuBLAS y
 otras bibliotecas. La idea es poder ejecutar funciones de cuda desde python a
 través de wrappers. \footnote{\url{http://scikits.appspot.com/cuda}}
@@ -96,4 +217,4 @@ Augmented Dicky Fuller, Errores porcentuales, etc.
     \end{center}
 \end{figure}
 
-\section{Métodos a paralelizar}
+%\section{Métodos a paralelizar}
