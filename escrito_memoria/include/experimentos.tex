@@ -46,7 +46,7 @@ parámetros que deben ser definidos: largo de la ventana (L), cantidad de lags
 (P). Existen variados métodos para la estimación de parámetros, sin embargo se
 usará el criterio de información de Akaike Information Criterion.
 
-\section{Criterio de información de Akaike}
+\subsection{Criterio de información de Akaike}
 El Criterio de información de Akaike (AIC por sus siglas en inglés) fue
 inicialmente desarrollado en series temporales \emph{citar}. Su idea clave es
 la de penalizar un exceso de parámetros ajustados para cierto modelo. El AIC es
@@ -66,7 +66,6 @@ AIC = \underset{\text{bias}}{-\frac{2l}{N}} +
 \item[k] número de parámetros ajustados (incluyendo la varinza)
 \item[N] número de observaciones
 \end{description}
-
 
 Se calcula el valor de AIC para cada modelo con el mismo set de datos, y
 el \emph{mejor} modelo es el que tiene menor valor de AIC.
@@ -89,8 +88,6 @@ interpoladores.
         \label{fig:parsimony}
     \end{center}
 \end{figure}
-
-
 
 Algunas de las ventajas del AIC que lo hacen tan utilizado en la práctica, son
 su simplicidad (no requiere acudir a ninguna tabla para observar el valor

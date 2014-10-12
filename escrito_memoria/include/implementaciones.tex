@@ -37,7 +37,7 @@ clásicas.
 Se propone un algoritmo online con ventanas deslizantes para la predicción del
 valor futuro de la cartera de stock FOREX usando el modelo VECM~\ref{alg:proposal}. 
 
-\begin{algorithm}[ht]
+\begin{algorithm}[h!]
 \begin{algorithmic}[1]
 \REQUIRE $\,$ \\
 $\mathbf{y}$: Matriz con $N$ vectores de entrada y $l$ series de tiempo\\
@@ -137,12 +137,11 @@ matriz $\mathbf{A}$ afectados por esos vectores(mirar la
 ecuación~\ref{eq:vecA})
 \end{itemize}
 
-
 La propuesta fue comparada contra la versión modificada VECM que solo considera
 datos en una ventana deslizante (SLVECM). Esto se realizo para comparar los
 tiempos de ejecución. En SLVEM la función \texttt{getJohansen} y
 \texttt{vecMatrix} es llamada en cada iteración. El algoritmo ~\ref{alg:SLVECM}
-muestra la modificación:
+muestra la modificación.
 
 \begin{algorithm}[ht]
 \begin{algorithmic}[1]
@@ -177,7 +176,7 @@ Ambos algoritmos entregan el MAPE de la predicción fuera de la muestra. Es
 importante destacar que OVECM con mean\_error=0 entregará los mismos MAPE que
 SLVEM.
 
-\subsection{Diagrama de Clases}
+\section{Diagrama de Clases}
 La implementación fue realizada en Python, usando principalmente las bibliotecas:
 \begin{itemize}
  \item Pandas: biblioteca para manipulación y análisis de datos.
