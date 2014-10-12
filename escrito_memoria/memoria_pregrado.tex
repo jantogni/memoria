@@ -99,28 +99,6 @@
                          backgroundcolor=\color{gray75},
                         }
 
-%%% Qualques definicions
-
-%\let\sun=\odot
-%\newcommand{\SgrA}{Sgr~A$^\ast$}
-%\newcommand {\MBH}{\ensuremath{M_{\mathrm{BH}}}}
-%\newcommand {\mbh}{\ensuremath{M_{\mathrm{BH}}}}
-%\newcommand {\Msun}{\ensuremath{M_{\odot}}}
-%\newcommand {\msun}{\ensuremath{M_{\odot}}}
-%\newcommand {\msol}{\ensuremath{M_{\odot}}}
-%\newcommand {\Mstar}{\ensuremath{M_{\ast}}}
-%\newcommand {\Rsun}{\ensuremath{R_{\odot}}}
-%\newcommand {\Mpthree}{\ensuremath{M_{\odot}\,\mathrm{pc}^{-3}}}
-%\newcommand {\RS}{\ensuremath{R_{\mathrm{S}}}}
-%\newcommand {\kms}{\ensuremath{\mathrm{km\,s}^{-1}}}
-%\newcommand {\peryr}{\ensuremath{\mathrm{yr}^{-1}}}
-%\newcommand{\gr}{gravitational radiation}
-%\newcommand{\gw}{gravitational waves}
-%\newcommand{\rem}[1]{} % pour mettre des commentaires en ligne...
-%\newcommand{\nbody}{$N$-body}
-%\newcommand{\bs}{\boldsymbol}
-%\newcommand{\todo}{\textcolor{red}{TO DO:}}
-
 \input{include/cover1}
 
 \begin{document}
@@ -131,11 +109,10 @@
         \input{include/dedication}
 
         \newpage
-        \chapter*{Acknowledgements}
+        \chapter*{Agradecimientos}
         \label{ch:acknowledgements}
         \input{include/acknowledgements}
 
-        %%% Begin document
         \newpage
         \input{include/abstract}
         \input{include/index}
@@ -145,19 +122,21 @@
         \label{ch:introduction}
         \input{include/introduccion}
 
-        %TODO: Recortar solamente lo importante
-        %TODO: Definir Problema - VEC
         \chapter{High Frequency Trading}
         \label{ch:hft}
         \input{include/hft}
+
+        \chapter{Antecedentes}
+        \label{ch:backgound}
+        \input{include/vecm}
 
         %DONE
         \chapter{Graphics Processing Units}
         \label{ch:gpu}
         \input{include/gpu}
-       
+     
         %TODO: 
-        \chapter{Implementaciones}
+        \chapter{Metodología}
         \label{ch:implementacion}
         \input{include/implementaciones}
 

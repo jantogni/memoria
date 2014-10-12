@@ -1,7 +1,65 @@
-\section{Vector Error Regression}
-\subsection{Algoritmo Propuesto}
-\subsection{Diagrama de Clases}
+%Efficient computation
+Dado que los problemas financieros son de corriente de datos, es decir, a medida que avanza el tiempo
+aparecen nuevos ticks con información para el modelo, no es posible incluir todos estos en un solo modelo.
+Por lo tanto se propone una versión online del VECM con la posibilidad de actualizar el modelo con la nueva data y entregar respuestas en un corto perdiodo de tiempo (mínimo menor a la frecuencia).
 
+Obtener los vectores de cointegración usando el método de Johansen es también un procedimiento costoso en cuanto a tiempo computacional. Sin embargo, como los vectores de cointegración representan la relación a largo plazo entre series de tiempo, no varian mucho en el tiempo. El algoritmo propuesto obtiene nuevos vectores de cointegración solamente cuando la relación a largo plazo cambia. Este cambio se detecta siguiendo
+en cada paso el cambio del \emph{Mean Absolute Percentage Error} (MAPE) de los últimos n-ajustes del modelo.
+
+Dado que VECM es un modelo basado en las series tiempo diferenciadas, el MAPE es obtenido de $\Delta \mathbf{y}$ de la siguiente forma:
+
+\begin{equation}\label{eq:MAPE}
+\text{MAPE}[t] = \frac{1}{n} \sum_{i=1}^{n} \left| 
+\frac{\Delta \mathbf{y}_{\text{true}}[t-i]-\Delta
+\mathbf{y}_{\text{pred}}[t-i]}{\Delta \mathbf{y}_{\text{true}[t-i]}}
+\right| \, , 
+\end{equation}
+
+\noindent donde $\Delta \mathbf{y}_{\text{true}}$ es el valor actual de la serie de tiempo
+diferenciada $\mathbf{y}$ y $\Delta \mathbf{y}_{\text{pred}}$ es su predicción actual.
+
+Cómo este número presenta un promedio el cual puede ser poco representativa de la muestra se realiza además un estudio de las propiedades estadísticas clásicas.
+
+\section{Algoritmo Propuesto}
+
+Para formular este algoritmo necesitamos definir primeramente las siguientes matrices:
+
+\begin{equation}
+\label{eq:notation}
+    \mathbf{A}(t) = 
+\left[
+  \begin{tabular}{c>{$}c<{$}c}
+    --- & \mathbf{a}^{\top}_{t-L} & ---\\
+    --- & \mathbf{a}^{\top}_{t-L+1} & ---\\
+    & \vdots & \\
+    --- & \mathbf{a}^{\top}_{t} & ---
+  \end{tabular}
+\right]
+\quad \text{y} \quad
+\mathbf{B} =
+\left[
+  \begin{tabular}{c>{$}c<{$}c}
+    --- & \mathbf{b}_{t-L} & ---\\
+    --- & \mathbf{b}_{t-L+1} & ---\\
+    & \vdots & \\
+    --- & \mathbf{b}_{t} & ---
+  \end{tabular}
+\right] \, ,
+\
+\end{equation}
+
+La solución optima usando ventanas deslizantes es:
+
+\begin{eqnarray}
+\label{eq:optsolSLAAR}
+\mathbf{X}(t)&=&({\bf A}(t)^\top{\bf A}(t)+
+\gamma \mathbb{I})^{-1}{\bf A}(t)^\top{\bf B}(t) \\
+\mathbf{X}(t)&=&\mathbf{S}(t)^{-1} \mathbf{W}(t) \, ,
+\end{eqnarray}
+
+
+
+\subsection{Diagrama de Clases}
 La implementación fue realizada en Python, usando principalmente las bibliotecas:
 \begin{itemize}
  \item Pandas: biblioteca para manipulación y análisis de datos. \footnote{\url{http://pandas.pydata.org}}
@@ -38,6 +96,4 @@ Augmented Dicky Fuller, Errores porcentuales, etc.
     \end{center}
 \end{figure}
 
-%\section{Esquema de paralelizacion}
-%\subsection{BLAS - cuBLAS}
 \section{Métodos a paralelizar}
