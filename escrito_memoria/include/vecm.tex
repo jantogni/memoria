@@ -65,6 +65,7 @@ La matriz VAR tiene la siguiente forma:
 
 \begin{equation}
  \label{eq:varmatrix}
+ \resizebox{0.9\hsize}{!}{$%
                \underbrace{ \begin{bmatrix}
                \quad \\
                \mathbf{y}_{p+1} &
@@ -97,6 +98,7 @@ La matriz VAR tiene la siguiente forma:
               \mathbf{\epsilon}_N \\
               \quad
              \end{bmatrix}}_{\substack{\mathbf{E}\\l \times (N-p) }} 
+$}
 \end{equation}
 
 \section{Integración y Cointegración}
@@ -171,7 +173,7 @@ Este ejemplo muestra como los vectores de cointegración describe la relación
 estable entre los procesos a traves de relaciones lineales que son más
 estacionarias que el proceso original.
 
-\section{Vector Error Correlation (VEC)}
+\section{Vector Error Correction (VEC)}
 
 El modelo VEC es una forma especial de un modelo VAR para variables I(1) que
 están también cointegradas. El modelo VEC es obtenido reemplazando
@@ -238,8 +240,8 @@ Si existe cointegración, entonces la ecuación (\ref{eq:vec}) puede ser escrita
    \noindent que es un modelo VAR pero para series de tiempo diferenciadas.
 
 La forma matricial del modelo VEC es:
-
 \begin{equation} \label{eq:vecmatrix}
+\resizebox{0.9\hsize}{!}{$%
 \underbrace{
                 \left[ \begin{array}{ccc}
                \quad & \mathbf{\Delta y}_{p+1} & \quad \\ 
@@ -273,6 +275,7 @@ La forma matricial del modelo VEC es:
               \quad & \vdots & \quad\\
               \quad &\mathbf{\epsilon}_N & \quad
              \end{bmatrix}}_{\substack{\mathbf{E}\\ (N-p) \times l }} 
+$}
 \end{equation}
 
 Los parámetros de los modelos VAR y VEC mostrados en la ecuación
