@@ -19,18 +19,35 @@ es obtenido de $\Delta \mathbf{y}$ de la siguiente forma:
 
 \begin{equation}\label{eq:MAPE}
 \text{MAPE}[t] = \frac{1}{n} \sum_{i=1}^{n} \left| 
-\frac{\Delta \mathbf{y}_{\text{true}}[t-i]-\Delta
-\mathbf{y}_{\text{pred}}[t-i]}{\Delta \mathbf{y}_{\text{true}[t-i]}}
+\frac{\mathbf{y}_{\text{true}}[t-i]-
+\mathbf{y}_{\text{pred}}[t-i]}{\mathbf{y}_{\text{true}[t-i]}}
 \right| \, , 
 \end{equation}
 
-\noindent donde $\Delta \mathbf{y}_{\text{true}}$ es el valor actual de la
-serie de tiempo diferenciada $\mathbf{y}$ y $\Delta \mathbf{y}_{\text{pred}}$
+\noindent donde $\mathbf{y}_{\text{true}}$ es el valor actual de la
+serie de tiempo $\mathbf{y}$ y $\mathbf{y}_{\text{pred}}$
 es su predicción actual.
 
 Cómo este número presenta un promedio el cual puede ser poco representativa de
-la muestra se realiza además un estudio de las propiedades estadísticas
-clásicas.
+la muestra se calculan otras métricas:
+
+\begin{description}
+\item[MAE] Mean Average Error que mide la distancia entre las predicciones
+\begin{equation}\label{eq:MAE}
+\text{MAE} = \frac{1}{N} \sum_{t=1}^{N} 
+\left| 
+\mathbf{y}_t-\hat{\mathbf{y}}_t
+\right| 
+\end{equation}
+\item[RMSE] Root Mean Square Error también mide las distancias entre
+preddiciones, pero a diferencia del MAE, las desviaciones grandes con el valor
+real tienen un gran impacto en número final, ya que dicha diferencia se eleva
+al cuadrado.
+\begin{equation}\label{eq:RMSE}
+\text{RMSE} = \sqrt{
+\frac{\displaystyle \sum_{t=1}^{N} (\mathbf{y}_t-\hat{\mathbf{y}}_t)^2}{N}}
+\end{equation}
+\end{description}
 
 \section{Algoritmo Propuesto}
 

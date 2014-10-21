@@ -3,42 +3,65 @@
 Los datos para pruebas y experimentos se descargaron desde la plataforma
 Dukascopy. Incialmente las pruebas se realizaron con datos a frecuencia de 1
 minuto, pero luego se implementó en clase Reader los métodos correspondientes
-para manejar la data ticks de forma automática: juntar datos de distintas monedas
-(Bid o Ask), hacer un resampling a diferentes frecuencias, normalizar las
-monedas dejando siempre la misma base, etc. Las divisas elegidas para
+para manejar la data tick de forma automática: juntar datos de distintas
+monedas (Bid o Ask), hacer un resampling a diferentes frecuencias, normalizar
+las monedas dejando siempre la misma base, etc. Las divisas elegidas para
 realizar los experimentos fueron: \emph{EURUSD}, \emph{GBPUSD}, \emph{USDCHF},
 \emph{USDJPY} y se trabajó con el Ask Price \ref{fig:stocks_ask}. En el caso de
-\emph{USDCHF}, \emph{USDJPY} se trabajó con su recíproco, para que todos los 
+\emph{USDCHF}, \emph{USDJPY} se trabajó con su recíproco, para que todos los
 cálculos quedaran en la misma base \emph{USD}. Además la frecuencia, muestreada
 en minutos, genera una ventana de 1440 datos por día.
 
 \begin{figure}[h!t]
     \begin{center}
-        \includegraphics[width=0.65\textwidth]{images/stocks_ask}
+        \includegraphics[width=\textwidth]{images/stocks_ask}
         \caption{Precio Ask de las divisas}
         \label{fig:stocks_ask}
     \end{center}
 \end{figure}
 
 Los ticks están compuestos por: \emph{Date}, \emph{Time}, \emph{Ask},
-\emph{Bid}, \emph{AskVolume}, \emph{BidVolume}. Por ser datos ticks, el campo
-Time es un hora \emph{double}, es decir, tiene asociada una hora :minutos:
-segundos, donde segundos es un número no entero. Cabe destacar que no existe
-una clara relación entre la aparición de ticks, ya que en algunos casos
-aparecen hasta 4 ticks en 1 segundo, mientras que en otros horarios no aparecen
-ticks en 90 segundos (dato calculado con la función check\_min\_frequency de la
-clase Reader). 
+\emph{Bid}, \emph{AskVolume}, \emph{BidVolume}(ver tabla~\ref{tab:ticks}). Por
+ser datos ticks, el campo Time es un hora \emph{double}, es decir, tiene
+asociada una hora :minutos: segundos, donde segundos es un número no entero.
+Cabe destacar que no existe una clara relación entre la aparición de ticks, ya
+que en algunos casos aparecen hasta 4 ticks en 1 segundo, mientras que en otros
+horarios no aparecen ticks en 90 segundos (dato calculado con la función
+check\_min\_frequency de la clase Reader). En algunos casos, cómo en los días
+más emblemáticos del año, que la cantidad de ticks por día incrementa
+considerablemente, por ejemplo: un día reglar tiene aproximadamente 35 mil
+ticks, mientras que días como 11 de Septiembre que hay 87 mil ticks. 
 
-En la figura \ref{fig:eurusd_ticks} se puede apreciar la data ticks del EURUSD,
+\begin{table}[h!]
+\caption{Data Tick}
+\label{tab:ticks}
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+Date & Time & Ask & Bid& AskVolume & BidVolume \\
+\hline
+11-08-2014 & 00:00:00.000 & 1.34046 & 1.34042 & 1.25 & 1.69 \\
+11-08-2014 & 00:00:02.159 & 1.34047 & 1.34043 & 4.69 & 1 \\
+11-08-2014 & 00:00:02.667 & 1.34046 & 1.34042 & 1.32 & 2.44 \\
+11-08-2014 & 00:00:03.175 & 1.34046 & 1.34043 & 1.32 & 1 \\
+11-08-2014 & 00:00:07.058 & 1.34046 & 1.34043 & 3.75 & 1.69 \\
+11-08-2014 & 00:00:07.362 & 1.34043 & 1.34041 & 2.25 & 1 \\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+\newpage
+En la figura \ref{fig:eurusd_ticks} se puede apreciar la data tick del EURUSD,
 en una ventana de 30 minutos, donde la curva superior es la correspondiente al
-Ask, y la inferior al Bid. En la figura \ref{fig:eurusd_30s} se muestra la
-misma moneda pero con un resample de 6 segundos. El resample se calcula con el
-promedio de los ticks en la ventana de 6 segundos, y para el caso que no exista
-movimiento en dicho periodo, se rellena con el valor anteior.
+Ask, y la inferior al Bid. En la figura \ref{fig:eurusd_freq} se muestra la
+misma moneda pero con resamples a 1, 10, 30 y 60 segundos. El resample se
+calcula con el promedio de los ticks en la ventana de 6 segundos, y para el
+caso que no exista movimiento en dicho periodo, se rellena con el valor
+anteior.
 
 \begin{figure}[h!t]
     \begin{center}
-        \includegraphics[width=0.6\textwidth]{images/eurusd}
+        \includegraphics[width=0.7\textwidth]{images/eurusd}
         \caption{Ticks de EURUSD, Ventana de 30 minutos}
         \label{fig:eurusd_ticks}
     \end{center}
@@ -46,11 +69,19 @@ movimiento en dicho periodo, se rellena con el valor anteior.
 
 \begin{figure}[h!t]
     \begin{center}
-        \includegraphics[width=0.6\textwidth]{images/eurusd_30s}
-        \caption{Ticks de EURUSD con resample de 30 segundos}
-        \label{fig:eurusd_30s}
+        \includegraphics[width=\textwidth]{images/resample_freq}
+        \caption{Ticks de EURUSD, Ventana de 30 minutos}
+        \label{fig:eurusd_freq}
     \end{center}
 \end{figure}
+
+%\begin{figure}[h!t]
+%    \begin{center}
+%        \includegraphics[width=0.6\textwidth]{images/eurusd_30s}
+%        \caption{Ticks de EURUSD con resample de 30 segundos}
+%        \label{fig:eurusd_30s}
+%    \end{center}
+%\end{figure}
 
 \newpage
 \section{Selección de Parámetros}
@@ -129,23 +160,23 @@ ver en la tabla~\ref{tab:extimes}
 \begin{center}
 \begin{tabular}{|l|c|c|c|c|c|}
 \hline
-& L & P & e  & Time[s] \\
+& L & model params & e  & Time[s] \\
 \hline
-OVECM & 100 & 2  & 0      & 2.235\\
-OVECM & 100 & 2  & 0.002  & 1.797\\
-SLVECM & 100 & 2  & -- & 2.100\\
+OVECM & 100 &p=2  & 0      & 2.492\\
+OVECM & 100 &p=2  & 0.0026  & 1.606\\
+SLVECM & 100 &p=2& -- & 2.100\\
 \hline
-OVECM & 400 & 5  & 0      & 3.390\\
-OVECM & 400 & 5  & 0.002  & 2.111\\
-SLVECM & 400 & 5  & -- & 3.222\\
+OVECM & 400 & p=5  & 0      & 3.513\\
+OVECM & 400 &p=5  & 0.0041  & 2.569\\
+SLVECM & 400 & p=5 & -- & 3.222\\
 \hline
-OVECM & 700 & 3  & 0      & 3.225\\
-OVECM & 700 & 3  & 0.002  & 2.723\\
-SLVECM & 700 & 3  & -- & 3.581\\
+OVECM & 700 &p=3  & 0      & 3.296\\
+OVECM & 700 &p=3  & 0.0032  & 2.856\\
+SLVECM & 700 &p=3 & -- & 3.581\\
 \hline
-OVECM & 1000 & 3  & 0      & 3.603\\
-OVECM & 1000 & 3  & 0.002  & 3.579\\
-SLVECM & 1000 & 3  & -- & 3.609\\
+OVECM & 1000 & p=3 & 0      & 4.387\\
+OVECM & 1000 & p=3  & 0.0022  & 2.408\\
+SLVECM & 1000 & p=3  & -- & 3.609\\
 \hline
 \end{tabular}
 \end{center}
@@ -282,39 +313,41 @@ Método & L & P & e &
 MAPE & MAE& RMSE&
 MAPE & MAE& RMSE \\
 \hline
- %OVECM  &   100 &  P=2& 0.002  &  134.76&  136.50&           133.16&  137.20&  137.20&  137.20\\
- OVECM  &   100 &  P=2& 0.0026&  0.0026&  0.0008&  0.0011&  0.0030&  0.0009&  0.0013\\
- OVECM  &   400 &  P=5& 0.0041  &  0.0037&  0.0009&  0.0012&  0.0041&  0.0010&  0.0014\\
- OVECM  &   700 &  P=3& 0.0032  &  0.0032&  0.0009&  0.0013&  0.0032&  0.0009&  0.0013\\
- OVECM  &   1000 &  P=3& 0.0014  &  0.0017&  0.0006&  0.0008&  0.0017&  0.0006&  0.0009\\
+ OVECM  &   100  &  P=2& 0.0026  &  0.00263&  0.00085&  0.00114&  0.00309&  0.00094&  0.00131\\
+ OVECM  &   400  &  P=5& 0.0041  &  0.00378&  0.00095&  0.00127&  0.00419&  0.00103&  0.00143\\
+ OVECM  &   700  &  P=3& 0.0032  &  0.00323&  0.00099&  0.00130&  0.00322&  0.00097&  0.00132\\
+ OVECM  &   1000 &  P=3& 0.0022  &
+ \textbf{0.00175}&  \textbf{0.00062}&  \textbf{0.00087} &
+ \textbf{0.00172}&  \textbf{0.00061}&  \textbf{0.00090}\\
 \hline
- SLVECM  &   100 &  P=2& -  &  0.0026&  0.0008&  0.0011&  0.0031&  0.0009&  0.0013\\
- SLVECM  &   400 &  P=5& -  &  0.0037& 0.0009&  0.0012&  0.0041&  0.0010&  0.0014\\
- SLVECM  &   700 &  P=3& -  &  0.0032& 0.0009&  0.0013&  0.0032&  0.0009&  0.0013\\
- SLVECM  &   1000 &  P=3& -  &  0.0017& 0.0006&  0.0008&  0.0017&  0.0006&  0.0009\\
+ SLVECM  &   100 &  P=2& -  &  0.00262&  0.00085&  0.00113&  0.00310&  0.00095&  0.00132\\
+ SLVECM  &   400 &  P=5& -  &  0.00375&  0.00095&  0.00126&  0.00419&  0.00103&  0.00143\\
+ SLVECM  &   700 &  P=3& -  &  0.00324&  0.00099&  0.00130&  0.00322&  0.00098&  0.00132\\
+ SLVECM  &   1000 &  P=3& -  &
+ \textbf{0.00174}&  \textbf{0.00061}&  \textbf{0.00087}&
+ \textbf{0.00172}&  \textbf{0.00061}&  \textbf{0.00090}\\
 \hline
 \end{tabular}
 \end{adjustbox}
 \end{center}
 \end{table*}
 
-En la figura~\ref{fig:accuracy} se puede observar qué tan bien aproxima el método OVECM
-para cada divisa.
+En la figura~\ref{fig:accuracy} se puede observar qué tan bien aproxima el
+método OVECM para cada divisa. En la figura~\ref{fig:mapes} se puede observar
+cuanto es el error de aproximación medido en MAPE para cada iteración.
 
 \begin{figure}[h!t]
     \begin{center}
-        \includegraphics[width=0.8\textwidth]{images/y_vs_yhat}
+        \includegraphics[width=\textwidth]{images/y_vs_yhat}
         \caption{Divisas: Valor real y aproximación}
         \label{fig:accuracy}
     \end{center}
 \end{figure}
 
-En la figura~\ref{fig:mapes} se puede observar cuanto es el error de aproximación
-medido en MAPE para cada iteración.
 
 \begin{figure}[h!t]
     \begin{center}
-        \includegraphics[width=0.8\textwidth]{images/ovecm_mapes}
+        \includegraphics[width=\textwidth]{images/ovecm_mapes}
         \caption{Divisas: Valor del MAPE en cada iteración}
         \label{fig:mapes}
     \end{center}
