@@ -3,13 +3,13 @@ Dado que los problemas financieros son de corriente de datos, es decir, a
 medida que avanza el tiempo aparecen nuevos ticks con información para el
 modelo, no es posible incluir todos estos en un solo modelo.  Por lo tanto se
 propone una versión online del VECM con la posibilidad de actualizar el modelo
-con la nueva data y entregar respuestas en un corto perdiodo de tiempo (mínimo
+con la nueva data y entregar respuestas en un corto período de tiempo (mínimo
 menor a la frecuencia).
 
 Obtener los vectores de cointegración usando el método de Johansen es también
 un procedimiento costoso en cuanto a tiempo computacional. Sin embargo, como
 los vectores de cointegración representan la relación a largo plazo entre
-series de tiempo, no varian mucho en el tiempo. El algoritmo propuesto obtiene
+series de tiempo, no varían mucho en el tiempo. El algoritmo propuesto obtiene
 nuevos vectores de cointegración solamente cuando la relación a largo plazo
 cambia. Este cambio se detecta siguiendo en cada paso el cambio del \emph{Mean
 Absolute Percentage Error} (MAPE) de los últimos n-ajustes del modelo.
@@ -40,7 +40,7 @@ la muestra se calculan otras métricas:
 \right| 
 \end{equation}
 \item[RMSE] Root Mean Square Error también mide las distancias entre
-preddiciones, pero a diferencia del MAE, las desviaciones grandes con el valor
+predicciones, pero a diferencia del MAE, las desviaciones grandes con el valor
 real tienen un gran impacto en número final, ya que dicha diferencia se eleva
 al cuadrado.
 \begin{equation}\label{eq:RMSE}
@@ -163,7 +163,7 @@ muestra la modificación.
 \begin{algorithm}[ht]
 \begin{algorithmic}[1]
 \REQUIRE $\,$ \\
-$\mathbf{y}$: matrix con $N$ vectores de entrada y $l$ series de tiempo\\
+$\mathbf{y}$: matriz con $N$ vectores de entrada y $l$ series de tiempo\\
 $p$: número de valores anteriores\\
 $L$: tamaño de la ventana deslizante ($L<N$) \\
 \ENSURE  $\,$ \\
@@ -203,8 +203,8 @@ usará el criterio de información de Akaike Information Criterion.
 El Criterio de información de Akaike (AIC por sus siglas en inglés) fue
 inicialmente desarrollado en series temporales \emph{citar}. Su idea clave es
 la de penalizar un exceso de parámetros ajustados para cierto modelo. El AIC es
-un estimador muestral de $E[ln(f(X|\theta)]$, esperanza de la log-verisimilitud
-(o negantropìa) que viene dado por la expresión~\ref{eq:aicformula}:
+un estimador muestral de $E[ln(f(X|\theta)]$, esperanza de la log-verosimilitud
+(o negantropía) que viene dado por la expresión~\ref{eq:aicformula}:
 
 \begin{equation}
 \label{eq:aicformula}
@@ -216,7 +216,7 @@ AIC = \underset{\text{bias}}{-\frac{2l}{N}} +
 
 \begin{description}
 \item[l] es la función verosimilitud
-\item[k] número de parámetros ajustados (incluyendo la varinza)
+\item[k] número de parámetros ajustados (incluyendo la varianza)
 \item[N] número de observaciones
 \end{description}
 
@@ -258,7 +258,7 @@ estadísticos \footnote{\url{http://statsmodels.sourceforge.net/}}.
  \item Numpy: paquete de computación científica en Python, provee estructuras
 de datos y funciones de álgebra lineal entre otras cosas.
 \footnote{\url{http://www.numpy.org}}
- \item CULA: es un set de librerías de algebra lineal usando
+ \item CULA: es un set de librerías de álgebra lineal usando
 GPU\footnote{\url{http://www.culatools.com/}}.
  \item Scikit.CUDA: provee interfaces a un set de funciones de CUDA, cuBLAS y
 otras bibliotecas. La idea es poder ejecutar funciones de cuda desde python a
@@ -284,7 +284,7 @@ online.
  \item ECM: es el objeto que retorna el algoritmo VECM (no online). Hereda de
 la clase Model y agrega atributos relacionados a la ventana que se está usando.
  \item Model\_it: es la clase utilizada para los modelos que son iterativos u 
-online. Agrega los atributos de los estadíticos internos que se calculan, como
+online. Agrega los atributos de los estadísticos internos que se calculan, como
 maes, mapes, rmses de las muestras in-sample.
  \item Stats: esta clase tiene por objetivo reunir los métodos que calculan
 métricas sobre los algoritmos online. Entre ellos está el cálculo del MAPE,

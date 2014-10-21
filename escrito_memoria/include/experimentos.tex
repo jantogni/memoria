@@ -1,7 +1,7 @@
 \section{Selección de data (activos, frecuencia)}
 
 Los datos para pruebas y experimentos se descargaron desde la plataforma
-Dukascopy. Incialmente las pruebas se realizaron con datos a frecuencia de 1
+Dukascopy. Inicialmente las pruebas se realizaron con datos a frecuencia de 1
 minuto, pero luego se implementó en clase Reader los métodos correspondientes
 para manejar la data tick de forma automática: juntar datos de distintas
 monedas (Bid o Ask), hacer un resampling a diferentes frecuencias, normalizar
@@ -57,7 +57,7 @@ Ask, y la inferior al Bid. En la figura \ref{fig:eurusd_freq} se muestra la
 misma moneda pero con resamples a 1, 10, 30 y 60 segundos. El resample se
 calcula con el promedio de los ticks en la ventana de 6 segundos, y para el
 caso que no exista movimiento en dicho periodo, se rellena con el valor
-anteior.
+anterior.
 
 \begin{figure}[h!t]
     \begin{center}
@@ -87,7 +87,7 @@ anteior.
 \section{Selección de Parámetros}
 Cómo se mencionó anteriormente, los parámetros del algoritmo se calcularon
 mediante el criterio de información de Akaike (AIC). Para esto, se tomaron
-datos intradiarios de agosto 2014, semana entre 11-15. Además, se
+datos intra-diarios de agosto 2014, semana entre 11-15. Además, se
 combinaron:
 \begin{itemize}
  \item L: [100, 400, 700, 1000].
@@ -119,12 +119,12 @@ el número de lag óptimos (en negrita) para el modelo según el criterio de AIC
 Para los efectos de pruebas como se trabajó con 4 monedas, la cantidad de 
 vectores de cointegración debería ser 1, 2 o 3. 
 
-\section{Test de raiz unitaria}
+\section{Test de raíz unitaria}
 Antes de correr los test, se checkearon que las series de tiempo fueran
 I(1) usando el test de Augmented Dickey Fuller (ADF).
 
 \begin{table}[h!]
-\caption{Test de raiz unitaria}
+\caption{Test de raíz unitaria}
 \label{tab:adf}
 \begin{center}
 \begin{tabular}{|l|c|c|c|c|c|}
@@ -145,7 +145,7 @@ $\Delta$ JPYUSD & -85.78 & -1.94 & False     \\
 \end{table}
 
 Tabla~\ref{tab:adf} muestra que todas las monedas no pueden rechazadas por el test
-de raiz unitaria pero si son rechazadas para sus primeras diferencias. Esto significa
+de raíz unitaria pero si son rechazadas para sus primeras diferencias. Esto significa
 que todas las series de tiempo son I(1) por lo que es posible usar los modelos VECM
 y OVECM.
 
@@ -155,12 +155,12 @@ y considerando 400 iteraciones los resultados de tiempos de ejecución se pueden
 ver en la tabla~\ref{tab:extimes}
 
 \begin{table}[h!]
-\caption{Execution times}
+\caption{Tiempos de ejecución}
 \label{tab:extimes}
 \begin{center}
 \begin{tabular}{|l|c|c|c|c|c|}
 \hline
-& L & model params & e  & Time[s] \\
+& L & P & e  & Tiempo[s] \\
 \hline
 OVECM & 100 &p=2  & 0      & 2.492\\
 OVECM & 100 &p=2  & 0.0026  & 1.606\\
@@ -293,7 +293,7 @@ de esta implementación.
 \section{Resultados}
 Uno de los objetivos del algoritmo OVECM es ser más eficiente en tiempo 
 que el SLVECM, pero además se busca que los errores de la extrapolación
-no sean tan distintos. La tabla~\ref{tab:mapes} muestra diferentes los diferentes
+no sean tan distintos. La tabla~\ref{tab:mapes} muestra los diferentes
 indicadores de las muestras en la interpolación (in-sample) y la extrapolación 
 (out-of-sample). Se puede ver que son similares, por lo que se confirma que los
 vectores de cointegración se pueden mantener en cierta medida durante el tiempo.
@@ -334,7 +334,7 @@ MAPE & MAE& RMSE \\
 
 En la figura~\ref{fig:accuracy} se puede observar qué tan bien aproxima el
 método OVECM para cada divisa. En la figura~\ref{fig:mapes} se puede observar
-cuanto es el error de aproximación medido en MAPE para cada iteración.
+cuánto es el error de aproximación medido en MAPE para cada iteración.
 
 \begin{figure}[h!t]
     \begin{center}

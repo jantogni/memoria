@@ -32,7 +32,7 @@ E(Y_t) &=& \mu  \quad \forall t \in \mathbb{N} \\ E(Y^2_t) &=&
 
 VAR es un marco general que describe el comportamiento de un set $l$ de
 variables endógenas como una combinación lineal de sus últimos $p$ valores.
-Esas $l$ variables en el tiempo $t$ son representadas por el vetor $y_t$ como:
+Esas $l$ variables en el tiempo $t$ son representadas por el vector $y_t$ como:
 
 \begin{equation}
 \label{eq:variables}
@@ -47,8 +47,8 @@ y_{l,t}
 tiempo $t$.
 
 El modelo VAR(p) describe el comportamiento de una variable dependiente en
-términos de sus propios valores resagados y el de otras variables en el
-sistema. El modelo con $p$ resagos se formula como el siguiente:
+términos de sus propios valores rezagados y el de otras variables en el
+sistema. El modelo con $p$ rezagos se formula como el siguiente:
 
 \begin{equation}
 \label{eq:var}
@@ -109,7 +109,7 @@ estacionario):
 \[
 (1-L)^d \mathbf{y} \sim \text{I(0)}
 \]
-\noindent donde I(0) es una serie de tiempo esacionaria y $L$ es el operador de rezago, i.e,
+\noindent donde I(0) es una serie de tiempo estacionaria y $L$ es el operador de rezago, i.e,
 \[
 (1-L)\mathbf{y} = \Delta \mathbf{y}
 \]
@@ -139,7 +139,7 @@ Si tenemos un proceso 2-dimensional $\mathbf{X}_t$, $t=1,\dots,T$ por:
 \mathbf{X}_{2t} &=& a \sum_{i=1}^t \epsilon_{1i} + \epsilon_{3t} 
 \end{eqnarray*}
 
-Como $\mathbf{X}_{1t}$ y $\mathbf{X}_{2t}$ son procesosI(1) y existe un vector
+Como $\mathbf{X}_{1t}$ y $\mathbf{X}_{2t}$ son procesos I(1) y existe un vector
 $\beta = [a -1]$ tal que:
 
 \[
@@ -148,8 +148,8 @@ a\epsilon_{2t} - \epsilon_{3t} \sim \text{I(0)}
 \]
 
 entonces, ambos procesos se dicen que están cointegrados. Si agregamos un proceso I(0)
-$\mathbf{X}_{3t} = \epsilon_{4t}$ encontramos que existe dos cointegraciones
-vectors now: $\begin{bmatrix}a &-1& 0\end{bmatrix}$ y $\begin{bmatrix}0
+$\mathbf{X}_{3t} = \epsilon_{4t}$ encontramos que existen dos vectores de cointegración: 
+$\begin{bmatrix}a &-1& 0\end{bmatrix}$ y $\begin{bmatrix}0
 &0&1\end{bmatrix}$ como:
 
 \[
@@ -170,7 +170,7 @@ a\epsilon_{2t} - \epsilon_{3t} \\
 \]
 
 Este ejemplo muestra como los vectores de cointegración describe la relación
-estable entre los procesos a traves de relaciones lineales que son más
+estable entre los procesos a través de relaciones lineales que son más
 estacionarias que el proceso original.
 
 Un ejemplo clásico de cointegración, en términos no matemáticos, es el de los
@@ -194,8 +194,8 @@ equilibrio, y su desviación será estacionaria.
 El modelo VEC es una forma especial de un modelo VAR para variables I(1) que
 están también cointegradas. El modelo VEC es obtenido reemplazando
 $\Delta \mathbf{y}_t = \mathbf{y}_t - \mathbf{y}_{t-1}$ en ecuación
-(\ref{eq:var}). El modelo VEC es expresado en térmidos de diferencias,
-tiene un término de correción de error y tiene la siguiente forma:
+(\ref{eq:var}). El modelo VEC es expresado en términos de diferencias,
+tiene un término de corrección de error y tiene la siguiente forma:
 
 \begin{equation}
  \label{eq:vec}
@@ -223,12 +223,12 @@ tiene un término de correción de error y tiene la siguiente forma:
     \alpha \beta^\intercal$, donde $\alpha$ y $\beta$ son $(l \times r)$
     matrices y $rank(\alpha)=rank(\beta)=r$.
 
-    La columna de $\beta$ cointiene los vectores de cointegración y la fila de
+    La columna de $\beta$ contiene los vectores de cointegración y la fila de
     $\alpha$ corresponde a los vectores de ajuste. $\beta$ se obtiene a través
     el procedimiento de Johansen~\cite{johansen1988} mientras que $\alpha$ debe
     ser determinado como variable en el modelo VEC.
 
-    Cabe observar que la factorización de la matriz $\Omega$ no es unica ya que por cada
+    Cabe observar que la factorización de la matriz $\Omega$ no es única ya que por cada
     $r \times r$ matriz no singular $H$ tenemos:
 
 \begin{eqnarray*}
@@ -296,17 +296,17 @@ $}
 
 Los parámetros de los modelos VAR y VEC mostrados en la ecuación
 (\ref{eq:varmatrix}) y (\ref{eq:vecmatrix}) pueden ser resueltos usando
-técnicas de regresion estándar, como mínimos cuadrados ordinaria (OLS por si
-sigla en inglés). Sin embargo, la matrix $\mathbf{A}$ es usualmente deficientes
+técnicas de regresión estándar, como mínimos cuadrados ordinaria (OLS por si
+sigla en inglés). Sin embargo, la matriz $\mathbf{A}$ es usualmente deficientes
 de rank y la solución de OLS no puede ser encontrada.  El método de Ridge
-regression (RR) es comunmente usado en vez de OLS cuando las matrices son mal
+regression (RR) es comúnmente usado en vez de OLS cuando las matrices son mal
 condicionadas o deficientes de rango, ya que tiene mejoras en la generalización
 en la solución del problema.
 
 \section{Método de Mínimos Cuadrados}
 Mínimos Cuadrados, conocido en la literatura en inglés como Ordinary Least Squares (OLS), 
-es un método aplicable a la solución de sistemas de ecuaciones lineales. OLS consiste en minimzar
-la suma de los errores cuadrados que equivale a minimzar la siguiente expresión:
+es un método aplicable a la solución de sistemas de ecuaciones lineales. OLS consiste en minimizar
+la suma de los errores cuadrados que equivale a minimizar la siguiente expresión:
 
 \begin{equation}
 \label{eq:regressionproblem}
