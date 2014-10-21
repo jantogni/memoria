@@ -75,26 +75,39 @@ diferentes instrumentos o activos financieros. En el documento se hablará de
 instrumento, ya que pueden ser acciones, divisas, etc. los cuales quedan
 generalizados bajo ese concepto.
 
-%La economía presenta a este tipo de mercado, como de competencia perfecta, ya
-%que sus características principales son: elevado número de compradores y
-%vendedores; La decisión individual de cada uno de ellos ejercerá escasa
-%influencia sobre el mercado global; Homogeneidad de los productos, es decir, no
-%existen diferencias entre productos que venden los oferentes; Transparencia del
-%mercado, todos los participantes tienen pleno conocimiento de las condiciones
-%generales en que opera el mercado; Libertad de entrada y salida de empresas,
-%todos los participantes, cuando lo deseen, podrán entrar o salir del mercado a
-%costos nulos o casi nulos \cite{mankiw2011principles}. 
-%
-%Por otra parte, Fama propuso la Hipótesis de eficiencia de los mercados
-%\cite{malkiel2012efficient}, la cual establece que los mercados son eficientes
-%cuando son capaces de trasladar a los precios de los instrumentos financieros,
-%todos los datos relevantes, por lo tanto, el precio refleja \emph{toda} la
-%información disponible, y lo hace de manera insesgada. Cuando se cumplen estas
-%condiciones, el precio del instrumento financiero se comporta como un
-%\emph{Random Walk} \cite{fama1965random}, por lo que los resultados no pueden
-%ser predichos sistemáticamente.
+La economía presenta a este tipo de mercado, como de competencia perfecta, ya
+que sus características principales son: elevado número de compradores y
+vendedores; La decisión individual de cada uno de ellos ejercerá escasa
+influencia sobre el mercado global; Homogeneidad de los productos, es decir, no
+existen diferencias entre productos que venden los oferentes; Transparencia del
+mercado, todos los participantes tienen pleno conocimiento de las condiciones
+generales en que opera el mercado; Libertad de entrada y salida de empresas,
+todos los participantes, cuando lo deseen, podrán entrar o salir del mercado a
+costos nulos o casi nulos \cite{mankiw2011principles}. 
 
-%TODO
+Por otra parte, Fama propuso la Hipótesis de eficiencia de los mercados
+\cite{malkiel2012efficient}, la cual establece que los mercados son eficientes
+cuando son capaces de trasladar a los precios de los instrumentos financieros,
+todos los datos relevantes, por lo tanto, el precio refleja \emph{toda} la
+información disponible, y lo hace de manera insesgada. Cuando se cumplen estas
+condiciones, el precio del instrumento financiero se comporta como un
+\emph{Random Walk} \cite{fama1965random}, por lo que los resultados no pueden
+ser predichos sistemáticamente.
+
+El arbitraje en el ámbito de economía es la práctica de tomar ventaja de una
+diferencia de precio entre dos o más mercados: realizar una combinación de
+transacciones complentarias que capitalizan el desequilibrio de precios. Como
+resultado del arbitraje, los tipos de cambio, el precio de mercancías, y el
+precio de instrumentos financieros tienden a converger en todos los mercados.
+La velocidad con los que los precios convergen es una medida de la eficiencia
+del mercado. Por ejemplo: suponiendo que un automóvil en Estados unidos es más
+económico que el mismo automóvil en Canadá. Los canadienses tomarían la
+oportunidad de comprar los automóviles en EEUU en vez de comprarlos en Canadá,
+por lo que tendrían que comprar dólares estadounidenses para poder comprarlos,
+lo que a gran escala ocasionaría que el USD se aprecie frente al CAD, llegando
+al punto en que el precio del USD sería tan alto, que ya no sería atractivo
+comprar el automóvil en EEUU.
+
 \subsection{Mercado de divisas}
 El mercado de divisas también conocido como Forex(abreviatura del término
 inglés Foreign Exchange) es un mercado de intercambio de divisas extranjeras.
@@ -326,8 +339,8 @@ relativa a la concretación de la transacción.
 
 \subsection{Órdenes, Order books y lógica de matching}
 
-En \emph{HFT}, según el mercado y la autorización del regulador, existen distintos tipos de órdenes, 
-siendo las más comunes detalladas a continuación:
+En \emph{HFT}, según el mercado y la autorización del regulador, existen
+distintos tipos de órdenes, siendo las más comunes detalladas a continuación:
 \begin{itemize}
  \item \emph{Market order}: orden para comprar o vender cierta cantidad de un
  activo al precio disponible de Mercado, recorriendo el \emph{order book} hasta
@@ -403,6 +416,34 @@ federales las bolsas de valores. Un caso emblemático, fue el 6 de mayo del
 2010, fecha en la cual ocurrió el \emph{Flash-Crash} \cite{arndt2011high}, dio
 a lugar a una quiebra financiera estadounidense en el que el índice \emph{Dow
 Jones Industrial Average} se desplomó un 9\%. 
+
+\subsection{Protocolo Financial Information eXchange}
+Financial Information eXchange (FIX) es un protocolo de mensajes para el
+comercio de instrumentos financieros. FIX se utiliza ampliamente para la
+comunicación automática entre los participantes del intercambio de
+instrumentos, y especifíca como son los mensajes para crear órdenes de compra y
+venta y consultar cotizaciones de instrumentos, entre otros. Este protocolo es
+el que hay que utilizar para comunicarse con practicamente todos los mercados
+financieros de manera electrónica.
+
+FIX fue creado en 1992, y durante esa fecha ha ido evolucionando, lo que ha
+generado distintas versiones, agregando diferentes mensajes y campos para
+acomodar las funciones requeridas por los participantes de todo el mundo. La
+versión del protocolo se divide en dos: mensaje (por ejemplo FIX 5.0) y el
+protocolo de transporte (FIXT 1.1).
+El formato FIX es un formato textual, donde cada mensaje es una linea de la
+forma:
+\vspace{0.5cm}
+\begin{verbatim}
+        8=FIX.5.0|9=65|35=A|49=SERVER|56=CLIENT|34=177|
+        52=20090107-18:15:16|98=0|108=30|10=062|
+\end{verbatim}
+\vspace{0.5cm}
+
+\noindent Donde se menciona el tipo de mensaje (campo 35), checksum (10), versión de
+FIX(8), etc. FIX es un protocolo abierto y gratuito, ya que es solo la
+especitifación de losmensajes y de los camposmínimos. Existen distintas
+implementaciones del protocolo como QuickFIX/C++, QuickFIX/Python, etc.
 
 \subsection{Eficiencia: descubrimiento de precios, liquidez y volatilidad}
 

@@ -248,8 +248,8 @@ otras bibliotecas. La idea es poder ejecutar funciones de cuda desde python a
 través de wrappers. \footnote{\url{http://scikits.appspot.com/cuda}}
 \end{itemize}
 
-Basándose en esas bibliotecas y otras más, se crearon 3 clases mostrados en la
-figura \ref{fig:class_diagram}:
+\noindent Basándose en esas bibliotecas y otras más, se crearon 3 clases
+mostrados en la figura \ref{fig:class_diagram}:
 \begin{itemize}
  \item Util: provee métodos generales utilizados por las otras 2 clases.
  \item Reader: clase que lee los datos ticks desde archivos CSV descargados
@@ -261,6 +261,17 @@ utilizados por los algoritmos, entre ellos la creación de las matrices VAR y
 VECM, el update de las matrices optimizado para la ventana deslizante, cálculo
 de vectores de integración mediante Johansen, test de estacionaridad usando
 Augmented Dicky Fuller, Errores porcentuales, etc.
+ \item Model: esta clase se usará para entregar los resultados de cada
+algoritmo como objeto. Contiene la base de atributos base de cualquier modelo
+online.
+ \item ECM: es el objeto que retorna el algoritmo VECM (no online). Hereda de
+la clase Model y agrega atributos relacionados a la ventana que se está usando.
+ \item Model\_it: es la clase utilizada para los modelos que son iterativos u 
+online. Agrega los atributos de los estadíticos internos que se calculan, como
+maes, mapes, rmses de las muestras in-sample.
+ \item Stats: esta clase tiene por objetivo reunir los métodos que calculan
+métricas sobre los algoritmos online. Entre ellos está el cálculo del MAPE,
+MAE, RMSE y el criterio de información de akaike.
 \end{itemize}
 
 \begin{figure}[h!t]
