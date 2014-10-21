@@ -1,27 +1,46 @@
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eget tellus
-dignissim, porta leo id, placerat est. Nam a libero nec arcu hendrerit pharetra
-at a mi. Donec sagittis quis est id tempor. Maecenas imperdiet, mi at
-sollicitudin faucibus, tellus turpis auctor lorem, ac lacinia magna tortor sit
-amet neque. Ut iaculis sit amet purus sed consequat. Nunc pretium est non erat
-lacinia faucibus. Phasellus id rutrum mi. Morbi nunc nisi, mattis sit amet
-purus eget, convallis tristique urna. Curabitur quis tellus placerat, eleifend
-nisi eget, scelerisque quam. Nulla et sapien fermentum, dictum elit non,
-elementum elit.
+En el presente trabajo de memoria, se expone y se valida con pruebas un  Online
+Vector Error Correction Model aplicado a series financieras de alta frecuencia.
+Basándose en los resultados expuestos en el capítulo ~\ref{ch:experimentos}, se
+puede observar que OVECM reduce considerablemente los tiempos de ejecución en
+comparación al SLVECM sin comprometer la precisión de la solución. OVECM en
+comparación con la versión SLVECM reduce el tiempo de ejecución debido
+principalmente al ahorro de cómputo de los vectores de cointegración, los
+cuales se calculan mediante el método de Johansen. La condición para obtener
+nuevos vectores de cointegración, es una métrica (MAPE) de la muestra
+in-sample, la cual estima qué tan bien se ajusta el modelo a la data real. Por
+otra parte, OVECM introduce dos funciones de optimización de cálculo matricial
+para obtener el modelo de forma iterativa y no construir el modelo completo en
+cada paso.  VECM, tal como otros algoritmos que deben resolver sistemas
+matriciales, fue implementado con dos métodos: OLS y el planteado por Coleman,
+también conocido como Ridge Regression. El segundo tiene por objetivo evitar
+problemas que se puedan generar tanto numéricamente, como también problemas
+propios de las matrices (rank-deficient). Sin embargo, la implementación RR
+para datos reales, no mejora los tiempos de ejecución (si lo hace para datos de
+prueba). En cuanto a tiempo de ejecución, el algoritmo toma mucho menos tiempo
+que la frecuencia con la que los datos arriban, esto significa que el resultado
+puede ser usado en estrategias de trading.
 
-Morbi pretium dolor vel vestibulum pulvinar. Donec lobortis arcu malesuada
-augue dictum, et pulvinar lectus viverra. Praesent rhoncus, sapien sed
-porttitor volutpat, nisi ex mattis massa, tincidunt accumsan sapien sem et
-elit. Maecenas sed sem accumsan, sollicitudin nunc quis, imperdiet lectus.
-Maecenas ut arcu vitae odio suscipit sollicitudin. Pellentesque sed est lacus.
-Quisque nec lorem sem. Nulla tristique tempus lacus, ornare maximus magna
-interdum non. Proin aliquet quis ligula eget condimentum. Phasellus egestas in
-libero posuere dapibus. Sed vestibulum ullamcorper arcu, eu tempus lacus
-ultrices at. Ut id commodo erat, tincidunt suscipit mi. Donec suscipit lacus
-sed ex molestie, nec dignissim nunc volutpat. Cras a mollis tortor, a egestas
-enim. Vestibulum rhoncus orci eget purus volutpat, non viverra justo porttitor.
+Por otra parte, en cuanto a implementación, se hizo un trabajo consistente para
+futuras implementaciones, esto es, documentación y estructura de clases acorde
+a las necesidades del algoritmo. Principalmente el código está hecho en Python,
+lo cual genera una barrera de entrada baja al momento de jugar con el código.
+Además se crearon Ipython Notebook con ejemplos de cómo usar cada clase,
+métodos y algoritmos.
 
-Ut a nulla tortor. Nam urna tortor, accumsan eu est a, rutrum ornare lectus.
-Nam vestibulum libero sed consectetur vehicula. Sed non neque nec velit sodales
-feugiat consequat eu tellus. Sed ut elit rutrum ipsum tristique tempus.
-Phasellus sit amet porta dolor. Fusce sodales bibendum tellus vel ultrices.
-Integer vitae laoreet eros.
+\newpage
+\subsection{Trabajo Futuro}
+Finalmente y como trabajo futuro, se propone:
+\begin{itemize}
+ \item Probar distintos métodos para la selección de parámetros. Para este
+trabajo se utilizó Akaike Information Criterion, pero existen otros como
+Schwarz Criterion, Hannan-Quinn Criterion, etc.
+ \item Buscar cointegración de distintas monedas. En este trabajo se trabajó
+únicamente con 4 monedas, por lo que sería interesante buscar otras monedas que
+estén cointegradas.
+ \item Probar resultados con alguna estrategia. Mediante el protocolo FIX
+probar con datos reales, qué bien se ajusta el modelo (perder o ganar).
+ \item Implementar el arribo de datos desde un servidor de datos. Actualmente
+se baja data histórica de las monedas y se trabaja con ella, no hay conexión
+directa con un servidor.
+\end{itemize}
+
