@@ -17,12 +17,18 @@ Absolute Percentage Error} (MAPE) de los últimos n-ajustes del modelo.
 Dado que VECM es un modelo basado en las series tiempo diferenciadas, el MAPE
 es obtenido de $\Delta \mathbf{y}$ de la siguiente forma:
 
+%\begin{equation}\label{eq:MAPE}
+%\text{MAPE}[t] = \frac{1}{n} \sum_{i=1}^{n} \left| 
+%\frac{\mathbf{y}_{\text{true}}[t-i]-
+%\mathbf{y}_{\text{pred}}[t-i]}{\mathbf{y}_{\text{true}[t-i]}}
+%\right| \, , 
+%\end{equation}
 \begin{equation}\label{eq:MAPE}
-\text{MAPE}[t] = \frac{1}{n} \sum_{i=1}^{n} \left| 
-\frac{\mathbf{y}_{\text{true}}[t-i]-
-\mathbf{y}_{\text{pred}}[t-i]}{\mathbf{y}_{\text{true}[t-i]}}
-\right| \, , 
+\text{MAPE} = \frac{1}{N} \sum_{t=1}^{N} 
+\frac{\left|\mathbf{y}_t-\hat{\mathbf{y}}_t\right|}{\left|\mathbf{y}_t\right|}
+ \times 100 
 \end{equation}
+
 
 \noindent donde $\mathbf{y}_{\text{true}}$ es el valor actual de la
 serie de tiempo $\mathbf{y}$ y $\mathbf{y}_{\text{pred}}$
@@ -77,10 +83,9 @@ $\{\Delta \mathbf{y}_{\text{pred}}[L+1],\dots,\Delta \mathbf{y}_{\text{pred}}[N]
         \STATE $\Delta \mathbf{Y}_{\text{pred}}[i] \gets \mathbf{A}[-1,:] \times \mathbf{X}$
     \ENDIF
     \STATE $\mathbf{X} \gets \text{OLS} (\mathbf{A},\mathbf{B})$
-    \STATE $\Delta \mathbf{y}_{\text{true}}[i] \gets \mathbf{B}[-n,:]$
-    \STATE $\Delta \mathbf{y}_{\text{pred}}[i] \gets \mathbf{A}[-n,:] \times \mathbf{X}$
-    \STATE $e \gets \texttt{mape}(\Delta \mathbf{y}_{\text{true}}, \Delta
-    \mathbf{y}_{\text{pred}})$
+    \STATE $\mathbf{y}_{\text{true}}[i] \gets \mathbf{y}_i[-n,:]$
+    \STATE $\mathbf{y}_{\text{pred}}[i] \gets \mathbf{A}[-n,:] \times \mathbf{X} + \mathbf{y}_i[-n-1,:-1]$
+    \STATE $e \gets \texttt{mape}(\mathbf{y}_{\text{true}}, \mathbf{y}_{\text{pred}})$
     \IF {$\texttt{mean}(e) > \text{mean\_error}$}
         \STATE{$v \gets \texttt{getJohansen}(\mathbf{y}_i,p)$}
         \STATE{$\mathbf{A} \gets
@@ -88,8 +93,7 @@ $\{\Delta \mathbf{y}_{\text{pred}}[L+1],\dots,\Delta \mathbf{y}_{\text{pred}}[N]
         \STATE $\mathbf{X} \gets \texttt{OLS} (\mathbf{A},\mathbf{B})$
     \ENDIF
 \ENDFOR
-\STATE $\text{MAPE} \gets \texttt{mape}(\Delta \mathbf{Y}_{\text{true}}, \Delta
-\mathbf{Y}_{\text{pred}})$
+%\STATE $\text{MAPE} \gets \texttt{mape}(\mathbf{Y}_{\text{true}}, \mathbf{Y}_{\text{pred}})$
 \end{algorithmic}
 \caption{OVECM: Online VECM}
 \label{alg:proposal}
@@ -174,16 +178,17 @@ $\{\Delta \mathbf{y}_{\text{pred}}[L+1],\dots,\Delta \mathbf{y}_{\text{pred}}[N]
     \STATE{$[\mathbf{A} \quad \mathbf{B}] \gets
     \texttt{vecMatrix}(\mathbf{y}_i,p,v)$}
     \IF {$i > 0$}
-        \STATE $\Delta \mathbf{Y}_{\text{true}}[i] \gets \mathbf{B}[-1,:]$
-        \STATE $\Delta \mathbf{Y}_{\text{pred}}[i] \gets \mathbf{A}[-1,:] \times \mathbf{X}$
+        %\STATE $\Delta \mathbf{Y}_{\text{true}}[i] \gets \mathbf{B}[-1,:]$
+        %\STATE $\Delta \mathbf{Y}_{\text{pred}}[i] \gets \mathbf{A}[-1,:] \times \mathbf{X}$
+        \STATE $\mathbf{y}_{\text{true}}[i] \gets \mathbf{y}_i[-n,:]$
+        \STATE $\mathbf{y}_{\text{pred}}[i] \gets \mathbf{A}[-n,:] \times \mathbf{X} + \mathbf{y}_i[-n-1,:-1]$
     \ENDIF
     \STATE{$v \gets \texttt{getJohansen}(\mathbf{y}_i,p)$}
     \STATE{$[\mathbf{A} \quad \mathbf{B}] \gets
     \texttt{vecMatrix}(\mathbf{y}_i,p,v)$}
     \STATE $\mathbf{X} \gets \text{OLS} (\mathbf{A},\mathbf{B})$
 \ENDFOR
-    \STATE $\text{MAPE} \gets \texttt{mape}(\Delta \mathbf{Y}_{\text{true}}, \Delta
-    \mathbf{Y}_{\text{pred}})$
+    %\STATE $\text{MAPE} \gets \texttt{mape}(\mathbf{Y}_{\text{true}},\mathbf{Y}_{\text{pred}})$
 \end{algorithmic}
 \caption{SLVECM: Sliding window VECM}
 \label{alg:SLVECM}
