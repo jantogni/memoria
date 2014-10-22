@@ -291,16 +291,19 @@ permite a un algoritmo de estrategia poder utilizar como entrada los resultados
 de esta implementación.
 
 \section{Resultados}
-Uno de los objetivos del algoritmo OVECM es ser más eficiente en tiempo 
-que el SLVECM, pero además se busca que los errores de la extrapolación
-no sean tan distintos. La tabla~\ref{tab:mapes} muestra los diferentes
-indicadores de las muestras en la interpolación (in-sample) y la extrapolación 
-(out-of-sample). Se puede ver que son similares, por lo que se confirma que los
-vectores de cointegración se pueden mantener en cierta medida durante el tiempo.
+Uno de los objetivos del algoritmo OVECM es ser más eficiente en tiempo que el
+SLVECM, pero además se busca que los errores de la extrapolación no sean tan
+distintos. La tabla~\ref{tab:mapes_60s}~\ref{tab:mapes_30s}~\ref{tab:mapes_10s}
+muestran los diferentes indicadores de las muestras en la interpolación
+(in-sample) y la extrapolación (out-of-sample). Se puede ver que son similares,
+por lo que se confirma que los vectores de cointegración se pueden mantener en
+cierta medida durante el tiempo. Es importante notar además que a medida que
+aumenta la frecuencia, los indicadores son menores, ya que la alta frecuencia
+refleja menores fluctuaciones en los valores de las divisas.
 
 \begin{table*}[ht!]
-\caption{Métricas del modelo}
-\label{tab:mapes}
+\caption{Métricas del modelo, Frecuencia 60s}
+\label{tab:mapes_60s}
 \begin{center}
 \begin{adjustbox}{max width=\textwidth}
 \begin{tabular}{|l|l|c|c|c|c|c|c|c|c|}
@@ -326,6 +329,70 @@ MAPE & MAE& RMSE \\
  SLVECM  &   1000 &  P=3& -  &
  \textbf{0.00174}&  \textbf{0.00061}&  \textbf{0.00087}&
  \textbf{0.00172}&  \textbf{0.00061}&  \textbf{0.00090}\\
+\hline
+\end{tabular}
+\end{adjustbox}
+\end{center}
+\end{table*}
+
+\begin{table*}[ht!]
+\caption{Métricas del modelo, Frecuencia 30s}
+\label{tab:mapes_30s}
+\begin{center}
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{|l|l|c|c|c|c|c|c|c|c|}
+\hline
+\multicolumn{4}{|c|}{Model} & \multicolumn{3}{|c|}{In-sample} &
+\multicolumn{3}{|c|}{Out-of-sample} \\ 
+\hline
+\hline
+Método & L & P & e &
+MAPE & MAE& RMSE&
+MAPE & MAE& RMSE \\
+\hline
+ OVECM  &   100  &  P=2 &  0.0015  &  0.00156  &  0.00056  &  0.00077  &  0.00180  &  0.00067  &  0.00095 \\
+ OVECM  &   400  &  P=5 &  0.0014  &  0.00140  &  0.00050  &  0.00070  &  0.00162  &  0.00059  &  0.00085 \\
+ OVECM  &   700  &  P=3 &  0.0028  &  0.00287  &  0.00078  &  0.00105  &  0.00309  &  0.00081  &  0.00112 \\
+ OVECM  &   1000 &  P=3 &  0.0024  &  \textbf{0.00245}  &  \textbf{0.00058}  &  \textbf{0.00079}  &  \textbf{0.00239}
+   &  \textbf{0.00057}  &  \textbf{0.00082} \\
+\hline
+ SLVECM  &   100 &  P=2& -  &  0.00156  &  0.00056  &  0.00077  &  0.00176  &  0.00066  &  0.00095 \\
+ SLVECM  &   400 &  P=5& -  &  0.00140  &  0.00050  &  0.00069  &  0.00162  &  0.00058  &  0.00085 \\
+ SLVECM  &   700 &  P=3& -  &  0.00287  &  0.00077  &  0.00105  &  0.00308  &  0.00081  &  0.00111 \\
+ SLVECM  &   1000&  P=3& -  &  \textbf{0.00245}  &  \textbf{0.00058}  &  \textbf{0.00079}  &  
+  \textbf{0.00239}  &  \textbf{0.00057}  &  \textbf{0.00082} \\
+\hline
+\end{tabular}
+\end{adjustbox}
+\end{center}
+\end{table*}
+
+\begin{table*}[ht!]
+\caption{Métricas del modelo, Frecuencia 10s}
+\label{tab:mapes_10s}
+\begin{center}
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{|l|l|c|c|c|c|c|c|c|c|}
+\hline
+\multicolumn{4}{|c|}{Model} & \multicolumn{3}{|c|}{In-sample} &
+\multicolumn{3}{|c|}{Out-of-sample} \\ 
+\hline
+\hline
+Método & L & P & e &
+MAPE & MAE& RMSE&
+MAPE & MAE& RMSE \\
+\hline
+ OVECM  &   100  &  P=2 &  0.0012  &  0.00124  &  0.00047  &  0.00065  &  0.00135  &  0.00052  &  0.00073 \\
+ OVECM  &   400  &  P=5 &  0.0010  &  0.00108  &  0.00043  &  0.00061  &  0.00113  &  0.00047  &  0.00067 \\
+ OVECM  &   700  &  P=3 &  0.0008  &  0.00085  &  0.00031  &  0.00045  &  0.00086  &  0.00032  &  0.00048 \\
+ OVECM  &   1000 &  P=3 &  \textbf{0.0062}  &  \textbf{0.00062}  &  \textbf{0.00020}  &  \textbf{0.00033}  &  
+      \textbf{0.00062}  &  \textbf{0.00020}  &  \textbf{0.00033} \\
+\hline
+ SLVECM  &   100 &  P=2 & -  &  0.00124  &  0.00047  &  0.00065  &  0.00136  &  0.00052  &  0.00073 \\
+ SLVECM  &   400 &  P=5 & -  &  0.00108  &  0.00043  &  0.00061  &  0.00113  &  0.00047  &  0.00067 \\
+ SLVECM  &   700 &  P=3 & -  &  0.00084  &  0.00031  &  0.00045  &  0.00086  &  0.00032  &  0.00048 \\
+ SLVECM  &   1000 &  P=3& -  &  \textbf{0.00063}  &  \textbf{0.00020}  &  \textbf{0.00033}  &  
+      \textbf{0.00063}  &  \textbf{0.00020}  &  \textbf{0.00033} \\
 \hline
 \end{tabular}
 \end{adjustbox}
