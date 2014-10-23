@@ -165,13 +165,32 @@ $\Delta$ JPYUSD & -37.41 & -1.94 & False     \\
 \end{center}
 \end{table}
 
-Las tablas~\ref{tab:adf_60s}~\ref{tab:adf_30s} muestran que todas las series no
-son rechazadas por el test de raíz unitaria pero si son rechazadas para sus
-primeras diferencias. Esto significa que todas las series de tiempo son I(1)
-por lo que es posible usar los modelos VECM y OVECM. 
-%Sin embargo, a medida
-%que se incrementa la frecuencia del resample, no es posible estimar ADF, ya que
-%se generan muchas diferencias nulas (NaN).
+\begin{table}[h!]
+\caption{Test de raíz unitaria, Frecuencia 10s}
+\label{tab:adf_10s}
+\begin{center}
+\begin{tabular}{|l|c|c|c|c|c|}
+\hline
+& \textbf{Estadístico} & \textbf{Valor Crítico} & \textbf{Resultado}\\
+\hline
+EURUSD          & -0.85 & -1.94 & True       \\
+$\Delta$ EURUSD & -43.91   & -1.94 & False       \\
+GBPUSD          & 0.25   & -1.94 & True          \\
+$\Delta$ GBPUSD & -40.81   & -1.94 & False       \\
+CHFUSD          & -0.51   & -1.94 & True         \\
+$\Delta$ CHFUSD & -61.12   & -1.94 & False       \\
+JPYUSD          & -0.34 & -1.94 & True        \\
+$\Delta$ JPYUSD & -46.38 & -1.94 & False     \\ 
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+Las tablas~\ref{tab:adf_60s}~\ref{tab:adf_30s}~\ref{tab:adf_60s} muestran que
+todas las series no son rechazadas por el test de raíz unitaria pero si son
+rechazadas para sus primeras diferencias (Con un valor crítico del 5\%). Esto
+significa que todas las series de tiempo son I(1) por lo que es posible usar
+los modelos VECM y OVECM. 
 
 \section{Performance}
 Dentro de todos los experimentos realizados, según la selección de parámetros
