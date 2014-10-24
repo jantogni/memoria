@@ -20,7 +20,7 @@ pdflatex: $(TEXFILES)
 
 clean:
 	@rubber --clean $(TEXFILES:.tex=)
-	@rm -rf *.out
+	@rm -rf *.out *.loa
 
 distclean: clean
 	@rubber --clean --pdf $(TEXFILES:.tex=)
