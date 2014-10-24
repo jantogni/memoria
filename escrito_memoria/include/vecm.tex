@@ -105,27 +105,27 @@ La matriz VAR tiene la siguiente forma:
              \end{bmatrix}}_{\substack{\mathbf{E}\\l \times (N-p) }} 
 $}
 \end{equation}
-
+%$
 \section{Integración y Cointegración}
-Una serie de tiempo $\mathbf{y}$ es llamada integrada de orden $d$, si después
-de diferenciar la variable $d$ veces, se obtiene una variable I(0) (proceso
+Un proceso estocástico $\mathbf{Y}$ es llamado integrado de orden $d$, si
+después de diferenciar $d$ veces, se obtiene una variable I(0) (proceso
 estacionario):
 
 \[
-(1-L)^d \mathbf{y} \sim \text{I(0)}
+(1-L)^d \mathbf{Y} \sim \text{I(0)}
 \]
 \noindent donde I(0) es una serie de tiempo estacionaria y $L$ es el operador de rezago, i.e,
 \[
-(1-L)\mathbf{y} = \Delta \mathbf{y}
+(1-L)\mathbf{Y} = \Delta \mathbf{Y}
 \]
-\noindent donde $\Delta \mathbf{y}(t) = \mathbf{y}(t)  -\mathbf{y}(t-1) \quad \forall t $.
+\noindent donde $\Delta \mathbf{Y}(t) = \mathbf{Y}(t)  -\mathbf{Y}(t-1) \quad \forall t $.
 
-Definamos $\mathbf{y}_t = \{\mathbf{y}^1, \dots, \mathbf{y}^l\}$ como un set de $l$ series de tiempo estacionarias 
+Definamos $\mathbf{Y}_t = \{\mathbf{y}^1, \dots, \mathbf{y}^l\}$ como un set de $l$ series de tiempo estacionarias 
 I(1) que se dice que es cointegrada si un vector,
 $\beta=[\beta(1),\dots,\beta(l)]^\intercal \in \mathbb{R}^l$  existe tal que la serie de tiempo, 
 
 \begin{equation}
- \mathbf{Z}_t:= \beta^\intercal \mathbf{y}_t = \beta(1) \mathbf{y}^1 + \dots + \beta(l) \mathbf{y}^l \sim
+ \mathbf{Z}_t:= \beta^\intercal \mathbf{Y}_t = \beta(1) \mathbf{y}^1 + \dots + \beta(l) \mathbf{y}^l \sim
   \text{I(0)}
   \end{equation}
 
@@ -298,7 +298,7 @@ La forma matricial del modelo VEC es:
              \end{bmatrix}}_{\substack{\mathbf{E}\\ (N-p) \times l }} 
 $}
 \end{equation}
-
+%$
 Los parámetros de los modelos VAR y VEC mostrados en la ecuación
 (\ref{eq:varmatrix}) y (\ref{eq:vecmatrix}) pueden ser resueltos usando
 técnicas de regresión estándar, como mínimos cuadrados ordinaria (OLS por si
