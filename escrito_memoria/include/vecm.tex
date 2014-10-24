@@ -3,10 +3,11 @@ usados en el estudio de series de tiempo, las condiciones que deben cumplirse y
 cómo serán aplicados a la predicción en el mercado FOREX. 
 
 \section{Series de tiempo estacionarias}
-Una serie de tiempo estrictamente estacionaria es una que el comportamiento
-probabilístico de cada colección de valores $\{y_{t_1},y_{t_2},\dots,y_{t_L}\}$
-es idéntico
-a otro set desplazado en el tiempo, más preciso: \[ P\{y_{t_1} \leq
+Una serie de tiempo $\{y_{t_n}\}, n \in \mathbf{Z}$ se dice estrictamente estacionaria
+cuando el comportamiento probabilístico de cada colección de valores
+$\{y_{t_1},y_{t_2},\dots,y_{t_L}\}$ es idéntico a otro set desplazado en el
+tiempo, más preciso: 
+\[ P\{y_{t_1} \leq
 c_1,\dots,y_{t_L} \leq c_L\} = P\{y_{t_1+h} \leq c_1,\dots,y_{t_L+h}
 \leq c_L\}
 \quad \forall L \in \mathbb{N}, \forall h \in \mathbb{Z}\] \noindent donde
@@ -31,8 +32,10 @@ E(Y_t) &=& \mu  \quad \forall t \in \mathbb{N} \\ E(Y^2_t) &=&
 \section{Vector AutoRegressive (VAR)}
 
 VAR es un marco general que describe el comportamiento de un set $l$ de
-variables endógenas como una combinación lineal de sus últimos $p$ valores.
-Esas $l$ variables en el tiempo $t$ son representadas por el vector $y_t$ como:
+variables endógenas como una combinación lineal de sus últimos $p$ valores. En
+la literatura se nombra como variable endógena $y_t$, y como exógenas las
+variables explicativas de regresión $y_{t-1}, \dots, y_{t-p}$.  Esas $l$
+variables en el tiempo $t$ son representadas por el vector $y_t$ como:
 
 \begin{equation}
 \label{eq:variables}

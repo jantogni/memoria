@@ -72,12 +72,12 @@ CUDA como lenguaje de programación basado en la arquitectura presentada
 anteriormente \ref{fig:cpu_gpu_arch} y está sujeta a los siguientes elementos
 \ref{fig:cpu_gpu_elements}:
 \begin{itemize}
- \item \textbf{Thread/Hilos}: Donde se ejecutan las funciones. Los hilos pueden
+ \item \textbf{Thread/Hebras}: Donde se ejecutan las funciones. Las hebras pueden
  procesarse simultáneamente y cuentan con memoria local para almacenar sus
  datos.
- \item \textbf{Blocks/Bloques}: Un conjunto de hilos que se ejecutan en un
+ \item \textbf{Blocks/Bloques}: Un conjunto de hebras que se ejecutan en un
  multiprocesador. Cada bloque cuenta con una zona de memoria, denominada
- memoria compartida, accesible para todos sus hilos.
+ memoria compartida, accesible para todos sus hebras.
  \item \textbf{Grid/Malla}:  Un conjunto de bloques. Cada malla se ejecuta sobre una
  GPU distinta y cuenta con memoria accesible para todos los bloques que la
  componen.
@@ -95,17 +95,17 @@ HOST y las que se ejecutan sobre la GPU se denominan funciones del DEVICE.
 
 El modelo de programación de CUDA se diseñó de tal manera que tiene una curva
 de aprendizaje baja para los programadores de C, que solo deberán
-familiarizarse con: la forma en la que cooperan los hilos, las jerarquía de la
+familiarizarse con: la forma en la que cooperan las hebras, las jerarquía de la
 memoria, el uso de la memoria compartida y las instrucciones necesarias para
 sincronizar las tareas que se realizan simultáneamente.
 
 Esas pequeñas adiciones al estándar de C permiten paralelizar el problema ya
 sea con una paralelización de grado fino orientada a los datos; ó una
 paralización de grano grueso orientada a las tareas, también conocida como
-paralelización orientada a los hilos. El reto para el programador es, decidir
+paralelización orientada a las hebras. El reto para el programador es, decidir
 de qué manera atacar el problema para dividirlo en sub-problemas que se puedan
-agrupar en hilos y bloques que lo resuelvan cooperativamente y en paralelo.
-Por lo tanto, debe determinarse la manera en que cooperan los hilos en el
+agrupar en hebras y bloques que lo resuelvan cooperativamente y en paralelo.
+Por lo tanto, debe determinarse la manera en que cooperan las hebras en el
 bloque y cómo se puede escalar la solución del problema, lanzando
 simultáneamente varios bloques para ser ejecutados en los núcleos que se tengan
 disponibles.
