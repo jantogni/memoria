@@ -1,0 +1,48 @@
+\documentclass{beamer}
+\usepackage{graphics}
+\usepackage{url}
+\usepackage{ulem}
+\usepackage{beamerthemesplit}
+\usepackage{hyperref}
+\usepackage{wrapfig}
+\usepackage[spanish,activeacute]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{listings}
+\usepackage{color}
+\usetheme{Warsaw}
+\usepackage{pstricks}
+
+\title{High-Frequency Trading \\ \& \\ Graphics processing unit}
+\subtitle{Defensa tema de memoria}
+\author{Jonathan Antognini C.\\
+		Luis Salinas C.}
+\institute[]{Universidad Técnica Federico Santa María}
+\date{\today}
+
+\begin{document}
+    \frame{\titlepage}
+    \frame{\tableofcontents}
+	\section{Introducción}
+		\input{src/introduccion}
+	\section{High-Frequency Trading}
+		\input{src/hft}
+		\subsection{Electronic Trading}
+			\input{src/electronic_trading}
+		\subsection{High-Frequency Trading}
+			\input{src/high_frequency}
+	\section{Graphics processing unit}
+		\input{src/gpu}
+		\subsection{GPU Computing}
+			\input{src/gpu_computing}
+		\subsection{NVIDIA CUDA}
+			\input{src/cuda}
+	\section{Objetivos de la Memoria}
+		\input{src/objetivos}
+	\section{Planificación de Trabajo}
+		\input{src/programa}
+	\section{Avances}
+		\input{src/avance}
+	\section{Conclusiones}
+		\input{src/conclusiones}
+	\input{src/final}
+\end{document}
