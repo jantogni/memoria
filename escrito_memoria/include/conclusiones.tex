@@ -1,24 +1,27 @@
-En el presente trabajo de memoria, se expone y se valida con pruebas un  Online
-Vector Error Correction Model aplicado a series financieras de alta frecuencia.
+El presente trabajo de memoria, expone y valida con la ejecución de un conjunto
+de pruebas, la aplicación de un  \emph{Online
+Vector Error Correction Model} a series financieras de alta frecuencia.
+
 Basándose en los resultados expuestos en el capítulo ~\ref{ch:experimentos}, se
 puede observar que OVECM reduce considerablemente los tiempos de ejecución en
 comparación al SLVECM sin comprometer la precisión de la solución. OVECM en
 comparación con la versión SLVECM reduce el tiempo de ejecución debido
 principalmente al ahorro de cómputo de los vectores de cointegración, los
-cuales se calculan mediante el método de Johansen. La condición para obtener
-nuevos vectores de cointegración, es una métrica (MAPE) de la muestra
-in-sample, la cual estima qué tan bien se ajusta el modelo a la data real. Por
-otra parte, OVECM introduce dos funciones de optimización de cálculo matricial
-para obtener el modelo de forma iterativa y no construir el modelo completo en
-cada paso.  VECM, tal como otros algoritmos que deben resolver sistemas
-matriciales, fue implementado con dos métodos: OLS y el planteado por Coleman,
-también conocido como Ridge Regression. El segundo tiene por objetivo evitar
-problemas que se puedan generar tanto numéricamente, como también problemas
-propios de las matrices (rank-deficient). Sin embargo, la implementación RR
-para datos reales, no mejora los tiempos de ejecución (si lo hace para datos de
-prueba). En cuanto a tiempo de ejecución, el algoritmo toma mucho menos tiempo
-que la frecuencia con la que los datos arriban, esto significa que el resultado
-puede ser usado en estrategias de trading.
+cuales se calculan mediante el método de Johansen. 
+La condición para obtener nuevos vectores de cointegración, es una métrica
+(MAPE) de la muestra in-sample, la cual estima qué tan bien se ajusta el modelo
+a la data real. Por otra parte, OVECM introduce dos funciones de optimización
+de cálculo matricial para obtener el modelo de forma iterativa y no construir
+el modelo completo en cada paso.  VECM, tal como otros algoritmos que deben
+resolver sistemas matriciales, fue implementado con dos métodos: OLS y el
+planteado por Coleman, también conocido como Ridge Regression. El segundo tiene
+por objetivo evitar problemas que se puedan generar tanto numéricamente, como
+también problemas propios de las matrices (rank-deficient). 
+Sin embargo, la implementación RR para datos reales, no mejora los tiempos de
+ejecución (si lo hace para datos de prueba). En cuanto a tiempo de ejecución,
+el algoritmo toma mucho menos tiempo que la frecuencia con la que los datos
+arriban, esto significa que el resultado puede ser usado en estrategias de
+trading.
 
 Por otra parte, en cuanto a implementación, se hizo un trabajo consistente para
 futuras implementaciones, esto es, documentación y estructura de clases acorde

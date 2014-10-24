@@ -1,19 +1,25 @@
-\parindent=1.5em
+\parindent=1em
 
-Como se sabe, la tecnología se está haciendo presente en todas y cada una de
-las áreas de investigación, como física, química, biología, computación, y lo
-que es de interés para este documento es el área de los mercados financieros
-~\citep{watsham1997quantitative}.
+Es ampliamente conocido que la tecnología relacionada a la computación
+de alto desempeño, se está haciendo presente en áreas de investigación
+científica, de los cuales se desarrollan soluciones a problemas reales,
+relacionados a la física, química, biología, informática, etc, como también
+en el ámbito de los mercados financieros~\citep{watsham1997quantitative},
+que es el área principal del presente documento.
 
-El Algorithmic Trading y el High Frequency Trading son moneda común en los
-mercados de capitales desarrollados de Estados Unidos y Europa, llegando a
-representar más del 60\% del volumen operado en distintas clases de activos. La
-tendencia indica que esta proporción de trading automatizado seguirá creciendo,
-dejando atrás al trading manual, donde los robots operaran entre si, removiendo
-al elemento humano de las operaciones directas, relegándolo al elemento
-comercial y al mantenimiento de estos sistemas y algoritmos, cambiando así la
-posición central del trader hacia matemáticos y programadores que desarrollen
-algoritmos eficaces y eficientes para la compra y venta de activos.
+El \emph{Algorithmic Trading} y el \emph{High Frequency Trading} son moneda
+común en los mercados de capitales desarrollados de Estados Unidos y Europa,
+llegando a representar más del 60\% del volumen operado en distintas clases de
+activos. 
+La tendencia indica que esta proporción de \emph{trading} automatizado seguirá
+creciendo, dejando atrás al \emph{trading} manual, donde los programas
+computacionales operaran entre si, removiendo al elemento humano de las
+operaciones directas, relegándolo al elemento comercial y al mantenimiento de
+estos sistemas y algoritmos. 
+Dicho ésto, con el tiempo se ha cambiado la ocupación central del \emph{trader}
+hacia personas con un conocimiento matemático y de programación,
+que sean capaces del desarrollo de algoritmos eficientes para la compra y venta
+de activos.
 
 Esta memoria está enfocada a abordar un problema relacionado con las series
 financieras de alta frecuencia y una forma particular de poder realizar
@@ -42,9 +48,10 @@ usando técnicas de High Performance Computing y Graphical Processing Unit.
 \newpage
 \noindent Los \emph{\textbf{objetivos principales}} de esta memoria son:
 \begin{itemize}
-	\item Implementar un modelo VEC y analizar su comportamiento con
+ \item Implementar un modelo VEC y analizar su comportamiento con
 series financieras de alta frecuencia.
-	\item Optimizar dichos algoritmos usando computación CUDA para aumentar su rendimiento.
+ \item Optimizar dichos algoritmos usando computación de alto desempeño
+(GPU) para mejorar su rendimiento.
 \end{itemize} 
 
 \noindent Los \emph{\textbf{objetivos secundarios}}:
@@ -52,7 +59,7 @@ series financieras de alta frecuencia.
 	\item Adaptar el modelo VEC para este tipo serie, encontrando
 los parámetros apropiados para su funcionamiento.
 	\item Evaluar la factibilidad de optimizar el modelo VEC mediante la
-programación en CUDA.
+programación de alto desempeño (GPU).
 \end{itemize}
 
 
