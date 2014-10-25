@@ -193,6 +193,7 @@ significa que todas las series de tiempo son I(1) por lo que es posible usar
 los modelos VECM y OVECM. 
 
 \section{Performance}
+\subsection{Online VECM}
 Dentro de todos los experimentos realizados, según la selección de parámetros
 y considerando 400 iteraciones los resultados de tiempos de ejecución se pueden
 ver en la tabla~\ref{tab:extimes}
@@ -332,6 +333,40 @@ En todos los casos, ya sea incluso en frecuencias de 1 segundo, el algoritmo
 OVECM, toma tiempos de ejecución menor a la frecuencia de datos, esto le
 permite a un algoritmo de estrategia poder utilizar como entrada los resultados
 de esta implementación.
+
+\subsection{Algoritmo de Coleman GPU}
+Como una alternativa a mínimos cuadrados clásico, se implementó una versión
+serial y paralela usando scikits.cuda del algoritmo propuesto en
+\cite{coleman2010}. Para correr las pruebas es necesario configurar una
+serie de paquetes y bibliotecas, por lo que las pruebas se hicieron de forma
+local, usando una tarjeta nvidia GTX 760. 
+
+Las pruebas se realizaron con datos generados mediante la función randomMatrix
+de la clase Matrix, en donde se puede configurar el tamaño de matriz y el rank
+de la matriz. Los resultados para casos reales no son alentadores (sistema de
+ecuaciones $Ax = b$ donde A tiene muchas filas y pocas columnas), se puede ver
+en la tabla~\ref{fig:speedup_real}, que CPU demora aproximadamente un tercio de
+GPU, diferencia que disminuye en cuanto la cantidad de filas aumente.
+
+EL mismo algoritmo fue comparado para casos donde las matrices son cuadradas de
+gran dimensión. Se puede observar en la figura~\ref{fig:speedup_square} que en
+estos casos si GPU tiene mejor performance que CPU.
+
+\begin{figure}[h!t]
+    \begin{center}
+        \includegraphics[width=\textwidth]{images/speed_up_real}
+        \caption{Comparación tiempos de ejecución CPU y GPU, modelo realístico}
+        \label{fig:speedup_real}
+    \end{center}
+\end{figure}
+
+\begin{figure}[h!t]
+    \begin{center}
+        \includegraphics[width=\textwidth]{images/speed_up_square}
+        \caption{Comparación tiempos de ejecución CPU y GPU, matrices cuadradas}
+        \label{fig:speedup_square}
+    \end{center}
+\end{figure}
 
 \section{Resultados}
 Uno de los objetivos del algoritmo OVECM es ser más eficiente en tiempo que el
