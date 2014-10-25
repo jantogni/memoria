@@ -6,71 +6,81 @@
 \vspace{1.5cm}
 
 \begin{quotation}
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eget tellus
-dignissim, porta leo id, placerat est. Nam a libero nec arcu hendrerit pharetra
-at a mi. Donec sagittis quis est id tempor. Maecenas imperdiet, mi at
-sollicitudin faucibus, tellus turpis auctor lorem, ac lacinia magna tortor sit
-amet neque. Ut iaculis sit amet purus sed consequat. Nunc pretium est non erat
-lacinia faucibus. Phasellus id rutrum mi. Morbi nunc nisi, mattis sit amet
-purus eget, convallis tristique urna. Curabitur quis tellus placerat, eleifend
-nisi eget, scelerisque quam. Nulla et sapien fermentum, dictum elit non,
-elementum elit.
+The technical analysis of stock markets and foreign exchange market has been
+used in order to forecast the behavior of the future prices of certain stocks
+or currencies. Such analysis is based on the patterns detection of a finance
+time series. This time series has a non-stationary and random walk behavior.
 
-Morbi pretium dolor vel vestibulum pulvinar. Donec lobortis arcu malesuada
-augue dictum, et pulvinar lectus viverra. Praesent rhoncus, sapien sed
-porttitor volutpat, nisi ex mattis massa, tincidunt accumsan sapien sem et
-elit. Maecenas sed sem accumsan, sollicitudin nunc quis, imperdiet lectus.
-Maecenas ut arcu vitae odio suscipit sollicitudin. Pellentesque sed est lacus.
-Quisque nec lorem sem. Nulla tristique tempus lacus, ornare maximus magna
-interdum non. Proin aliquet quis ligula eget condimentum. Phasellus egestas in
-libero posuere dapibus. Sed vestibulum ullamcorper arcu, eu tempus lacus
-ultrices at. Ut id commodo erat, tincidunt suscipit mi. Donec suscipit lacus
-sed ex molestie, nec dignissim nunc volutpat. Cras a mollis tortor, a egestas
-enim. Vestibulum rhoncus orci eget purus volutpat, non viverra justo porttitor.
-Donec eleifend efficitur tincidunt.
+%El análisis técnico de los mercados bursátiles y de divisas se ha utilizado
+%para intentar predecir el comportamiento futuro de los precios de un activo o
+%una divisa. Dicho análsis se basa en la detección de patrones en una serie
+%temporal financiera, las que son conocidas por su comportamiento no
+%estacionario y comportamiento aleatorio. 
 
-Ut a nulla tortor. Nam urna tortor, accumsan eu est a, rutrum ornare lectus.
-Nam vestibulum libero sed consectetur vehicula. Sed non neque nec velit sodales
-feugiat consequat eu tellus. Sed ut elit rutrum ipsum tristique tempus.
-Phasellus sit amet porta dolor. Fusce sodales bibendum tellus vel ultrices.
-Integer vitae laoreet eros.
-%%
-%% Motivation: Why do we care about the problem and the results?
-%% ==============================================================
-%%
+A interest pattern to address is the integration and cointegration between
+the prices of certain stocks or currencies. When two or more time series are
+cointegrated, even though both process are non-stationary, as in the case
+of finance time series, there is a long term equilibrium relation which link
+both series such that the relation achieves stationarity. Vector Error
+Correction Model take advantage about this pattern.
 
-%%
-%% Problem statement: What problem are we trying to solve?
-%% ========================================================
-%%
+%Un patrón de interés de estudio es la integración y cointegración entre los
+%precios de ciertas divisas. Cuando dos o más series de tiempo están
+%cointegradas, a pesar de que ambos procesos no sean estacionarios, como es el
+%caso de las series de tiempo financieras, existe una relación de equilibrio a
+%largo plazo que vincula ambas series tal que esta relación sea estacionaria. El
+%modelo que permite aprovechar este partón es el Vector Error Correction Model
+%(VECM).
 
-%However, when one includes a particle whose mass dominates the
-%potential, the numerical error accumulates and renders the integration of the
-%system not reliable. This particle could be a massive black hole in a stellar
-%system or a sun in a protoplanetary disc.
-%%
-%% Approach: How did we go about solving or making progress on the problem?
-%% =========================================================================
-%%
+The cointegration of pairs of currencies are modeled in several works, particularly
+with FOREX data. Also through software tools such as Matlab, Eviews, etc. is possible
+to forecast computationally the behavior of those time series.
 
-%In this work we present the first GPU algorithm to integrate semi-Keplerian systems
-%that corrects the orbital evolution of the small bodies revolving around the most
-%massive one.
-%%
-%% Results: What's the answer?
-%% ===========================
-%%
+%Existen varios trabajos donde modelan este problema con pares de monedas,
+%particularmente con las series de tiempo del Foreign Exchange Market (FOREX).
+%Además mediante herramientas computacionales como matlab, eviews, etc. es
+%posible predecir computacionalmente el comportamiento de dichas series de
+%tiempo.
 
-%%
-%% Conclusions: What are the implications of our answer?
-%% ======================================================
-%%
+However, an important aspect of this kind of series are their Online nature,
+since every second more information is generated due the Ask or Bid orders.
+This topic has not been addressed completely. VECM is a matricial model, which
+of Online point of view, suffers update of part of the model. In order
+to forecast is necessary solve a matricial system equation.
 
+%Sin embargo un foco importante de este tipo de series es su caracter
+%\emph{Online}, ya que a cada segundo se genera nueva información en el sistema
+%debido a la compra o venta de divisas. Tema que no ha sido abordado
+%completamente en la literatura. VECM es un modelo matricial, que desde el punto
+%de vista \emph{Online}, sufre ciertas actualizaciones de valores, y para poder
+%predecir es necesario resolver un sistema matricial.
 
-{\bf Keywords:} keyword1, keyword2.
+In the present work VEC Model, Sliding Windows VEC Model and Online VEC Model
+are presented. The last look forward to optimize computational calculations reducing
+the number of times that the cointegration vectors are calculated. Class diagram
+and their implementation associated to Use Cases was created, considering: data
+reader, data re-sample in certain frequency, results graphics and metrics, etc.
+
+%En este trabajo se presenta el modelo VEC, el modelo VEC para ventanas
+%deslizantes y la implementación \emph{Online} que busca optimizar cálculos
+%computacionales reduciendo la cantidad de veces que se calculan los vectores de
+%cointegración. Para ello se creo un diagrama de clases asociado a los casos de
+%uso del modelo, considerando entre ello: lectura de datos, resample a cierta
+%frecuencia, gráficos de resultados, etc.
+
+Test with different currencies was ran, ensuring the conditions to apply this
+model. The results shows that the Online VEC Model version, reduce almost 50\%
+the execution maintaining the accuracy of the algorithm. Also CUDA routines was
+implemented in order to optimize the execution time.
+
+%Se realizaron pruebas con diferentes monedas de FOREX asegurando las
+%condiciones para poder aplicar el modelo. Los resultados muestran que la
+%versión \emph{Online} del modelo VEC, disminuye cerca del 50\% el tiempo de
+%ejecución sin comprometer la precisión del algoritmo. Además se implementaron
+%rutinas en CUDA para optimizar los tiempos de ejecución.
+
+{\bf Keywords:} VECM, VAR, FOREX, GPU.
 \end{quotation}
-
-%\end{center}
 
 \newpage
 % Español
@@ -82,66 +92,46 @@ Integer vitae laoreet eros.
 \vspace{1.5cm}
 
 \begin{quotation}
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eget tellus
-dignissim, porta leo id, placerat est. Nam a libero nec arcu hendrerit pharetra
-at a mi. Donec sagittis quis est id tempor. Maecenas imperdiet, mi at
-sollicitudin faucibus, tellus turpis auctor lorem, ac lacinia magna tortor sit
-amet neque. Ut iaculis sit amet purus sed consequat. Nunc pretium est non erat
-lacinia faucibus. Phasellus id rutrum mi. Morbi nunc nisi, mattis sit amet
-purus eget, convallis tristique urna. Curabitur quis tellus placerat, eleifend
-nisi eget, scelerisque quam. Nulla et sapien fermentum, dictum elit non,
-elementum elit.
+El análisis técnico de los mercados bursátiles y de divisas se ha utilizado
+para intentar predecir el comportamiento futuro de los precios de un activo o
+una divisa. Dicho análsis se basa en la detección de patrones en una serie
+temporal financiera, las que son conocidas por su comportamiento no
+estacionario y comportamiento aleatorio. 
 
-Morbi pretium dolor vel vestibulum pulvinar. Donec lobortis arcu malesuada
-augue dictum, et pulvinar lectus viverra. Praesent rhoncus, sapien sed
-porttitor volutpat, nisi ex mattis massa, tincidunt accumsan sapien sem et
-elit. Maecenas sed sem accumsan, sollicitudin nunc quis, imperdiet lectus.
-Maecenas ut arcu vitae odio suscipit sollicitudin. Pellentesque sed est lacus.
-Quisque nec lorem sem. Nulla tristique tempus lacus, ornare maximus magna
-interdum non. Proin aliquet quis ligula eget condimentum. Phasellus egestas in
-libero posuere dapibus. Sed vestibulum ullamcorper arcu, eu tempus lacus
-ultrices at. Ut id commodo erat, tincidunt suscipit mi. Donec suscipit lacus
-sed ex molestie, nec dignissim nunc volutpat. Cras a mollis tortor, a egestas
-enim. Vestibulum rhoncus orci eget purus volutpat, non viverra justo porttitor.
-Donec eleifend efficitur tincidunt.
+Un patrón de interés de estudio es la integración y cointegración entre los
+precios de ciertas divisas. Cuando dos o más series de tiempo están
+cointegradas, a pesar de que ambos procesos no sean estacionarios, como es el
+caso de las series de tiempo financieras, existe una relación de equilibrio a
+largo plazo que vincula ambas series tal que esta relación sea estacionaria. El
+modelo que permite aprovechar este partón es el Vector Error Correction Model
+(VECM).
 
-Ut a nulla tortor. Nam urna tortor, accumsan eu est a, rutrum ornare lectus.
-Nam vestibulum libero sed consectetur vehicula. Sed non neque nec velit sodales
-feugiat consequat eu tellus. Sed ut elit rutrum ipsum tristique tempus.
-Phasellus sit amet porta dolor. Fusce sodales bibendum tellus vel ultrices.
-Integer vitae laoreet eros.
-%%
-%% Motivation: Why do we care about the problem and the results?
-%% ==============================================================
-%%
+Existen varios trabajos donde modelan este problema con pares de monedas,
+particularmente con las series de tiempo del Foreign Exchange Market (FOREX).
+Además mediante herramientas computacionales como matlab, eviews, etc. es
+posible predecir computacionalmente el comportamiento de dichas series de
+tiempo.
 
-%%
-%% Problem statement: What problem are we trying to solve?
-%% ========================================================
-%%
+Sin embargo un foco importante de este tipo de series es su caracter
+\emph{Online}, ya que a cada segundo se genera nueva información en el sistema
+debido a la compra o venta de divisas. Tema que no ha sido abordado
+completamente en la literatura. VECM es un modelo matricial, que desde el punto
+de vista \emph{Online}, sufre ciertas actualizaciones de valores, y para poder
+predecir es necesario resolver un sistema matricial.
 
-%However, when one includes a particle whose mass dominates the
-%potential, the numerical error accumulates and renders the integration of the
-%system not reliable. This particle could be a massive black hole in a stellar
-%system or a sun in a protoplanetary disc.
-%%
-%% Approach: How did we go about solving or making progress on the problem?
-%% =========================================================================
-%%
+En este trabajo se presenta el modelo VEC, el modelo VEC para ventanas
+deslizantes y la implementación \emph{Online} que busca optimizar cálculos
+computacionales reduciendo la cantidad de veces que se calculan los vectores de
+cointegración. Para ello se creo un diagrama de clases asociado a los casos de
+uso del modelo, considerando entre ello: lectura de datos, resample a cierta
+frecuencia, gráficos de resultados, etc.
 
-%In this work we present the first GPU algorithm to integrate semi-Keplerian systems
-%that corrects the orbital evolution of the small bodies revolving around the most
-%massive one.
-%%
-%% Results: What's the answer?
-%% ===========================
-%%
+Se realizaron pruebas con diferentes monedas de FOREX asegurando las
+condiciones para poder aplicar el modelo. Los resultados muestran que la
+versión \emph{Online} del modelo VEC, disminuye cerca del 50\% el tiempo de
+ejecución sin comprometer la precisión del algoritmo. Además se implementaron
+rutinas en CUDA para optimizar los tiempos de ejecución.
 
-%%
-%% Conclusions: What are the implications of our answer?
-%% ======================================================
-%%
-
-{\bf Palabras claves:} keyword1, keyword2.
+{\bf Palabras claves:} VECM, VAR, FOREX, GPU.
 
 \end{quotation}
