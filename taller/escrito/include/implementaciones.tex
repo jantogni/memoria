@@ -205,11 +205,16 @@ parámetros que deben ser definidos: largo de la ventana (L), cantidad de lags
 usará el criterio de información de Akaike Information Criterion.
 
 \subsection{Criterio de información de Akaike}
-El Criterio de información de Akaike (AIC por sus siglas en inglés) fue
-inicialmente desarrollado en series temporales~\cite{akaike1998information}. Su idea clave es
-la de penalizar un exceso de parámetros ajustados para cierto modelo. El AIC es
-un estimador muestral de $E[ln(f(X|\theta)]$, esperanza de la log-verosimilitud
-(o negantropía) que viene dado por la expresión~\ref{eq:aicformula}:
+El Criterio de información de Akaike~\cite{akaike1974new} (AIC por sus siglas
+en inglés) fue inicialmente desarrollado en series
+temporales~\cite{akaike1998information}. Su idea clave es la de penalizar un
+exceso de parámetros ajustados para cierto modelo. Para VECM, AIC es necesario
+en la etapa de determinar cuanto es la cantidad de \emph{lags} óptimos
+asumiendo una cantidad fija de largo de la ventana.
+
+AIC es un estimador muestral de $E[ln(f(X|\theta)]$, esperanza de la
+log-verosimilitud (o negantropía) que viene dado por la
+expresión~\ref{eq:aicformula}:
 
 \begin{equation}
 \label{eq:aicformula}
