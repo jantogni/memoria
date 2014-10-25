@@ -8,8 +8,9 @@
 \begin{quotation}
 The technical analysis of stock markets and foreign exchange market has been
 used in order to forecast the behavior of the future prices of certain stocks
-or currencies. Such analysis is based on the patterns detection of a finance
-time series. This time series has a non-stationary and random walk behavior.
+or currencies. Such analysis is based on the patterns detection/recognition of
+a finance time series. This time series has a non-stationary and random walk
+behavior.
 
 %El análisis técnico de los mercados bursátiles y de divisas se ha utilizado
 %para intentar predecir el comportamiento futuro de los precios de un activo o
@@ -56,10 +57,11 @@ to forecast is necessary solve a matricial system equation.
 %predecir es necesario resolver un sistema matricial.
 
 In the present work VEC Model, Sliding Windows VEC Model and Online VEC Model
-are presented. The last look forward to optimize computational calculations reducing
-the number of times that the cointegration vectors are calculated. Class diagram
-and their implementation associated to Use Cases was created, considering: data
-reader, data re-sample in certain frequency, results graphics and metrics, etc.
+are presented. The objective of the Online VECM is to optimize computational
+calculations reducing the number of times that the cointegration vectors are
+calculated. Class diagram and their implementation associated to Use Cases was
+created, considering: data reader, data re-sample in certain frequency, results
+graphics and metrics, etc.
 
 %En este trabajo se presenta el modelo VEC, el modelo VEC para ventanas
 %deslizantes y la implementación \emph{Online} que busca optimizar cálculos
@@ -68,10 +70,10 @@ reader, data re-sample in certain frequency, results graphics and metrics, etc.
 %uso del modelo, considerando entre ello: lectura de datos, resample a cierta
 %frecuencia, gráficos de resultados, etc.
 
-Test with different currencies was ran, ensuring the conditions to apply this
-model. The results shows that the Online VEC Model version, reduce almost 50\%
-the execution maintaining the accuracy of the algorithm. Also CUDA routines was
-implemented in order to optimize the execution time.
+Test with different currencies was made, ensuring all the conditions to apply
+this model. The results shows that the Online VEC Model version, reduce almost
+50\% the execution time maintaining the accuracy of the algorithm. Also CUDA
+routines was implemented in order to optimize the execution time.
 
 %Se realizaron pruebas con diferentes monedas de FOREX asegurando las
 %condiciones para poder aplicar el modelo. Los resultados muestran que la
