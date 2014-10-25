@@ -32,7 +32,6 @@
 \renewcommand{\algorithmicrequire}{\textbf{Input:}}
 \renewcommand{\algorithmicensure}{\textbf{Output:}}
 
-
 \renewcommand{\baselinestretch}{2}
 
 \newenvironment{itemize_estret}{
@@ -115,7 +114,6 @@
         \input{include/dedication}
 
         \newpage
-    	%TODO
         \input{include/abstract}
         \input{include/index}
 
@@ -144,14 +142,13 @@
         \label{ch:experimentos}
         \input{include/experimentos}
 
-	%TODO
         \chapter{Conclusiones}
         \label{ch:conclusiones}
         \input{include/conclusiones}
 
         \addcontentsline{toc}{chapter}{\bibname}
-        \bibliographystyle{apalike}
-        %\bibliographystyle{plain}
+        %\bibliographystyle{apalike}
+        \bibliographystyle{plain}
         \bibliography{references}
         \nocite{*}
     \end{spacing}

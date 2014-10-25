@@ -76,16 +76,19 @@ para el título de Ingeniero Civil en Informática de la Universidad Técnica
 Federico Santa María.}
 
 \vspace*{\stretch{5}}
-\thispagestyle{empty}
+%\thispagestyle{empty}
+\thispagestyle{fancy}
+
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 
 \begin{table}[ptbh]
-    \begin{tabular}[c]{lc}
-    {\large Prof. Dr. Luis Salinas, UTFSM}   & \line(1,0){200}  \\
-                                             & {\large Profesor Guía } \\
+    \begin{tabular}{lC{6cm}}
+    {\large Prof. Dr. Luis Salinas, UTFSM}  ~~~~~~~\line(1,0){200} &   \\
+                                             & {\large Profesor Guía} \\
                                              & \\
                                              & \\
-    {\large M.Sc Paola Arce, UTFSM}          & \line(1,0){200}  \\
-                                             & {\large Correferente } \\
+    {\large M.Sc Paola Arc , UTFSM} ~~~~~~~~~~~~~~~\line(1,0){200}  & \\%\line(1,0){200}  \\
+                                             & {\large Correferente} \\
                                              & \\
                                              & \\
     \end{tabular}
