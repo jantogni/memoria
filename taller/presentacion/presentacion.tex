@@ -9,42 +9,127 @@
 \usepackage[utf8]{inputenc}
 \usepackage{listings}
 \usepackage{color}
-\usetheme{Warsaw}
+%\usetheme{AnnArbor}
+\usetheme{CambridgeUS}
+\usecolortheme{seahorse}
+
+\makeatother
+\setbeamertemplate{footline}
+{
+  \leavevmode%
+  \hbox{%
+  \begin{beamercolorbox}[wd=.4\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+    \usebeamerfont{author in head/foot}Jonathan Antognini, Luis Salinas, Paola Arce%\insertshortauthor
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.6\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+    \usebeamerfont{title in head/foot}\insertshorttitle\hspace*{3em}
+    \insertframenumber{} / \inserttotalframenumber\hspace*{1ex}
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+\makeatletter
+\setbeamertemplate{navigation symbols}{}
+
 \usepackage{pstricks}
+\usepackage{multicol}
 
 \title{High-Frequency Trading \\ \& \\ Graphics Processing Unit}
 \subtitle{Defensa tema de memoria}
 \author{Jonathan Antognini C.\\
-		Luis Salinas\\
-        Paola Arce}
-\institute[]{Universidad Técnica Federico Santa María}
+		Prof. Guía Dr. Luis Salinas\\
+        Prof. Correferente M.Sc Paola Arce}
+\institute[UTFSM]{Universidad Técnica Federico Santa María}
 \date{\today}
 
 \begin{document}
     \frame{\titlepage}
-    \frame{\tableofcontents}
-	\section{Introducción}
-        \subsection{Mercados financieros}
+    \begin{frame}{\contentsname}
+        \frametitle{Tabla de Contenidos} 
+        \begin{multicols}{2}
+        \tableofcontents
+        \end{multicols}
+    \end{frame}
+	
+    \section{Introducción}
+        \subsection{Mercados Financieros}
+            \begin{frame}
+            \frametitle{Mercados Financieros} 
+            \end{frame}
         \subsection{Serie de tiempo Forex}
+            \begin{frame}
+            \frametitle{Serie de tiempo Forex}
+            \end{frame}
     \section{Descripción del problema}
-        \subsection{Vector Autoregressive}
-        \subsection{Vector Error Correction Model}
-        \subsection{Mínimos cuadrados}
-	\section{Graphics processing unit}
-		\subsection{GPU Computing}
-		\subsection{NVIDIA CUDA}
+        \subsection{Vector AutoRegressive}
+            \begin{frame}
+            \frametitle{Vector AutoRegressive} 
+            \end{frame}
+        \subsection{Vector Error Correction}
+            \begin{frame}
+            \frametitle{Vector Error Correction} 
+            \end{frame}
+        \subsection{Mínimos Cuadrados}
+            \begin{frame}
+            \frametitle{Mínimos Cuadrados}
+            \end{frame}
+	\section{GPU Computing}
+		%\subsection{GPU Computing}
+		%\subsection{NVIDIA CUDA}
 	\section{Metodología}
         \subsection{Algoritmo Propuesto}
-        \subsection{Parámetros del algoritmo}
+            \begin{frame}
+            \frametitle{Algoritmo Propuesto}
+            \end{frame}
+        \subsection{Parámetros del Algoritmo}
+            \begin{frame}
+            \frametitle{Parámetros del Algoritmo}
+            \end{frame}
         \subsection{Diagrama de clases}
+            \begin{frame}
+            \frametitle{Diagrama de clases}
+            \end{frame}
     \section{Experimentos}
         \subsection{Selección de data}
+            \begin{frame}
+            \frametitle{Selección de data} 
+            \end{frame}
         \subsection{Selección de Parámetros}
+            \begin{frame}
+            \frametitle{Selección de Parámetros}
+            \end{frame}
         \subsection{Pruebas de Cointegración}
+            \begin{frame}
+            \frametitle{Pruebas de Cointegración}
+            \end{frame}
         \subsection{Test de raíz unitaria}
+            \begin{frame}
+            \frametitle{Test de raíz unitaria}
+            \end{frame}
         \subsection{Performance}
+            \begin{frame}
+            \frametitle{Performance}
+            \end{frame}
         \subsection{Resultados}
+            \begin{frame}
+            \frametitle{Resultados}
+            \end{frame}
     \section{Conclusiones}
+            \begin{frame}
+            \frametitle{Conclusiones}
+            \end{frame}
         \subsection{Trabajo Futuro}
+            \begin{frame}
+            \frametitle{Trabajo Futuro}
+            \newpage
+            Finalmente y como trabajo futuro, se propone:
+            \begin{itemize}
+             \item Probar distintos métodos para la selección de parámetros. 
+             \item Buscar cointegración de distintas monedas. 
+             \item Incluir el volumen asociado al precio.
+             \item Probar resultados con alguna estrategia. 
+             \item Implementar el arribo de datos desde un servidor de datos. 
+            \end{itemize}
+
+            \end{frame}
 	\input{src/final}
 \end{document}

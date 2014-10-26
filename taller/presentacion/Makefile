@@ -19,4 +19,4 @@ distclean: clean
 	@rm -rf publish
 
 x:
-	@evince publish/presentacion.pdf
+	@evince publish/presentacion.pdf 
