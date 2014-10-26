@@ -204,37 +204,38 @@ tiene un término de corrección de error y tiene la siguiente forma:
 
 \begin{equation}
  \label{eq:vec}
-  \Delta \mathbf{y}_t = 
-   \underbrace{ \Omega\mathbf{y}_{t-1}}_\text{Término de corrección de error} + 
-    \sum_{i=1}^{p-1}
-    \phi_i^* \Delta \mathbf{y}_{t-i}  + \mathbf{c} + \mathbf{\epsilon}_t \quad ,
-    \end{equation}
+ \Delta \mathbf{y}_t = 
+ \underbrace{ \Omega\mathbf{y}_{t-1}}_\text{Término de corrección de error} + 
+ \sum_{i=1}^{p-1}
+ \phi_i^* \Delta \mathbf{y}_{t-i}  + \mathbf{c} + \mathbf{\epsilon}_t \quad ,
+\end{equation}
 
-    \noindent donde las matrices de coeficientes $\Omega$ y $\phi_i^*$ son
-    funciones de matrices $\phi_i$ (mostradas en la ecuación (\ref{eq:var})) de
-    la siguiente forma:
+\noindent donde las matrices de coeficientes $\Omega$ y $\phi_i^*$ son
+funciones de matrices $\phi_i$ (mostradas en la ecuación (\ref{eq:var})) de
+la siguiente forma:
 
-    \begin{eqnarray*}
-    \phi_i^* &: =& -\sum_{j=i+1}^{p} \phi_j \\
-    \Omega &: =& -(\mathbb{I}-\phi_1-\dots-\phi_p) 
-    \end{eqnarray*}
+\begin{eqnarray*}
+\phi_i^* &: =& -\sum_{j=i+1}^{p} \phi_j \\
+\Omega &: =& -(\mathbb{I}-\phi_1-\dots-\phi_p) 
+\end{eqnarray*}
 
-    La matriz $\Omega$ tiene las siguientes propiedades:
-    \begin{itemize}
-    \item Si $\Omega = 0$ no hay cointegración 
-    \item Si $rank(\Omega)=l$ i.e full rank, entonces la serie de tiempo no es I(1) pero es estacionaria
-    \item Si $rank(\Omega)=r,\quad 0 < r < l$ entonces, hay cointegración 
-    y la matriz $\Omega$ se puede expresar como $\Omega =
-    \alpha \beta^\intercal$, donde $\alpha$ y $\beta$ son $(l \times r)$
-    matrices y $rank(\alpha)=rank(\beta)=r$.
+La matriz $\Omega$ tiene las siguientes propiedades:
+\begin{itemize}
+\item Si $\Omega = 0$ no hay cointegración 
+\item Si $rank(\Omega)=l$ i.e full rank, entonces la serie de tiempo no es I(1) pero es estacionaria
+\item Si $rank(\Omega)=r,\quad 0 < r < l$ entonces, hay cointegración 
+y la matriz $\Omega$ se puede expresar como $\Omega =
+\alpha \beta^\intercal$, donde $\alpha$ y $\beta$ son $(l \times r)$
+matrices y $rank(\alpha)=rank(\beta)=r$.
+\end{itemize}
 
-    La columna de $\beta$ contiene los vectores de cointegración y la fila de
-    $\alpha$ corresponde a los vectores de ajuste. $\beta$ se obtiene a través
-    el procedimiento de Johansen~\cite{johansen1988} mientras que $\alpha$ debe
-    ser determinado como variable en el modelo VEC.
+La columna de $\beta$ contiene los vectores de cointegración y la fila de
+$\alpha$ corresponde a los vectores de ajuste. $\beta$ se obtiene a través
+el procedimiento de Johansen~\cite{johansen1988} mientras que $\alpha$ debe
+ser determinado como variable en el modelo VEC.
 
-    Cabe observar que la factorización de la matriz $\Omega$ no es única ya que por cada
-    $r \times r$ matriz no singular $H$ tenemos:
+Cabe observar que la factorización de la matriz $\Omega$ no es única ya que por cada
+$r \times r$ matriz no singular $H$ tenemos:
 
 \begin{eqnarray*}
 \alpha \beta^\intercal &=& \alpha \mathbf{HH^{-1}} \beta^\intercal\\
@@ -248,7 +249,6 @@ tiene un término de corrección de error y tiene la siguiente forma:
 Por lo tanto, para obtener valores únicos, son requeridas más restricciones
 para el modelo.
 
-\end{itemize}
 
 Si existe cointegración, entonces la ecuación (\ref{eq:vec}) puede ser escrita:
 \begin{equation}
