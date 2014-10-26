@@ -1,15 +1,44 @@
 \documentclass{beamer}
+\usepackage{etex}
+\usepackage{tabularx}
+\usepackage[spanish,activeacute]{babel}
+\usepackage[utf8]{inputenc}
 \usepackage{graphics}
 \usepackage{url}
 \usepackage{ulem}
 \usepackage{beamerthemesplit}
 \usepackage{hyperref}
 \usepackage{wrapfig}
-\usepackage[spanish,activeacute]{babel}
-\usepackage[utf8]{inputenc}
 \usepackage{listings}
 \usepackage{color}
-%\usetheme{AnnArbor}
+\usepackage{adjustbox}
+
+\usepackage{multicol}
+%\usepackage{pstricks}
+%\usepackage[pdftex]{graphicx}
+%\usepackage{amssymb}
+%\usepackage{amsmath}
+%\usepackage{mathrsfs}
+%\usepackage{fancybox}
+%\usepackage{fancyvrb}
+%\usepackage{fancyhdr}
+%\usepackage{tikz}
+%\usepackage{index}
+%\usepackage{enumerate}
+%\usepackage{setspace}
+%\usepackage{boxedminipage}
+%\usepackage{listings}
+%\usepackage{natbib}
+%\usepackage{url}
+%\usepackage{lastpage}
+%\usepackage{color}
+%\usepackage{xcolor}
+%\usepackage{float}
+%\usepackage{algorithm}
+%\usepackage{algorithmic}
+%\usepackage{slashbox,pict2e}
+
+
 \usetheme{CambridgeUS}
 \usecolortheme{seahorse}
 
@@ -112,6 +141,40 @@
         \subsection{Resultados}
             \begin{frame}
             \frametitle{Resultados}
+            \begin{table}[ht!]
+            \caption{Métricas del modelo, Frecuencia 60s}
+            \label{tab:mapes_60s}
+            \begin{center}
+            \begin{adjustbox}{max width=\textwidth}
+            \begin{tabular}{|l|l|c|c|c|c|c|c|c|c|}
+            \hline
+            \multicolumn{4}{|c|}{Model} & \multicolumn{3}{|c|}{In-sample} &
+            \multicolumn{3}{|c|}{Out-of-sample} \\
+            \hline
+            \hline
+            Método & L & P & e &
+            MAPE & MAE& RMSE&
+            MAPE & MAE& RMSE \\
+            \hline
+             OVECM  &   100  &  P=2& 0.0026  &  0.00263&  0.00085&  0.00114&  0.00309&  0.00094&  0.00131\\
+             OVECM  &   400  &  P=5& 0.0041  &  0.00378&  0.00095&  0.00127&  0.00419&  0.00103&  0.00143\\
+             OVECM  &   700  &  P=3& 0.0032  &  0.00323&  0.00099&  0.00130&  0.00322&  0.00097&  0.00132\\
+             OVECM  &   1000 &  P=3& 0.0022  &
+             \textbf{0.00175}&  \textbf{0.00062}&  \textbf{0.00087} &
+             \textbf{0.00172}&  \textbf{0.00061}&  \textbf{0.00090}\\
+            \hline
+             SLVECM  &   100 &  P=2& -  &  0.00262&  0.00085&  0.00113&  0.00310&  0.00095&  0.00132\\
+             SLVECM  &   400 &  P=5& -  &  0.00375&  0.00095&  0.00126&  0.00419&  0.00103&  0.00143\\
+             SLVECM  &   700 &  P=3& -  &  0.00324&  0.00099&  0.00130&  0.00322&  0.00098&  0.00132\\
+             SLVECM  &   1000 &  P=3& -  &
+             \textbf{0.00174}&  \textbf{0.00061}&  \textbf{0.00087}&
+             \textbf{0.00172}&  \textbf{0.00061}&  \textbf{0.00090}\\
+            \hline
+            \end{tabular}
+            \end{adjustbox}
+            \end{center}
+            \end{table}
+
             \end{frame}
     \section{Conclusiones}
             \begin{frame}
@@ -131,5 +194,4 @@
             \end{itemize}
 
             \end{frame}
-	\input{src/final}
 \end{document}
