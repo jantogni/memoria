@@ -160,7 +160,7 @@ ecuación~\ref{eq:vecA})
 
 La propuesta fue comparada contra la versión modificada VECM que solo considera
 datos en una ventana deslizante (SLVECM). Esto se realizo para comparar los
-tiempos de ejecución. En SLVEM la función \texttt{getJohansen} y
+tiempos de ejecución. En SLVECM la función \texttt{getJohansen} y
 \texttt{vecMatrix} es llamada en cada iteración. El algoritmo ~\ref{alg:SLVECM}
 muestra la modificación.
 
@@ -196,7 +196,7 @@ $\{\Delta \mathbf{y}_{\text{pred}}[L+1],\dots,\Delta \mathbf{y}_{\text{pred}}[N]
 
 Ambos algoritmos entregan el MAPE de la predicción fuera de la muestra. Es
 importante destacar que OVECM con mean\_error=0 entregará los mismos MAPE que
-SLVEM.
+SLVECM.
 
 \section{Parámetros del algoritmo}
 Cómo se puede desprender de la formulación matemática de los modelos, hay dos

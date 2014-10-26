@@ -391,4 +391,111 @@ por lo tanto la expresión de la pseudo-inversa:
 \mathbf{A^+} &=& \mathbf{V_1 \Sigma_1^{-1} U_1^\top} \, .
 \end{eqnarray*}
 
+\section{Algoritmo de Coleman}
+\label{sec:RR}
 
+El algoritmo de Coleman, también conocido como Ridge regression (RR) propone
+una forma alternativa para estimar la solución del sistema de ecuaciones, con
+el objetivo de evitar problemas de singularidad de la matriz 
+$\mathbf{A}^\top \mathbf{A}$ 
+de la ecuación~(\ref{eq:pseudoinverse}).  Este algoritmo resuelve
+el siguiente problema de optimización:
+
+\begin{equation}
+\label{eq:RRproblem}
+\underset{\mathbf{X}}{\text{min}} \quad \|
+\mathbf{A}\mathbf{\mathbf{X}} - \mathbf{B} \|_2^2 +\lambda \|
+\mathbf{\mathbf{X}}\|_2^2 
+\end{equation}
+
+\noindent donde $\lambda$ es un parámetro de regulación.
+
+La solución óptima de RR $\mathbf{X}(\lambda)$ está determinada como:
+
+\begin{equation}
+\label{eq:optsolRR}
+\mathbf{X}(\lambda)=(\mathbf{A}^\top \mathbf{A}+ \lambda
+\mathbb{I})^{-1}\mathbf{A}^\top \mathbf{B} \, . 
+\end{equation}
+
+
+\textbf{Demostración}\quad
+
+Resolver la ecuación~(\ref{eq:optsolRR}) es equivalente a resolver
+el siguiente problema de optimización:
+
+
+\begin{equation}
+\label{eq:RRproblem2}
+\underset{\mathbf{X}(\lambda)}{\text{min}} \quad \|
+\mathbf{C}\mathbf{\mathbf{X}} - \mathbf{F} \|_2^2
+\end{equation}
+
+\noindent donde
+
+\begin{equation*}
+    \mathbf{C}=\begin{bmatrix} \quad &\mathbf{A}& \quad \\ %\hdashline \quad
+& \lambda\mathbb{I}&\quad  \end{bmatrix} \quad \text{y} \quad
+    \mathbf{F}=\begin{bmatrix} \quad &\mathbf{B}& \quad \\ %\hdashline \quad
+& \mathbf{0}&\quad  \end{bmatrix} \, .
+\end{equation*}
+
+Aplicando la ecuación~(\ref{eq:MP}) y considerando que $\mathbf{C}^\top
+\mathbf{C} = \mathbf{A}^\top \mathbf{A} + \lambda \mathbb{I}$ y
+$\mathbf{C}^\top \mathbf{F}=\mathbf{A}^\top \mathbf{B} $ tenemos:
+
+\begin{eqnarray*}
+\mathbf{X}(\lambda)&=&(\mathbf{C}^\top
+\mathbf{C})^{-1}\mathbf{C}^\top \mathbf{F} \\
+&=& (\mathbf{A}^\top \mathbf{A} + \lambda \mathbb{I})^{-1} \mathbf{A}^\top \mathbf{B}
+\end{eqnarray*}
+
+Coleman además propone dos algoritmos
+(pseudo-código)~\ref{alg:RR_1}~\ref{alg:RR_2}, los cuales se comprobó en la
+práctica que sirven para evitar problemas de precisión numérica.
+
+\begin{algorithm}[H]
+\begin{algorithmic}[1]
+\REQUIRE $\,$ \\
+$\mathbf{C},\mathbf{B}$: Matrices de entrada al algoritmo \\
+$\lambda$: Parámetro de regularización \\
+$m$: Cantidad total de iteraciones \\
+\ENSURE $\,$\\
+$\mathbf{X}$: solución estimada \\
+\STATE $\mathbf{Q}, \mathbf{R} = QR(C)$
+\STATE Inicializar $\mathbf{x}_0 = R^{-1} Q^T R$
+\STATE Coe = $(R^T R)^{-1}$
+\STATE $s_k = \mathbf{x}_0 $
+\FOR { $k = 1$ to $m$ }
+    \STATE $s_k = Coe ~ s_{k-1}$   
+    \STATE $t_k = (-1)^k ~ \lambda^k ~ s_k$
+    \STATE $x_k = x_{k-1} ~ t_k$
+\ENDFOR
+\STATE Retornar $x_k$
+\end{algorithmic}
+\caption{Algoritmo de Coleman - Variación 1}
+\label{alg:RR_1}
+\end{algorithm}
+
+\begin{algorithm}[H]
+\begin{algorithmic}[1]
+\REQUIRE $\,$ \\
+$\mathbf{C},\mathbf{B}$: Matrices de entrada al algoritmo \\
+$\lambda$: Parámetro de regularización \\
+$m$: Cantidad total de iteraciones \\
+\ENSURE $\,$\\
+$\mathbf{X}$: solución estimada \\
+\STATE $\mathbf{Q}, \mathbf{R} = QR(C)$
+\STATE Inicializar $\mathbf{x}_0 = R^{-1} Q^T R$
+\STATE Coe = $(R^T R)^{-1}$
+\STATE $t_k = \mathbf{x}_0 $
+\FOR { $k = 1$ to $m$ }
+    \STATE $t = \lambda ~ t_{k-1}$   
+    \STATE $t_k = Coe ~ t$
+    \STATE $x_k = x_{k-1} + t_k$
+\ENDFOR
+\STATE Retornar $x_k$
+\end{algorithmic}
+\caption{Algoritmo de Coleman - Variación 2}
+\label{alg:RR_2}
+\end{algorithm}

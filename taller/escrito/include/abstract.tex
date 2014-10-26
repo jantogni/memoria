@@ -18,10 +18,10 @@ behavior.
 %temporal financiera, las que son conocidas por su comportamiento no
 %estacionario y comportamiento aleatorio. 
 
-A interest pattern to address is the integration and cointegration between the
+An interest pattern to address is the integration and cointegration between the
 prices of certain stocks or currencies, which establish that when two or more
 time series are cointegrated, and considering that both processes are
-non-stationary, (as in the case of financial time series), there is a long term
+non-stationary, such as as financial time series, there is a long term
 equilibrium relation which link both series such that the relation is
 stationary.  The model that take advantage of this scenario is the Vector Error
 Correction (VECM)
@@ -34,9 +34,10 @@ Correction (VECM)
 %modelo que permite aprovechar este partón es el Vector Error Correction Model
 %(VECM).
 
-The cointegration of pairs of currencies are modeled in several works, particularly
-with FOREX data, which through software tools such as Matlab, Eviews, etc.
-it is possible to computationally forecast the behavior of those time series.
+The cointegration of pairs of currencies have been modeled in several studies,
+particularly with FOREX data, which through software tools such as Matlab,
+Eviews, etc.  it is possible to computationally forecast the behavior of those
+time series.
 
 %Existen varios trabajos donde modelan este problema con pares de monedas,
 %particularmente con las series de tiempo del Foreign Exchange Market (FOREX).
@@ -44,11 +45,12 @@ it is possible to computationally forecast the behavior of those time series.
 %posible predecir computacionalmente el comportamiento de dichas series de
 %tiempo.
 
-However, an important aspect of this kind of series are their Online nature,
-since every second more information is generated due the Ask or Bid orders,
-topic which had been not addressed completely.  VECM is a matricial model,
-which from the Online point of view, suffers of values updates, which implies
-the solution of a matricial system equation, to be able to forecast.
+However, an important aspect of this kind of series are their online nature,
+since every second more information is generated due the Ask or Bid prices,
+topic which hasn't been addressed completely.  VECM is a matricial model which,
+if it is used in an online context, matrix updates are required to forecast.
+%which implies the solution of a matricial system equation, to be able to
+%forecast.
 
 %Sin embargo un foco importante de este tipo de series es su caracter
 %\emph{Online}, ya que a cada segundo se genera nueva información en el sistema
@@ -62,7 +64,8 @@ The objective of the Online VECM is to optimize the computational calculations,
 reducing the number of times that the cointegration vectors are calculated.
 Additionally, a class diagram and their implementation associated to Use Cases
 was developed, considering: data reading, data re-sample in certain frequency,
-graphics, metrics, etc.
+graphics, metrics, etc. Additionally, we developed a couple of CUDA routines,
+in order to optimize the calculation.
 
 %En este trabajo se presenta el modelo VEC, el modelo VEC para ventanas
 %deslizantes y la implementación \emph{Online} que busca optimizar cálculos
@@ -71,11 +74,10 @@ graphics, metrics, etc.
 %uso del modelo, considerando entre ello: lectura de datos, resample a cierta
 %frecuencia, gráficos de resultados, etc.
 
-We present the result of a set of tests with different currencies, ensuring all
+I present the result of a set of tests with different currencies, ensuring all
 the conditions to apply this model. The results shows that the Online VEC Model
 version, reduce almost 50\% the execution time, maintaining the algorithm
-accuracy. Additionally, we developed a couple of CUDA routines, in order to
-optimize the calculation.
+accuracy. 
 
 %Se realizaron pruebas con diferentes monedas de FOREX asegurando las
 %condiciones para poder aplicar el modelo. Los resultados muestran que la
