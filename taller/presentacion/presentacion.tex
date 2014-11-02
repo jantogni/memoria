@@ -14,6 +14,8 @@
 \usepackage{adjustbox}
 \usepackage{multicol}
 \usepackage{slashbox,pict2e}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows}
 
 \usepackage{algorithm}
 \usepackage{algorithmic}
@@ -43,8 +45,16 @@
 \usepackage{pstricks}
 \usepackage{multicol}
 
+\tikzstyle{startstop} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
+\tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+\tikzstyle{process} = [rectangle, minimum width=4cm, minimum height=1cm, text centered, text width=5cm, draw=black, fill=orange!30]
+\tikzstyle{decision} = [diamond, minimum width=2cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+
+
+
 \title{High-Frequency Trading \\ \& \\ Graphics Processing Unit}
-\subtitle{Defensa tema de memoria}
+\subtitle{Examen de Titulación}
 \author{Jonathan Antognini C.\\
 		Prof. Guía Dr. Luis Salinas\\
         Prof. Correferente M.Sc Paola Arce}
@@ -52,6 +62,16 @@
 \date{\today}
 
 \begin{document}
+    \AtBeginSection[]
+    {
+      \begin{frame}
+        \frametitle{Tabla de contenidos}
+        \begin{multicols}{2}
+        \tableofcontents[currentsection]
+        \end{multicols}
+      \end{frame}
+    }
+
     \frame{\titlepage}
     \begin{frame}{\contentsname}
         \frametitle{Tabla de Contenidos} 
@@ -62,6 +82,7 @@
 
     \section{Objetivos}
         \begin{frame}
+            \frametitle{Objetivos de la memoria}
             \noindent Los \emph{\textbf{objetivos principales}} de esta memoria son:
             \begin{itemize}
              \item Implementar un modelo VEC y analizar su comportamiento con
@@ -79,7 +100,7 @@
             \end{itemize}
 
         \end{frame}
-	
+
     \section{Introducción}
         \subsection{Mercados Financieros}
             \begin{frame}
@@ -92,8 +113,8 @@
                     \item \emph{Orders}
                     \item \emph{Bid price}
                     \item \emph{Ask price}
-                    \item \emph{Market orders}
-                    \item \emph{Limit orders}
+                    %\item \emph{Market orders}
+                    %\item \emph{Limit orders}
                 \end{itemize}
             \end{frame}
         \subsection{Serie de tiempo Forex}
@@ -111,10 +132,96 @@
 
             \end{frame}
     \section{Descripción del problema}
-        \subsection{Vector AutoRegressive}
+        \subsection{Series de tiempo estacionarias}
             \begin{frame}
-            \frametitle{Vector AutoRegressive}
-            VAR es un marco general que describe el comportamiento de un set $l$ de
+            \frametitle{Series de tiempo estacionaria}
+            Una serie de tiempo $\{y_{t_n}\}, n \in \mathbf{Z}$ se dice estrictamente
+            estacionaria cuando el comportamiento probabilístico de cada colección
+            correlativa de valores $\{y_{t_1},y_{t_2},\dots,y_{t_L}\}$ es idéntico a otro
+            set correlativo desplazado en el tiempo:
+            \[ P\{y_{t_1} \leq
+            c_1,\dots,y_{t_L} \leq c_L\} = P\{y_{t_1+h} \leq c_1,\dots,y_{t_L+h}
+            \leq c_L\}
+            \quad \forall L \in \mathbb{N}, \forall h \in \mathbb{Z}\] \noindent donde
+            $c_1,\dots,c_L$ son constantes.
+            \end{frame}
+
+            \begin{frame}
+            \frametitle{Series de tiempo débilmente estacionaria}
+            Una serie de tiempo débilmente estacionaria es un proceso que su media,
+            varianza y autocovarianza no cambian en el tiempo:
+            
+            \begin{eqnarray*}
+            E(Y_t) &=& \mu  \quad \forall t \in \mathbb{N} \\ E(Y^2_t) &=&
+            \sigma^2  \quad \forall t \in \mathbb{N} \\
+            \lambda(s,t)&=&\lambda(s+h,t+h) \quad \forall s,t \in \mathbb{N},
+            \forall h \in \mathbb{Z}
+            \end{eqnarray*}
+            
+            \noindent con $\lambda(s,t) = E[(y_s-\mu)(y_t - \mu)]$.
+
+            \end{frame}
+        \subsection{Integración y Cointegración}
+            \begin{frame}
+            \frametitle{Integración} 
+            $\mathbf{Y}$ es llamado integrado de orden $d$, si después de
+            diferenciar $d$ veces, se obtiene una variable I(0):
+            
+            \[
+            (1-L)^d \mathbf{Y} \sim \text{I(0)}
+            \]
+            \noindent donde $L$ es el operador de rezago, i.e,
+            \[
+            (1-L)\mathbf{Y} = \Delta \mathbf{Y}
+            \]
+            \noindent donde $\Delta \mathbf{Y}(t) = \mathbf{Y}(t)  -\mathbf{Y}(t-1) \quad \forall t $.
+            \end{frame}
+            \begin{frame}  
+            \begin{figure}[h]
+                \centering
+                \includegraphics[width=0.8\textwidth]{img/euro_ppt}
+                \caption{$EURUSD$}
+                \label{fig:cpu_gpu_arch}
+            \end{figure}
+            \end{frame}
+            \begin{frame}  
+            \begin{figure}[h]
+                \centering
+                \includegraphics[width=0.8\textwidth]{img/euro_ppt_diff}
+                \caption{$\Delta EURUSD$}
+                \label{fig:cpu_gpu_arch}
+            \end{figure}
+            \end{frame}
+                      
+            \begin{frame}  
+            \frametitle{Cointegración} 
+            Definamos $\mathbf{Y}_t = \{\mathbf{y}^1, \dots, \mathbf{y}^l\}$
+            como un set de $l$ series de tiempo estacionarias
+            I(1) que se dice que es cointegrada si un vector,
+            $\beta=[\beta(1),\dots,\beta(l)]^\intercal \in \mathbb{R}^l$  existe tal que la serie de tiempo,
+            
+            \begin{equation}
+            \mathbf{Z}_t:= \beta^\intercal \mathbf{Y}_t = \beta(1) \mathbf{y}^1 + \dots + \beta(l) \mathbf{y}^l \sim
+            \text{I(0)}
+            \end{equation}
+            
+            En otras palabras, un set de variables I(1) se dice que son cointegradas si
+            existe una combinación lineal de ellas que es I(0).
+            \end{frame}
+        
+            \begin{frame}  
+            \begin{figure}[h]
+                \centering
+                \includegraphics[width=0.8\textwidth]{img/dogs}
+                \caption{Analogía borracho y los perros}
+                \label{fig:cpu_gpu_arch}
+            \end{figure}
+            \end{frame}
+
+        \subsection{Vector Autoregression}
+            \begin{frame}
+            \frametitle{Vector Autoregression}
+            VAR describe el comportamiento de un set $l$ de
             variables endógenas como una combinación lineal de sus últimos $p$ valores.
 
             \begin{equation}
@@ -177,66 +284,6 @@
             $}
             \end{equation}
             \end{frame}
-        \subsection{Series de tiempo estacionarias}
-            \begin{frame}
-            \frametitle{Series de tiempo estacionaria}
-            Una serie de tiempo $\{y_{t_n}\}, n \in \mathbf{Z}$ se dice estrictamente
-            estacionaria cuando el comportamiento probabilístico de cada colección
-            correlativa de valores $\{y_{t_1},y_{t_2},\dots,y_{t_L}\}$ es idéntico a otro
-            set correlativo desplazado en el tiempo:
-            \[ P\{y_{t_1} \leq
-            c_1,\dots,y_{t_L} \leq c_L\} = P\{y_{t_1+h} \leq c_1,\dots,y_{t_L+h}
-            \leq c_L\}
-            \quad \forall L \in \mathbb{N}, \forall h \in \mathbb{Z}\] \noindent donde
-            $c_1,\dots,c_L$ son constantes.
-            \end{frame}
-
-            \begin{frame}
-            Una serie de tiempo débilmente estacionaria es un proceso que su media,
-            varianza y autocovarianza no cambian en el tiempo:
-            
-            \begin{eqnarray*}
-            E(Y_t) &=& \mu  \quad \forall t \in \mathbb{N} \\ E(Y^2_t) &=&
-            \sigma^2  \quad \forall t \in \mathbb{N} \\
-            \lambda(s,t)&=&\lambda(s+h,t+h) \quad \forall s,t \in \mathbb{N},
-            \forall h \in \mathbb{Z}
-            \end{eqnarray*}
-            
-            \noindent con $\lambda(s,t) = E[(y_s-\mu)(y_t - \mu)]$.
-
-            \end{frame}
-        \subsection{Integración y Cointegración}
-            \begin{frame}
-            \frametitle{Integración y Cointegración} 
-            Un proceso estocástico $\mathbf{Y}$ es llamado integrado de orden $d$, si
-            después de diferenciar $d$ veces, se obtiene una variable I(0) (proceso
-            estacionario):
-            
-            \[
-            (1-L)^d \mathbf{Y} \sim \text{I(0)}
-            \]
-            \noindent donde I(0) es una serie de tiempo estacionaria y $L$ es el operador de rezago, i.e,
-            \[
-            (1-L)\mathbf{Y} = \Delta \mathbf{Y}
-            \]
-            \noindent donde $\Delta \mathbf{Y}(t) = \mathbf{Y}(t)  -\mathbf{Y}(t-1) \quad \forall t $.
-            \end{frame}
-                      
-            \begin{frame}  
-            Definamos $\mathbf{Y}_t = \{\mathbf{y}^1, \dots, \mathbf{y}^l\}$
-            como un set de $l$ series de tiempo estacionarias
-            I(1) que se dice que es cointegrada si un vector,
-            $\beta=[\beta(1),\dots,\beta(l)]^\intercal \in \mathbb{R}^l$  existe tal que la serie de tiempo,
-            
-            \begin{equation}
-            \mathbf{Z}_t:= \beta^\intercal \mathbf{Y}_t = \beta(1) \mathbf{y}^1 + \dots + \beta(l) \mathbf{y}^l \sim
-            \text{I(0)}
-            \end{equation}
-            
-            En otras palabras, un set de variables I(1) se dice que son cointegradas si
-            existe una combinación lineal de ellas que es I(0).
-            \end{frame}
-
         \subsection{Vector Error Correction}
             \begin{frame}
             \frametitle{Vector Error Correction}
@@ -367,7 +414,7 @@
             
             \noindent donde $\lambda$ es un parámetro de regulación.
             
-            La solución óptima de RR $\mathbf{X}(\lambda)$ está determinada como:
+            La solución óptima $\mathbf{X}(\lambda)$ está determinada como:
             
             \begin{equation}
             \label{eq:optsolRR}
@@ -409,19 +456,157 @@
 	\section{Metodología}
         \subsection{Algoritmo Propuesto}
             \begin{frame}
-            \frametitle{Algoritmo Propuesto}
+            \frametitle{Algoritmo Propuesto: Online VEC}
+            Se propone un algoritmo online con ventanas deslizantes para la
+            predicción del valor futuro de la cartera de stock FOREX usando el modelo
+            VEC.
             \end{frame}
 
             \begin{frame}
-            %\frametitle{Parámetros del Algoritmo}
+            \begin{columns}[T] 
+                \begin{column}{.58\textwidth}
+                \begin{adjustbox}{max size={.95\textwidth}{.8\textheight}} %height=0.8\textheight}
+                \begin{tikzpicture}[node distance=2cm]
+                %\node (start) [startstop] {Start};
+                %\node (in1) [io, below of=start] {Input};
+                \node (in1) [io] {Input: y, p, L};
+                \node (pro1) [process, below of=in1, yshift=-2.0cm] {$y_i = y[i:i+L]$ \\ 
+                                                    $v = \texttt{Johansen}(\mathbf{y}_i,p)$ \\
+                                                    $[\mathbf{A} \quad \mathbf{B}] =\texttt{vecm}(\mathbf{y}_i,p,v)$ \\
+                                                    $\mathbf{X} = \text{OLS} (\mathbf{A},\mathbf{B})$  
+                                                    $\mathbf{y}_{\text{true}}[i] = \mathbf{y}_i[-n,:]$ \\
+                                                    $\mathbf{y}_{\text{pred}}[i] = \mathbf{A}[-n,:] \times \mathbf{X} +$ \\$ \mathbf{y}_i[-n-1,:-1]$ \\
+                   };
+
+                \node (pro2) [process, left of=pro1, xshift=-4cm] {$ i++ $}; 
+               
+                \node (dec1) [decision, below of=pro1, yshift=-2.5cm] { $i > it $ };
+                
+                \node (out1) [io, below of=dec1] {Output: $y_{true}, y_{pred}$};
+                
+                %\node (stop) [startstop, below of=out1] {Stop};
+                
+                %\draw [arrow] (start) -- (in1);
+                \draw [arrow] (in1) -- (pro1);
+                \draw [arrow] (pro1) -- (dec1);
+                \draw [arrow] (dec1.west) -| node[anchor=east] {no} (pro2);
+                \draw [arrow] (pro2) -- (pro1);
+                \draw [arrow] (dec1) --  node[anchor=east] {si} (out1);
+                %\draw [arrow] (out1) -- (stop);
+                \end{tikzpicture}
+                \end{adjustbox}
+            \end{column}%
+
+            \hfill%
+            \begin{column}{.38\textwidth}
+            Sliding Window VECM: SLVECM \\
+            $\mathbf{y}$: Matriz con $N$ vectores de entrada y $l$ series de tiempo\\
+            $p$: número de valores anteriores \\
+            $L$: tamaño de la ventana deslizante ($L<N$) \\
+            \end{column}%
+            \end{columns}
             \end{frame}
-        %\subsection{Parámetros del Algoritmo}
-        %    \begin{frame}
-        %    \frametitle{Parámetros del Algoritmo}
-        %    \end{frame}
+
+            \begin{frame}
+            \begin{columns}[T] 
+                \begin{column}{.58\textwidth}
+                \begin{adjustbox}{max size={.95\textwidth}{.8\textheight}} %height=0.8\textheight}
+                \begin{tikzpicture}[node distance=2cm]
+                %\node (start) [startstop] {Start};
+                %\node (in1) [io, below of=start] {Input};
+                \node (in1) [io] {Input: y, p, L, $\epsilon$, n};
+                \node (pro1) [process, below of=in1] {$y_i = y[i:i+L]$};
+                \node (dec1) [decision, below of=pro1, yshift=-0.5cm] {i = 0};
+                \node (pro2a) [process, below of=dec1, yshift=-0.5cm] {$[\mathbf{A} \quad \mathbf{B}] =\texttt{ovecm}(\mathbf{y}_i,p,v,\mathbf{A},\mathbf{B})$
+                                                                    $\Delta \mathbf{Y}_{\text{true}}[i] = \mathbf{B}[-1,:]$
+                                                                    $\Delta \mathbf{Y}_{\text{pred}}[i] = \mathbf{A}[-1,:] \times \mathbf{X}$};
+
+                \node (pro2b) [process, right of=dec1, xshift=4cm] {$v = \texttt{Johansen}(\mathbf{y}_i,p)$ $[\mathbf{A} \quad 
+                                                                            \mathbf{B}] = \texttt{vecm}(\mathbf{y}_i,p,v)$};
+                \node (pro3) [process, below of=pro2a, yshift=-0.5cm] {$\mathbf{X} = \text{OLS} (\mathbf{A},\mathbf{B})$ \\
+                                                                    $\mathbf{y}_{\text{true}}[i] = \mathbf{y}_i[-n,:]$ \\
+                                                                    $\mathbf{y}_{\text{pred}}[i] = \mathbf{A}[-n,:] \times \mathbf{X} +$ \\$ \mathbf{y}_i[-n-1,:-1]$ \\
+                                                                    $e = \texttt{mape}(\mathbf{y}_{\text{true}}, \mathbf{y}_{\text{pred}})$};
+
+                \node (dec2) [decision, below of=pro3, yshift=-0.5cm] { $e > \epsilon $ };
+
+                \node (pro4a) [process, right of=dec2, xshift=4cm] {$v = \texttt{Johansen}(\mathbf{y}_i,p)$ \\
+                                                                    $\mathbf{A} = \texttt{uvecm}(\mathbf{y}_i,p,v,\mathbf{A})$ \\
+                                                                    $\mathbf{X} = \texttt{OLS} (\mathbf{A},\mathbf{B})$};
+
+               
+                \node (pro5) [process, left of=pro2a, xshift=-4cm] {$ i++ $}; 
+               
+                \node (dec3) [decision, below of=dec2, yshift=-0.5cm] { $i > it $ };
+                
+                \node (out1) [io, below of=dec3] {Output: $y_{true}, y_{pred}$};
+                
+                %\node (stop) [startstop, below of=out1] {Stop};
+                
+                %\draw [arrow] (start) -- (in1);
+                \draw [arrow] (in1) -- (pro1);
+                \draw [arrow] (pro1) -- (dec1);
+                \draw [arrow] (dec1) -- node[anchor=east] {no} (pro2a);
+                \draw [arrow] (dec1) -- node[anchor=south] {si} (pro2b);
+                \draw [arrow] (pro2a) -- (pro3);
+                \draw [arrow] (pro2b) |- (pro3);
+                \draw [arrow] (pro3) -- (dec2);
+                \draw [arrow] (dec2) --  node[anchor=south] {si} (pro4a);
+                \draw [arrow] (pro4a) |- (dec3);
+                
+                \draw [arrow] (dec2) --  node[anchor=east] {no} (dec3);
+                \draw [arrow] (dec3.west) -| node[anchor=east] {no} (pro5);
+                \draw [arrow] (pro5) |- (pro1);
+                \draw [arrow] (dec3) --  node[anchor=east] {si} (out1);
+                %\draw [arrow] (out1) -- (stop);
+                \end{tikzpicture}
+                \end{adjustbox}
+            \end{column}%
+
+            \hfill%
+            \begin{column}{.38\textwidth}
+            Online VECM: OVECM \\
+            $\mathbf{y}$: Matriz con $N$ vectores de entrada y $l$ series de tiempo\\
+            $p$: número de valores anteriores \\
+            $L$: tamaño de la ventana deslizante ($L<N$) \\
+            $\epsilon$: MAPE umbral \\
+            $n$: puntos de interpolación para calcular el MAPE\\
+            \end{column}%
+            \end{columns}
+            \end{frame}
+
+            %\begin{frame}
+            %\frametitle{Parámetros del Algoritmo}
+            %\begin{columns}[T] % align columns
+            %\begin{column}{.48\textwidth}
+            %\color{red}\rule{\linewidth}{4pt}
+            %
+            %Left Part
+            %\end{column}%
+            %\hfill%
+            %\begin{column}{.48\textwidth}
+            %\color{blue}\rule{\linewidth}{4pt}
+            %
+            %Right Part
+            %\end{column}%
+            %\end{columns}
+            %\end{frame}
         \subsection{Diagrama de clases}
             \begin{frame}
             \frametitle{Diagrama de clases}
+            \begin{columns}[T]
+            \begin{column}{.48\textwidth}
+            Python:
+            \begin{itemize}
+            \item Pandas
+            \item Statsmodels
+            \item Numpy
+            \item Scikits.CUDA
+            \end{itemize}
+            \end{column}%
+
+            \begin{column}{.48\textwidth}
+            Clases:
             \begin{itemize}
              \item Util
              \item Reader
@@ -431,6 +616,8 @@
              \item Model\_it
              \item Stats
             \end{itemize}
+            \end{column}%
+            \end{columns}
             \end{frame}
 
             \begin{frame}
@@ -456,6 +643,7 @@
                 \end{center}
             \end{figure}
             \end{frame}
+
             \begin{frame}
             %\frametitle{}
             \begin{table}[h!]
@@ -479,28 +667,28 @@
             \end{center}
             \end{table}
             \end{frame}
-        \subsection{Selección de Parámetros}
-            \begin{frame}
-            \frametitle{Selección de Parámetros}
-            \begin{table}[h]
-            \caption{Resultados de AIC}
-            \label{tab:IAC}
-            \begin{center}
-            \begin{adjustbox}{max width=\textwidth}
-            \begin{tabular}{|l|c|c|c|c|c|}
-            \hline
-            \backslashbox{\textbf{L}}{\textbf{P}} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} \\
-            \hline
-            100 & -58.64574 & \textbf{-58.83743} & -58.70088 & -58.61984 & -58.68117 \\
-            400 & -60.42127 & -60.65667 & -60.67377 & -60.64634 &  \textbf{-60.68087} \\
-            700 & -59.05503 & -59.17413 & \textbf{-59.20871} & -59.18571 & -59.17367 \\
-            100 & -58.98121 & -59.09158 & \textbf{-59.12083} & -59.10099 & -59.0927 \\
-            \hline
-            \end{tabular}
-            \end{adjustbox}
-            \end{center}
-            \end{table}
-            \end{frame}
+        %\subsection{Selección de Parámetros}
+        %    \begin{frame}
+        %    \frametitle{Selección de Parámetros}
+        %    \begin{table}[h]
+        %    \caption{Resultados de AIC}
+        %    \label{tab:IAC}
+        %    \begin{center}
+        %    \begin{adjustbox}{max width=\textwidth}
+        %    \begin{tabular}{|l|c|c|c|c|c|}
+        %    \hline
+        %    \backslashbox{\textbf{L}}{\textbf{P}} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} \\
+        %    \hline
+        %    100 & -58.64574 & \textbf{-58.83743} & -58.70088 & -58.61984 & -58.68117 \\
+        %    400 & -60.42127 & -60.65667 & -60.67377 & -60.64634 &  \textbf{-60.68087} \\
+        %    700 & -59.05503 & -59.17413 & \textbf{-59.20871} & -59.18571 & -59.17367 \\
+        %    100 & -58.98121 & -59.09158 & \textbf{-59.12083} & -59.10099 & -59.0927 \\
+        %    \hline
+        %    \end{tabular}
+        %    \end{adjustbox}
+        %    \end{center}
+        %    \end{table}
+        %    \end{frame}
         \subsection{Pruebas de Cointegración}
             \begin{frame}
             \frametitle{Pruebas de Cointegración}
@@ -655,4 +843,5 @@
             \end{itemize}
 
             \end{frame}
+    \frame{\titlepage}
 \end{document}
